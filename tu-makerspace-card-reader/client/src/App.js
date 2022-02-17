@@ -1,23 +1,18 @@
-import logo from './logo.svg';
 import './App.css';
+import mill from './mill.png';
+import Switch from '@mui/material/Switch';
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <div>
+      <img src={mill} alt="Mill" width={100} />
+      </div>
+      <div>
+      <Switch value="checkedA" size="medium" color="error" inputProps={{ 'aria-label': 'Switch A' }} />
+      </div>
+      
+      
     </div>
   );
 }
