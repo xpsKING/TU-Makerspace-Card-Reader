@@ -218,8 +218,7 @@ exports.deleteAll = (req, res) => {
 };
 // Find all fabtech users
 exports.findAllFabtechs = (req, res) => {
-    exports.findAllPublished = (req, res) => {
-        Users.findAll({ where: { fabTech: 1 },attributes: {exclude: ['password']} })
+    Users.findAll({ where: { fabTech: true },attributes: {exclude: ['password']} })
             .then(data => {
                 res.send(data);
             })
@@ -229,5 +228,4 @@ exports.findAllFabtechs = (req, res) => {
                         err.message || "Some error occurred while retrieving fabTechs."
                 });
             });
-    };
 };
