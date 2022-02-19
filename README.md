@@ -20,5 +20,7 @@
 - PUT /api/users/:id updates a user with specified id. id is the card number of their RFID card. (requires user and authPassword of fabTech/Admin)
 - DELETE /api/users/:id deletes a user with specified id. (requires user and authPassword of fabTech/Admin)
 
+Similar api calls are availible for the machines sql table, go to machine.routes.js to see them.
+
 Basically the backend is in a working state, with new features to be added as neccesary. time to get working on that frontend.
 
