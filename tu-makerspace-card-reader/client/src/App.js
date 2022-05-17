@@ -2,7 +2,7 @@ import './App.css';
 import mill from './mill.png';
 import tempimage from './tempimage.png';
 import axios from 'axios';
-import { Switch, TextField } from '@mui/material/';
+import { Switch, TextField, Box } from '@mui/material/';
 import React from 'react';
 import { getUser, disableMachine, toggleMachine, getAllMachines } from './APIRoutes';
 
@@ -13,13 +13,21 @@ class Search extends React.Component {
     this.state = {
       value: null,
       error: false,
-      currentUser:{"name":"Enter ID","nullTraining":false},
+      currentUser:{
+        "name":"Enter ID",
+        "nullTraining":false,
+      },
       machineGroup: props.machineGroup,
-      machines: [{"name":"loading","id":0, "status":false, "requiredTraining":"nullTraining"}] //temporary "loading" machine that gets overirdden in componentdidmount()
+      machines: [{
+        "name":"loading",
+        "id":0, 
+        "status":false, 
+        "requiredTraining":"nullTraining",
+      }], //temporary "loading" machine that gets overirdden in componentdidmount()
     };
   }
   componentDidMount(){ //gets called when component starts, gets machines for specific machinegroup from api
-    axios(getAllMachines(this.state.machineGroup)).then((response, error) =>{
+    axios(getAllMachines(this.state.machineGroup)).then((response, error) => {
       if(error){
         console.log("error getting machines");
       }
@@ -27,58 +35,92 @@ class Search extends React.Component {
         console.log(response.data);
         this.setState({
           machines : response.data,
-          currentUser:{"name":"Enter ID","nullTraining":false},
-
+          currentUser:{
+            "name":"Enter ID",
+            "nullTraining":false},
         });
       }
     });
 
   }
   handlenewSearch = (event)=>{ //called when search box is changed. updates user which is referenced by Machine component for perms
-    axios(getUser(event.target.value)).then((response, error) => {
-      console.log(response.data);
-      if (response.data.name) {
-        console.log("name set: " +response.data.name);
-        this.setState({currentUser : response.data, error: false}); 
-      
-        //currentUser is set in state of search, need to build function to check user perms and apply to machines as they are mapped
-      }
-      else {
-        console.log("error fetching name: " +error);
+    const value = event.target.value;
+    this.setState({
+      value: value,
+    })
+    if (value !== '') { // added this to unset error
+      axios(getUser(event.target.value)).then((response, error) => {
+        console.log(response.data);
+        if (response.data.name) {
+          console.log("name set: " + response.data.name);
+          this.setState({
+            currentUser : response.data, 
+            error: false,
+          }); 
+        
+          //currentUser is set in state of search, need to build function to check user perms and apply to machines as they are mapped
+        }
+        else {
+          console.log("error fetching name: " +error);
+          this.setState({
+            error: true,
+            currentUser:{"name":"Enter ID","nullTraining":false},
+          });
+          
+        }
+      }).catch((error)=>{
+        console.log("error fetching name: " + error);
         this.setState({
           error: true,
           currentUser:{"name":"Enter ID","nullTraining":false},
         });
-        
-      }
-    }).catch((error)=>{
-      console.log("error fetching name: " +error);
-      this.setState({
-        error: true,
-        currentUser:{"name":"Enter ID","nullTraining":false},
       });
-    });
+    } else { // unsets error when empty
+      this.setState({
+        error: false,
+        currentUser:{
+          "name":"Enter ID",
+          "nullTraining":false,
+        },
+      })
+    }
   
   }
   
   render() {
     return (
-      <div className='SearchWindow'>
+    
+      <div className='SearchWindow' align = "left">
 
         {/* Create textfield for user input, highlights red if error! Blue if valid name! */}
-        <TextField id="filled-basic" label={this.state.currentUser.name} variant="filled" error={this.state.error} value={this.state.value} onChange={this.handlenewSearch}  /> 
+        <h3 id = "otherh3">Name: {this.state.currentUser.name !== "Enter ID" ? this.state.currentUser.name : ' '}</h3>
+        <input 
+          id = {this.state.error === true ? "input2true" : "input2false"}
+          className = 'BetterTextField'
+          placeholder={this.state.currentUser.name}
+          error = {this.state.error}
+          value={this.state.value} 
+          onChange={this.handlenewSearch} 
+          /> 
+         
         
         {/* Creates multiple machines from the machine[] state! Machine state is filled on component load and is called via api GET machines/group/groupname */}
         {/* Change the machinegroup prop when you render the search component to set which tablet this is run on  */}
-        <div className='Machine map'>
-          {this.state.machines.map(machine=>(
-            <Machine key={machine.id} machineName={machine.name} currentUser={this.state.currentUser} activated={machine.status} trained ={this.state.currentUser[machine.requiredTraining]}/>
+        <div className='Machine map' align="right">
+          {this.state.machines.map((machine)=>( 
+            <Machine 
+            key={machine.id} 
+            machineName={machine.name} 
+            currentUser={this.state.currentUser} 
+            activated={machine.status} 
+            trained ={this.state.currentUser[machine.requiredTraining]}
+            />
           ))}
         </div>
         
 
       </div>
-
+     
     )
   }
 
@@ -98,8 +140,7 @@ class Machine extends React.Component {
 
  //used to determine which image to grab for machine diplay. may move this to its own file later to clean up code.
   getImage(machineName){
-    console.log("machine name: " +machineName)
-   if(machineName =="CNC Mill"){
+   if(machineName === "CNC Mill"){
      return mill
    }
    else{
@@ -132,15 +173,20 @@ class Machine extends React.Component {
 
   render() {
     return (
-      <div>
-        <img src={this.state.image}  width={100}/>
-        <Switch checked={this.state.activated} size="medium" color="error" disabled={!this.state.trained && !this.state.activated} inputProps={{ 'aria-label': 'Switch A' }}
+      <div align = "center">
+        <img src={this.state.image} align = "center" width={100}/>
+        <Switch 
+          checked={this.state.activated} 
+          size="medium" 
+          color="error" 
+          disabled={!this.state.trained && !this.state.activated} 
+          inputProps={{ 'aria-label': 'Switch A' }}
           onChange={(event)=>this.onButtonChange(event)}
         />
       </div>
 
     );
-  }
+    }
 }
 
 
@@ -153,3 +199,4 @@ function App() {
 }
 
 export default App;
+
