@@ -125,10 +125,9 @@ class Search extends React.Component {
         
         {/* Creates multiple machines from the machine[] state! Machine state is filled on component load and is called via api GET machines/group/groupname */}
         {/* Change the machinegroup prop when you render the search component to set which tablet this is run on  */}
-        <div className='Machine map'>
+        <div className='container'>
           {this.state.machines.map((machine)=>(
-            <h3 key = {machine.id}>
-            <Machine 
+            <Machine
               machineID = {machine.id}
               machineName={machine.name} 
               currentUser={this.state.currentUser} 
@@ -136,7 +135,6 @@ class Search extends React.Component {
               trained ={this.state.currentUser[machine.requiredTraining]}
               test={console.log('test ' + machine.id)}
             />
-            </h3>
           ))}
           {this.state.machines.map((machine) => {
             console.log('MACHINE IDS TEST: ' + machine.id);
@@ -150,6 +148,7 @@ class Search extends React.Component {
   }
 
 }
+
 class Machine extends React.Component {
   constructor(props) {
     super(props);
@@ -208,24 +207,33 @@ class Machine extends React.Component {
   }
 
   render() {
-    const machineID = this.state.machineID;
     return (
-      <div>
+      <span>
    
         <img src={this.state.image} className = {this.state.activated === true ? "MachineBoxTrue" : "MachineBox"} />
         <ul id = "p2">
         <span id="otherh3-2">{this.state.machineName + " " + this.state.machineID}</span>
-        <input
-          value = {this.state.machineID}
+        <Switch 
+          id = "switch"
+          className = "toggle"
+          checked={this.state.activated} 
+          size="medium" 
+          color="error" 
+          disabled={!this.state.trained && !this.state.activated} 
+          inputProps={{ 'aria-label': 'Switch A' }}
+          onChange={(event)=>this.onButtonChange(event)}
+    />
+      {/*  <input
+          value = {machineID}
           type="checkbox"
           id="switch"
           className="checkbox"
           test = {console.log('hi')/*}disabled={!this.state.trained && !this.state.activated}
-          checked={this.state.activated} {*/}
+          checked={this.state.activated} {}
           onChange={this.onButtonChange}
           />
           <label htmlFor="switch" className="toggle">
-          </label>
+          </label> {*/}
           </ul>
         
          {/*} 
@@ -238,7 +246,7 @@ class Machine extends React.Component {
           inputProps={{ 'aria-label': 'Switch A' }}
           onChange={(event)=>this.onButtonChange(event)}
     />{*/}
-      </div>
+      </span>
 
     );
     }
