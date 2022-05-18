@@ -87,6 +87,18 @@ class Search extends React.Component {
   
   }
   
+  handleLogOut() {
+    // could possibly add that all machines get turned off on log out ???? 
+    this.setState({
+      value: '',
+      error: false,
+      currentUser:{
+        "name":"Enter ID",
+        "nullTraining":false,
+      },
+    })
+  }
+  
   render() {
     return (
     
@@ -102,7 +114,12 @@ class Search extends React.Component {
           value={this.state.value} 
           onChange={this.handlenewSearch} 
           /> 
-         
+          <button 
+            className = "BetterBox" 
+            onClick={() => this.handleLogOut()} 
+            
+            > Log Out </button>
+        
         
         {/* Creates multiple machines from the machine[] state! Machine state is filled on component load and is called via api GET machines/group/groupname */}
         {/* Change the machinegroup prop when you render the search component to set which tablet this is run on  */}
