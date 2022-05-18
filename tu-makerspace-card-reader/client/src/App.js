@@ -118,7 +118,7 @@ class Search extends React.Component {
           $error = {this.state.error}
           value={this.state.value} 
           onChange={this.handlenewSearch} 
-          autocomplete = "off"
+          autoComplete = "off"
           /> 
           <button 
             className = "BetterBox" 
@@ -224,7 +224,7 @@ class Machine extends React.Component {
           size="medium" 
           color="success" 
           disabled={!this.state.trained && !this.state.activated} 
-          inputProps={{ 'aria-label': 'Switch A' }}
+          inputprops={{ 'aria-label': 'Switch A' }}
           onChange={(event)=>this.onButtonChange(event)}
     />
       {/*  <input
