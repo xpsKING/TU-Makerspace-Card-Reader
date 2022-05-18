@@ -1,12 +1,5 @@
 // import './App.css';
-import mill from './mill.png';
-import bandsaw from './bandsaw.jpeg';
-import tempimage from './tempimage.png';
-import axios from 'axios';
-import SwitchUnstyled from '@mui/base/SwitchUnstyled';
-import React from 'react';
-import { getUser, disableMachine, toggleMachine, getAllMachines } from './APIRoutes';
-import Root from './switchtheme.js'
+
 import MachineView from './MachineView.js';
 import { Routes, Route, Link } from "react-router-dom";
 
@@ -19,7 +12,7 @@ function Home(){
         <p>You can do this, I believe in you.</p>
       </main>
       <nav> 
-        <Link to="/about">About</Link>
+        <Link to="/metalShop1">metalShop1</Link>
       </nav>
     </>
   )
