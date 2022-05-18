@@ -1,18 +1,19 @@
 import './App.css';
 import mill from './mill.png';
+import bandsaw from './bandsaw.jpeg';
 import tempimage from './tempimage.png';
 import axios from 'axios';
-import { Switch, TextField, Box } from '@mui/material/';
+import SwitchUnstyled from '@mui/base/SwitchUnstyled';
 import React from 'react';
 import { getUser, disableMachine, toggleMachine, getAllMachines } from './APIRoutes';
-
+import Root from './switchtheme.js'
 
 class Search extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      value: null,
-      error: false,
+      value: '',
+      $error: false,// added $ before boolean
       currentUser:{
         "name":"Enter ID",
         "nullTraining":false,
@@ -34,6 +35,9 @@ class Search extends React.Component {
       else{
         console.log(response.data);
         this.setState({
+          machines: []
+        })
+        this.setState({
           machines : response.data,
           currentUser:{
             "name":"Enter ID",
@@ -44,34 +48,34 @@ class Search extends React.Component {
 
   }
   handlenewSearch = (event)=>{ //called when search box is changed. updates user which is referenced by Machine component for perms
+    
     const value = event.target.value;
     this.setState({
       value: value,
     })
     if (value !== '') { // added this to unset error
-      axios(getUser(event.target.value)).then((response, error) => {
+      axios(getUser(event.target.value)).then((response, err) => {
         console.log(response.data);
         if (response.data.name) {
           console.log("name set: " + response.data.name);
           this.setState({
             currentUser : response.data, 
-            error: false,
+            $error: false,
           }); 
-        
           //currentUser is set in state of search, need to build function to check user perms and apply to machines as they are mapped
         }
         else {
-          console.log("error fetching name: " +error);
+          console.log("error fetching name: " + err);
           this.setState({
-            error: true,
+            $error: true,
             currentUser:{"name":"Enter ID","nullTraining":false},
           });
           
         }
-      }).catch((error)=>{
-        console.log("error fetching name: " + error);
+      }).catch((err)=>{
+        console.log("error fetching name: " + err);
         this.setState({
-          error: true,
+          $error: true,
           currentUser:{"name":"Enter ID","nullTraining":false},
         });
       });
@@ -88,10 +92,9 @@ class Search extends React.Component {
   }
   
   handleLogOut() {
-    // could possibly add that all machines get turned off on log out ???? 
     this.setState({
       value: '',
-      error: false,
+      $error: false,
       currentUser:{
         "name":"Enter ID",
         "nullTraining":false,
@@ -100,39 +103,45 @@ class Search extends React.Component {
   }
   
   render() {
+    let err = this.state.$error;
     return (
     
       <div className='SearchWindow' align = "left">
-
+        
         {/* Create textfield for user input, highlights red if error! Blue if valid name! */}
         <h3 id = "otherh3">Name: {this.state.currentUser.name !== "Enter ID" ? this.state.currentUser.name : ' '}</h3>
+        
         <input 
-          id = {this.state.error === true ? "input2true" : "input2false"}
+          id = {err === true ? "input2true" : "input2false"}
           className = 'BetterTextField'
           placeholder={this.state.currentUser.name}
-          error = {this.state.error}
+          $error = {this.state.error}
           value={this.state.value} 
           onChange={this.handlenewSearch} 
+          autoComplete = "off"
           /> 
           <button 
             className = "BetterBox" 
             onClick={() => this.handleLogOut()} 
-            
             > Log Out </button>
         
         
         {/* Creates multiple machines from the machine[] state! Machine state is filled on component load and is called via api GET machines/group/groupname */}
         {/* Change the machinegroup prop when you render the search component to set which tablet this is run on  */}
-        <div className='Machine map' align="right">
-          {this.state.machines.map((machine)=>( 
-            <Machine 
-            key={machine.id} 
-            machineName={machine.name} 
-            currentUser={this.state.currentUser} 
-            activated={machine.status} 
-            trained ={this.state.currentUser[machine.requiredTraining]}
+        <div className='container'>
+          {this.state.machines.map((machine)=>(
+            <Machine
+              machineID = {machine.id}
+              machineName={machine.name} 
+              currentUser={this.state.currentUser} 
+              activated={machine.status} 
+              trained ={this.state.currentUser[machine.requiredTraining]}
+              test={console.log('test ' + machine.id)}
             />
           ))}
+          {this.state.machines.map((machine) => {
+            console.log('MACHINE IDS TEST: ' + machine.id);
+          })}
         </div>
         
 
@@ -142,27 +151,34 @@ class Search extends React.Component {
   }
 
 }
+
 class Machine extends React.Component {
   constructor(props) {
     super(props);
     console.log(props);
     this.state = {
+      machineID: props.machineID,
       machineName: props.machineName,
       activated: props.activated,
       currentUser:props.currentUser,
-      image: this.getImage(props.machineName),
-      trained: props.trained
+      image: this.getImage(props.machineName, props.machineID),
+      trained: props.trained,
+      
     };
   }
 
  //used to determine which image to grab for machine diplay. may move this to its own file later to clean up code.
-  getImage(machineName){
-   if(machineName === "CNC Mill"){
-     return mill
-   }
-   else{
-     return tempimage;
-   }
+  getImage(machineName, machineID){
+    //console.log(machineName + " " + machineID);
+    if(machineName === "CNC Mill"){
+      return mill;
+    }
+    else if (machineName === 'Bandsaw') {
+      return bandsaw;
+    }
+    else{
+      return tempimage;
+    }
     
   }
 
@@ -177,30 +193,64 @@ class Machine extends React.Component {
     return state
   }
   //called when button is clicked, changes state and calls api to database
-  onButtonChange = (event) => {
-    if (this.state.activated && !event.target.checked) {
+  onButtonChange = () => {
+    console.log('changed');
+    if (this.state.activated) {
       this.setState({activated:false});
-      disableMachine(this.machineID); //this doesnt work yet, to be implemented, so that database updates with button change
+      disableMachine(this.state.machineID); //this doesnt work yet, to be implemented, so that database updates with button change
+     
     }
     else {
-      toggleMachine(this.machineID, this.state.currentUser);//same here
-      this.setState({activated:event.target.checked}); 
+      toggleMachine(this.state.machineID, this.state.currentUser);//same here
+      this.setState((currentState) => {
+        return {activated:!currentState.activated}}); 
+      //console.log('enabled ' + this.state.machineName);
+      //console.log('key: ' + this.state.machineID);
     }
   }
 
   render() {
     return (
-      <div align = "center">
-        <img src={this.state.image} align = "center" width={100}/>
+      <span>
+   
+        <img src={this.state.image} className = {this.state.activated === true ? "MachineBoxTrue" : "MachineBox"} />
+        <ul id = "p2">
+        <span id="otherh3-2">{this.state.machineName}</span>
+        <SwitchUnstyled
+          component={Root} 
+          id = "switch"
+          className = "toggle"
+          checked={this.state.activated} 
+          size="medium" 
+          color="success" 
+          disabled={!this.state.trained && !this.state.activated} 
+          inputprops={{ 'aria-label': 'Switch A' }}
+          onChange={(event)=>this.onButtonChange(event)}
+    />
+      {/*  <input
+          value = {machineID}
+          type="checkbox"
+          id="switch"
+          className="checkbox"
+          test = {console.log('hi')/*}disabled={!this.state.trained && !this.state.activated}
+          checked={this.state.activated} {}
+          onChange={this.onButtonChange}
+          />
+          <label htmlFor="switch" className="toggle">
+          </label> {*/}
+          </ul>
+        
+         {/*} 
         <Switch 
+          id = "switch"
           checked={this.state.activated} 
           size="medium" 
           color="error" 
           disabled={!this.state.trained && !this.state.activated} 
           inputProps={{ 'aria-label': 'Switch A' }}
           onChange={(event)=>this.onButtonChange(event)}
-        />
-      </div>
+    />{*/}
+      </span>
 
     );
     }
@@ -216,4 +266,5 @@ function App() {
 }
 
 export default App;
+
 
