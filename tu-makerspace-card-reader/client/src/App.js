@@ -88,7 +88,6 @@ class Search extends React.Component {
   }
   
   handleLogOut() {
-    // could possibly add that all machines get turned off on log out ???? 
     this.setState({
       value: '',
       error: false,
@@ -117,13 +116,12 @@ class Search extends React.Component {
           <button 
             className = "BetterBox" 
             onClick={() => this.handleLogOut()} 
-            
             > Log Out </button>
         
         
         {/* Creates multiple machines from the machine[] state! Machine state is filled on component load and is called via api GET machines/group/groupname */}
         {/* Change the machinegroup prop when you render the search component to set which tablet this is run on  */}
-        <div className='Machine map' align="right">
+        <div className='Machine map'>
           {this.state.machines.map((machine)=>( 
             <Machine 
             key={machine.id} 
@@ -190,16 +188,31 @@ class Machine extends React.Component {
 
   render() {
     return (
-      <div align = "center">
-        <img src={this.state.image} align = "center" width={100}/>
+      <div>
+        <img src={this.state.image} className = "MachineBox" />
+        <ul id = "p2">
+        <input
+          type="checkbox"
+          id="switch"
+          class="checkbox"
+          disabled={!this.state.trained && !this.state.activated}
+          checked={this.state.activated} 
+          onChange={(event)=>this.onButtonChange(event)}
+          />
+          <label for="switch" class="toggle">
+  
+          </label>
+          </ul>
+         {/*} 
         <Switch 
+          id = "switch"
           checked={this.state.activated} 
           size="medium" 
           color="error" 
           disabled={!this.state.trained && !this.state.activated} 
           inputProps={{ 'aria-label': 'Switch A' }}
           onChange={(event)=>this.onButtonChange(event)}
-        />
+    />{*/}
       </div>
 
     );
