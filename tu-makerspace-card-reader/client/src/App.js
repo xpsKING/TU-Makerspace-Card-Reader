@@ -166,7 +166,7 @@ class Machine extends React.Component {
 
  //used to determine which image to grab for machine diplay. may move this to its own file later to clean up code.
   getImage(machineName, machineID){
-    console.log(machineName + " " + machineID);
+    //console.log(machineName + " " + machineID);
     if(machineName === "CNC Mill"){
       return mill;
     }
@@ -201,8 +201,8 @@ class Machine extends React.Component {
       toggleMachine(this.state.machineID, this.state.currentUser);//same here
       this.setState((currentState) => {
         return {activated:!currentState.activated}}); 
-      console.log('enabled ' + this.state.machineName);
-      console.log('key: ' + this.state.machineID);
+      //console.log('enabled ' + this.state.machineName);
+      //console.log('key: ' + this.state.machineID);
     }
   }
 
@@ -212,7 +212,7 @@ class Machine extends React.Component {
    
         <img src={this.state.image} className = {this.state.activated === true ? "MachineBoxTrue" : "MachineBox"} />
         <ul id = "p2">
-        <span id="otherh3-2">{this.state.machineName + " " + this.state.machineID}</span>
+        <span id="otherh3-2">{this.state.machineName}</span>
         <Switch 
           id = "switch"
           className = "toggle"
