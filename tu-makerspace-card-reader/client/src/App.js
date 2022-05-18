@@ -103,14 +103,15 @@ class Search extends React.Component {
   }
   
   render() {
+    let err = this.state.$error;
     return (
     
       <div className='SearchWindow' align = "left">
-
+        
         {/* Create textfield for user input, highlights red if error! Blue if valid name! */}
         <h3 id = "otherh3">Name: {this.state.currentUser.name !== "Enter ID" ? this.state.currentUser.name : ' '}</h3>
         <input 
-          id = {this.state.error === true ? "input2true" : "input2false"}
+          id = {err === true ? "input2true" : "input2false"}
           className = 'BetterTextField'
           placeholder={this.state.currentUser.name}
           $error = {this.state.error}
@@ -218,7 +219,7 @@ class Machine extends React.Component {
           className = "toggle"
           checked={this.state.activated} 
           size="medium" 
-          color="error" 
+          color="info" 
           disabled={!this.state.trained && !this.state.activated} 
           inputProps={{ 'aria-label': 'Switch A' }}
           onChange={(event)=>this.onButtonChange(event)}
