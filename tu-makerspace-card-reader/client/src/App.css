@@ -37,44 +37,43 @@
   }
 }
 
-.SearchWindow { 
-  padding: 6px;  
-  margin-top: 8px;  
-  font-size: 17px;  
-  overflow: 'hidden';
-  background-color: 'transparent';
-}
 .BetterTextField {
   padding-left: 10px;
   margin-top: 10px;
   font-size: 20px;
-  font-family: "copperplate";
+  font-family: "sans-serif", consolas, monaco;
   font-style: bold;
   background-color: rgb(246, 250, 255);
+  color: rgb(25, 31, 61);
   height: 50px;
   width: 200px;
   border-radius: 5px;
   margin-left: 20px;
   margin-bottom: 10px;
+  min-width: 200px;
+  min-height: 50px;
+  
 }
 .BetterBox {
-  margin-top: 10px;
-  margin-bottom: 10px;
+  margin-bottom: 5px;
   margin-left: 10px;
-  font-size: 15px;
+  font-size: 18px;
   font-weight: bold;
+  font-family: "sans-serif", consolas, monaco;
+  text-align:center;
   color: rgb(25, 31, 61);
-  overflow: 'hidden';
-  background-color: rgb(246, 250, 255);
-  width: 75px;
-  height: 35px;
-  vertical-align:middle;
+  background-color: rgb(220, 236, 255);
+  width: 80px;
+  height: 40x;
+  vertical-align: middle;
   border: 2px solid black;
   outline: none;
   border-radius: 4px;
+  min-width: 80px;
+  min-height: 40px;
 }
 .BetterBox:active {
-  background-color: rgb(223, 228, 235);
+  background-color: rgb(199, 211, 227);
   border-color: rgb(59, 61, 135);
   color: rgb(59, 61, 135);
 }
@@ -84,7 +83,7 @@
   margin-left: 20px;
   margin-bottom: 0px;
   font-size: 25px;
-  font-family: "copperplate";
+  font-family: "sans-serif", consolas, monaco;
   font-style: bold;
 }
 #input2false {
@@ -133,10 +132,10 @@
 .MachineBox {
   position:relative;
   top: -120px;
-  right: 180px;
+  right: 210px;
   width: 100px;
   height: 100px;
-  border: 5px solid black;
+  border: 7px solid rgb(25, 31, 61);
   margin-left: 70%;
   margin-top: 20px;
   margin-bottom: 0px;
@@ -144,10 +143,10 @@
 .MachineBoxTrue {
   position:relative;
   top: -120px;
-  right: 180px;
+  right: 210px;
   width: 100px;
   height: 100px;
-  border: 5px solid green;
+  border: 7px solid green;
   margin-left: 70%;
   margin-top: 20px;
   margin-bottom: 0px;
@@ -161,23 +160,11 @@
   margin-left: 20px;
   margin-bottom: 0px;
   margin-right: 10px;
-  font-size: 25px;
-  font-family: "copperplate";
-  font-style: bold;
+  font-size: 20px;
+  font-family: "sans-serif", consolas, monaco;
+  font-weight: bold;
 }
-.checkbox:checked + .toggle::after {
-  left : 25px; 
-}
-      
-/* Checkbox checked toggle label bg color */
-.checkbox:checked + .toggle {
-  background-color: green;
-}
-      
-/* Checkbox vanished */
-.checkbox { 
-  display : none;
-}
+
 #p2 {
   text-align: right;
   margin-right: 23%;
@@ -187,34 +174,11 @@
 
  
 }
-.toggle {
-  position : relative;
-  top: -124px;
-  right: 100px;
-  display : inline-block;
-  width : 50px;
-  height : 15px;
-  background-color: transparent;
- 
-}
-      
-/* After slide changes 
-.toggle:after {
-  content: '';
-  position: absolute;
-  width: 30px;
-  height: 30px;
-  border-radius: 50%;
-  background-color: gray;
-  top: -7px; 
-  left: -6px;
-  transition:  all 0.5s;
-  
-}*/
+
       
 /* Toggle text */
 p {
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: Arial, Helvetica, "sans-serif", consolas, monaco;
   font-weight: bold;
 }
 

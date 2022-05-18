@@ -3,10 +3,10 @@ import mill from './mill.png';
 import bandsaw from './bandsaw.jpeg';
 import tempimage from './tempimage.png';
 import axios from 'axios';
-import { Switch, TextField, Box } from '@mui/material/';
+import SwitchUnstyled from '@mui/base/SwitchUnstyled';
 import React from 'react';
 import { getUser, disableMachine, toggleMachine, getAllMachines } from './APIRoutes';
-
+import Root from './switchtheme.js'
 
 class Search extends React.Component {
   constructor(props) {
@@ -110,6 +110,7 @@ class Search extends React.Component {
         
         {/* Create textfield for user input, highlights red if error! Blue if valid name! */}
         <h3 id = "otherh3">Name: {this.state.currentUser.name !== "Enter ID" ? this.state.currentUser.name : ' '}</h3>
+        
         <input 
           id = {err === true ? "input2true" : "input2false"}
           className = 'BetterTextField'
@@ -117,6 +118,7 @@ class Search extends React.Component {
           $error = {this.state.error}
           value={this.state.value} 
           onChange={this.handlenewSearch} 
+          autocomplete = "off"
           /> 
           <button 
             className = "BetterBox" 
@@ -214,12 +216,13 @@ class Machine extends React.Component {
         <img src={this.state.image} className = {this.state.activated === true ? "MachineBoxTrue" : "MachineBox"} />
         <ul id = "p2">
         <span id="otherh3-2">{this.state.machineName}</span>
-        <Switch 
+        <SwitchUnstyled
+          component={Root} 
           id = "switch"
           className = "toggle"
           checked={this.state.activated} 
           size="medium" 
-          color="info" 
+          color="success" 
           disabled={!this.state.trained && !this.state.activated} 
           inputProps={{ 'aria-label': 'Switch A' }}
           onChange={(event)=>this.onButtonChange(event)}
@@ -263,4 +266,5 @@ function App() {
 }
 
 export default App;
+
 
