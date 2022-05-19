@@ -28,7 +28,7 @@ Feel free to contribute! Fork this repo and submit a pull request! Yes I (Bennet
 #### Api Calls (complete)
 ##### These interact with the mySQL database of users. Coming soon is logging of these actions as well as logging machine use and tagouts.
 - POST /api/users/ creates a new user, requires login
-    REQUIRES: name, splash, email (no @tulane), id (unique int, should be card number), user (username of authenticating fabTech/admin), authPassword (password of authenticating fabTech/admin)
+    REQUIRES: name, splash, email (no @tulane), id (unique int, should be card number), user (username of sponsoring fabTech/admin)
 - GET /api/users/ returns all user data, not including password (passwords are hashed but should still not be accessible that feels wrong)
 - GET /api/users/fabTech returns all fabTech users, I dont know why i made this call, kinda useless. It's also broken atm.
 - GET /api/users/:id returns a user with specified id. id is the card number of their RFID card.

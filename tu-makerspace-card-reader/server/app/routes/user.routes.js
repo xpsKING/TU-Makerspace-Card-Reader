@@ -5,8 +5,8 @@ module.exports = app => {
     // Create a new User,
     //REQUIRES: name, splash, email (no @tulane), 
     //id (unique int, should be card number), 
-    //user (username of authenticating fabTech/admin), 
-    //authPassword (password of authenticating fabTech/admin)
+    //user (username of sponsoring fabTech/admin), 
+
     router.post("/", users.create);
 
     // Retrieve all users, excludes password column (they are hashed but we shouldn't let anyone access them anyways)
