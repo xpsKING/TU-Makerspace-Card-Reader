@@ -39,3 +39,16 @@ Similar api calls are availible for the machines sql table, go to machine.routes
 
 Basically the backend is in a working state, with new features to be added as neccesary. time to get working on that frontend.
 
+### Self signing instructions for HTTPS key
+
+install mkcert
+```
+brew install mkcert
+mkcert --install
+```
+
+create new keys in a .cert directory (should be done in the tu-makerspace-card-reader directory)
+```
+mkdir -p .cert
+mkcert -key-file ./.cert/key.pem -cert-file ./.cert/cert.pem "localhost"
+```
