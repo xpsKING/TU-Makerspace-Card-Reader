@@ -1,5 +1,20 @@
 # TU-Makerspace-Card-Reader
 ### Card reader system for Tulane MakerSpace, built with React frontend and Node.JS (Express API with Sequelize to interact with mySQL database)
+  
+
+## Getting Started
+First, run npm install in the tu-makerspace-card-reader directory, this will install all needed node dependencies. 
+
+Next, you need a MySQL server to hold the Machine, User, and log (coming soon) tables. By default, this database should be called "testDB" with username "root" and password "password". These can be changed in tu-makerspace-card-reader/server/app/config/db.config.js
+
+Next, you can start the development server with **yarn dev** in the tu-makerspace-card-reader directory.
+
+An alternative to this is starting the react dev server with "react-scripts start" in the client directory and starting the backend server with "node server.js" in the server directory.
+
+Routes are detailed in App.js! I reccomend looking at /metalShop1 for a look at the machine view. If you dont see any machines other than the loading machine you dont have any machines in your SQL database! add some!
+
+Feel free to contribute! Fork this repo and submit a pull request! Yes I (Bennett) do push to main sometimes sorry :P
+
 
 ## Scope
 ### Frontend (in progress):
@@ -13,7 +28,7 @@
 #### Api Calls (complete)
 ##### These interact with the mySQL database of users. Coming soon is logging of these actions as well as logging machine use and tagouts.
 - POST /api/users/ creates a new user, requires login
-    REQUIRES: name, splash, email (no @tulane), id (unique int, should be card number), user (username of authenticating fabTech/admin), authPassword (password of authenticating fabTech/admin)
+    REQUIRES: name, splash, email (no @tulane), id (unique int, should be card number), user (username of sponsoring fabTech/admin)
 - GET /api/users/ returns all user data, not including password (passwords are hashed but should still not be accessible that feels wrong)
 - GET /api/users/fabTech returns all fabTech users, I dont know why i made this call, kinda useless. It's also broken atm.
 - GET /api/users/:id returns a user with specified id. id is the card number of their RFID card.

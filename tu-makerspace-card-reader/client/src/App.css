@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 .App {
   text-align: center;
 }
@@ -191,3 +192,47 @@ p {
 
 
 
+=======
+.Box {
+    width: 150px;
+    height: 50px;
+    border: 1.5px solid rgb(25, 31, 61);
+    border-radius: 8px;
+    background: rgb(157,200,250);
+    background: linear-gradient(90deg, rgba(157,200,250,1) 0%, rgba(172,215,249,1) 50%, rgba(174,216,255,1) 100%);
+    opacity: 0.7;
+    box-shadow: 1px 2px 2px rgb(25, 31, 61);
+    margin-bottom: 10px;
+    font-size: 15px;
+    font-weight: bold;
+    font-family: "sans-serif", consolas, monaco;
+    
+}
+.Box:hover {
+    background-color: rgb(60, 80, 155);
+}
+
+.text {
+    font-family: "sans-serif", consolas, monaco;
+}
+
+.header {
+    height: 75px;
+    font-size: 33px;
+    font-weight: bold;
+    font-family: "sans-serif", consolas, monaco;
+    background-color: rgb(168, 184, 238);
+    box-shadow: 3px 4px 2px rgb(25, 31, 61);
+    border-top: 1px solid rgb(25, 31, 61);
+    margin-top: 0px;
+    line-height: 75px;
+}
+.List {
+  grid-template-columns: 1fr 1fr 1fr;
+}
+.submitButton {
+  width: 75px;
+  height: 25px;
+  font-family: "sans-serif", consolas, monaco;
+}
+>>>>>>> 5604e0f3f16a2fc4e62f30c8e9c3f2cedcec9f39

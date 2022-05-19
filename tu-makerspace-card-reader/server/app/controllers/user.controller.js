@@ -9,7 +9,9 @@ const Op = db.Sequelize.Op;
 
 exports.create = (req, res) => {
     // Validate request
-    if (!req.body.name || !req.body.splash || !req.body.email || !req.body.id || !req.body.user || !req.body.authPassword) {
+    console.log(req.body);
+    if (!req.body.name || !req.body.splash || !req.body.email || !req.body.id || !req.body.user ) {
+        
         res.status(400).send({
             message: "Content can not be empty!"
         });
@@ -29,35 +31,35 @@ exports.create = (req, res) => {
         metal1: 0,
         metal2: 0,
         admin: 0,
-        password: req.body.password,
+        password: "",
         id: req.body.id,
     };
     const authUser = {
-        email: req.body.user,
-        password: req.body.authPassword
+        id: req.body.user,
+
     }
-    Users.findOne({ where: { email: authUser.email } })
+
+
+    Users.findOne({ where: { id: authUser.id } })
         .then(usera => {
-            bcrypt.compare(authUser.password, usera.password, function (err, result) {
-                if (result == true && (usera.fabTech || usera.admin)) {
-                    Users.create(user)
-                        .then(data => {
-                            res.send(data);
-                        })
-                        .catch(err => {
-                            res.status(500).send({
-                                message:
-                                    err.message || "Some error occurred while creating the User."
-                            });
+            if (usera.fabTech || usera.admin) {
+                Users.create(user)
+                    .then(data => {
+                        res.send(data);
+                    })
+                    .catch(err => {
+                        res.status(500).send({
+                            message:
+                                err.message || "Some error occurred while creating the User."
                         });
-                }
-                else {
-                    res.status(400).send({
-                        message: "Incorrect Password or Credentials!"
                     });
-                    return;
-                }
-            })
+            }
+            else {
+                res.status(400).send({
+                    message: "Incorrect Password or Credentials!"
+                });
+                return;
+            }
         });
 
     // Save user in the database
@@ -67,7 +69,7 @@ exports.create = (req, res) => {
 exports.findAll = (req, res) => {
     const name = req.query.name;
     var condition = name ? { name: { [Op.like]: `%${name}%` } } : null;
-    Users.findAll({ where: condition, attributes: {exclude: ['password']} })
+    Users.findAll({ where: condition, attributes: { exclude: ['password'] } })
         .then(data => {
 
             res.send(data);
@@ -82,7 +84,7 @@ exports.findAll = (req, res) => {
 // Find a single user with an id
 exports.findOne = (req, res) => {
     const id = req.params.id;
-    Users.findByPk(id, {attributes:{exclude:['password']}})
+    Users.findByPk(id, { attributes: { exclude: ['password'] } })
         .then(data => {
             if (data) {
                 res.send(data);
@@ -113,12 +115,12 @@ exports.update = (req, res) => {
     Users.findOne({ where: { email: authUser.email } })
         .then(usera => {
             bcrypt.compare(authUser.password, usera.password, function (err, result) {
-                if (result == true&&!(req.body.admin&&!usera.admin)&&!(req.body.fabTech&&!usera.admin)&&(usera.fabTech||usera.admin)) {
+                if (result == true && !(req.body.admin && !usera.admin) && !(req.body.fabTech && !usera.admin) && (usera.fabTech || usera.admin)) {
                     user = req.body;
-                    if(req.body.password){
-                        user.password = bcrypt.hashSync(req.body.password,10);
+                    if (req.body.password) {
+                        user.password = bcrypt.hashSync(req.body.password, 10);
                     }
-                    
+
                     const id = req.params.id;
                     Users.update(user, {
                         where: { id: id }
@@ -218,14 +220,14 @@ exports.deleteAll = (req, res) => {
 };
 // Find all fabtech users
 exports.findAllFabtechs = (req, res) => {
-    Users.findAll({ where: { fabTech: true },attributes: {exclude: ['password']} })
-            .then(data => {
-                res.send(data);
-            })
-            .catch(err => {
-                res.status(500).send({
-                    message:
-                        err.message || "Some error occurred while retrieving fabTechs."
-                });
+    Users.findAll({ where: { fabTech: true }, attributes: { exclude: ['password'] } })
+        .then(data => {
+            res.send(data);
+        })
+        .catch(err => {
+            res.status(500).send({
+                message:
+                    err.message || "Some error occurred while retrieving fabTechs."
             });
+        });
 };
