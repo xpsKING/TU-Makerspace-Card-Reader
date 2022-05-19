@@ -1,0 +1,54 @@
+.nameInputBox {
+  position: relative;
+  
+  width: 200px;
+  height: 30px;
+  margin-top:10px;
+  margin-bottom: 11px;
+  border-radius: 4px;
+  outline: none;
+  color: rgb(25, 31, 61);
+  padding-left: 5px;
+}
+
+#input2 {
+  background-color: rgb(207, 203, 234);
+  border: 2px solid rgb(25, 31, 61);
+  color: rgb(25, 31, 61);
+}
+#input2:hover {
+  background-color: rgb(201, 195, 242);
+}
+#input2:focus {
+    outline: none;
+    border: 2px solid rgb(40, 53, 122);
+}
+::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+    color: rgb(85, 85, 85);
+    opacity: 1; /* Firefox */
+}
+.submitButton {
+    position: relative;
+    top: 285px;
+    width: 75px;
+    height: 25px;
+}
+#error {
+    position: relative;
+    white-space: pre;
+    margin-top:35px;
+    margin-bottom: 25px;
+    color: red;
+}
+#container {
+    position: fixed;
+    left: 41%;
+    grid-template-columns: 1fr;
+}
+#error-container {
+    position: fixed;
+    text-align: right;
+    left: 16%;
+    top: 80px;
+    grid-template-columns: 1fr;
+}

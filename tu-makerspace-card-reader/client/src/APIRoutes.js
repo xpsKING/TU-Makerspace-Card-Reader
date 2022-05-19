@@ -41,3 +41,25 @@ export function getAllMachines(machineGroup) {
         }
     }
 }
+export function getUsers() {
+    return {
+        method: 'get',
+        url: "http://localhost:8080/api/users/",
+        proxy: {
+            host: 'localhost',
+            port: 8080,
+        }
+    }
+}
+
+export function addUser(newUser) {
+    return {
+        method: 'post',
+        data: {id: newUser.id, name: newUser.name, email: newUser.email, splash : newUser.splash, user: newUser.authID},
+        url: 'http://localhost:8080/api/users/',
+        proxy: {
+            host: 'localhost',
+            port: 8080,
+        }
+    }
+}
