@@ -35,12 +35,12 @@ exports.create = (req, res) => {
         id: req.body.id,
     };
     const authUser = {
-        email: req.body.user,
+        id: req.body.user,
 
     }
 
 
-    Users.findOne({ where: { email: authUser.email } })
+    Users.findOne({ where: { id: authUser.id } })
         .then(usera => {
             if (usera.fabTech || usera.admin) {
                 Users.create(user)
