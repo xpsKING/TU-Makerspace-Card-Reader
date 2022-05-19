@@ -1,4 +1,4 @@
-import './App.css';
+import './machineView.css';
 import mill from './mill.png';
 import bandsaw from './bandsaw.jpeg';
 import tempimage from './tempimage.png';
