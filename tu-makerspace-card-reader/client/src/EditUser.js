@@ -8,64 +8,7 @@ import { FormControlLabel } from '@mui/material';
 
 // if admin makes someone fabtech, they must set a password
 
-function ConditionalDisplay(props) {
-    if (props.isFabTech) {
-        return (
-            <div>
-                    <h1 id="text">Name: {props.user.name}</h1>
-                <input
-                    autoComplete="off"
-                    className="BoxInput"
-                    placeholder="Enter ID"
-                    value = {props.id}
-                    onChange={(e) => props.handleUpdateID(e)}
-                    />
-                <button className = "BetterButton" onClick={() => props.handleFindUser()}>Submit</button>
-                <div className="container">
-                <input 
-                    autoComplete="off"
-                    className="BoxInput"
-                    id="small-input"
-                    placeholder="Enter Auth ID"
-                    value = {props.authID}
-                    onChange={(e) => props.handleUpdateAuthID(e)}
-                />
-                <input 
-                    autoComplete="off"
-                    className="BoxInput"
-                    id="small-input2"
-                    type="password"
-                    placeholder="Enter password"
-                    value={props.authPassword}
-                    onChange={(e) => props.handleUpdateAuthPassword(e)}
-                />
-                </div>
-            
-                <DisplayChecks
-                
-                trainings = {props.trainings}
-                handleChange={props.handleChange}
-                />
-                <ConditionalButton 
-                    trainings={props.trainings}
-                />
-                </div>
-        )
-    } else {
-        return (
-            <div>
-            <input
-                autoComplete="off"
-                className="BoxInput"
-                value={props.fabTechID}
-                placeholder="FabTech ID"
-                onChange={(e) => props.handleUpdateFabTechID(e)}
-            />
-            <button className="BetterButton" onClick={() => props.handleFabTechCheck()}>Submit</button>
-            </div>
-        )
-    }
-}
+
 function DisplayChecks(props) {
     return (
         <div className="check">
@@ -118,12 +61,6 @@ export default class EditUser2 extends React.Component {
         })
         
         this.handleChange = this.handleChange.bind(this);
-        this.handleUpdateID = this.handleUpdateID.bind(this);
-        this.handleFabTechCheck = this.handleFabTechCheck.bind(this);
-        this.handleUpdateFabTechID = this.handleUpdateFabTechID.bind(this);
-        this.handleUpdateAuthPassword = this.handleUpdateAuthPassword.bind(this);
-        this.handleUpdateAuthID = this.handleUpdateAuthID.bind(this);
-        this.handleFindUser = this.handleFindUser.bind(this);
     }
 
     handleUpdateID(e) {
@@ -229,27 +166,63 @@ export default class EditUser2 extends React.Component {
 
 
     render() {
-        return (
-            <div>
-                <ConditionalDisplay
-                    isFabTech={this.state.isFabTech}
-                    id={this.state.id}
-                    user={this.state.user}
-                    authID={this.state.authID}
-                    authPassword={this.state.authPassword}
-                    trainings={this.state.userTrainings}
-                    fabTechID={this.state.fabTechID}
-                    handleUpdateID={this.handleUpdateID}
-                    handleFabTechCheck={this.handleFabTechCheck}
-                    handleUpdateFabTechID={this.handleUpdateFabTechID}
+        if (this.state.isFabTech) {
+            return (
+                
+                <div>
+                    <h1 id="text">Name: {this.state.user.name}</h1>
+                    <input
+                        autoComplete="off"
+                        className="BoxInput"
+                        placeholder="Enter ID"
+                        value = {this.state.id}
+                        onChange={(e) => this.handleUpdateID(e)}
+                        />
+                    <button className = "BetterButton" onClick={() => this.handleFindUser()}>Submit</button>
+                    <div className="container">
+                    <input 
+                        autoComplete="off"
+                        className="BoxInput"
+                        id="small-input"
+                        placeholder="Enter Auth ID"
+                        value = {this.state.authID}
+                        onChange={(e) => this.handleUpdateAuthID(e)}
+                    />
+                    <input 
+                        autoComplete="off"
+                        className="BoxInput"
+                        id="small-input2"
+                        type="password"
+                        placeholder="Enter password"
+                        value={this.state.authPassword}
+                        onChange={(e) => this.handleUpdateAuthPassword(e)}
+                    />
+                    </div>
+                
+                    <DisplayChecks
+                    
+                    trainings = {this.state.userTrainings}
                     handleChange={this.handleChange}
-                    handleUpdateAuthPassword={this.handleUpdateAuthPassword}
-                    handleUpdateAuthID={this.handleUpdateAuthID}
-                    handleFindUser={this.handleFindUser}
+                    />
+                    <ConditionalButton 
+                        trainings={this.state.userTrainings}
+                    />
+                </div>
 
-                />
-            </div>
-
-        )
+            )
+        } else {
+            return (
+                <div>
+                    <input
+                        autoComplete="off"
+                        className="BoxInput"
+                        value={this.state.fabTechID}
+                        placeholder="FabTech ID"
+                        onChange={(e) => this.handleUpdateFabTechID(e)}
+                    />
+                    <button className="BetterButton" onClick={() => this.handleFabTechCheck()}>Submit</button>
+                </div>
+            )
+        }
     }
 }
