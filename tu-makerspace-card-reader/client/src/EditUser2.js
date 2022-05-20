@@ -37,7 +37,7 @@ function ConditionalButton(props) {
     if (props.trainings.length !== 0) {
     return (
         <form action="/">
-            <button className="BetterButton" id="submitAll" onClick={() => this.submitAll()}>Done</button>
+            <button className="BetterButton" id="submitAll">Done</button>
         </form>
         )
     } else {
@@ -80,6 +80,7 @@ export default class EditUser2 extends React.Component {
         })
     }
     handleFindUser() {
+        console.log(this.state.id);
         if (this.state.id) {
             const id = parseInt(this.state.id);
             var trainings;
