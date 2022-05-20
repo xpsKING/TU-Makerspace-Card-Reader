@@ -3,20 +3,20 @@
 export function getUser(id) {
     return{
         method: 'get',
-        url: 'http://localhost:8080/api/users/' + id,
+        url: 'http://localhost:8443/api/users/' + id,
         proxy: {
             host: 'localhost',
-            port: 8080
+            port: 8443
         }
     }
 }
 export function disableMachine(id) {
    return{
         method: 'get',
-        url: "http://localhost:8080/api/machines/disable/" + id, 
+        url: "http://localhost:8443/api/machines/disable/" + id, 
         proxy: {
             host: 'localhost',
-            port: 8080
+            port: 8443
         }
     }
 }
@@ -24,20 +24,20 @@ export function toggleMachine(machineid, userID) {
     return{
          method: 'put',
          data: { "userID": userID }, 
-         url: "http://localhost:8080/api/machines/toggle/" + machineid, 
+         url: "http://localhost:8443/api/machines/toggle/" + machineid, 
          proxy: {
              host: 'localhost',
-             port: 8080
+             port: 8443
          }
      }
  }
 export function getAllMachines(machineGroup) {
     return{
         method:'get',
-        url: "http://localhost:8080/api/machines/group/" + machineGroup,
+        url: "http://localhost:8443/api/machines/group/" + machineGroup,
         proxy: {
             host: 'localhost',
-            port: 8080
+            port: 8443
         }
     }
 }
@@ -58,7 +58,7 @@ export function addUser(newUser) {
         url: 'http://localhost:8080/api/users/',
         proxy: {
             host: 'localhost',
-            port: 8080,
+            port: 8443,
         }
     }
 }
