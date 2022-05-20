@@ -1,0 +1,58 @@
+.BoxInput {
+    width: 200px;
+    height: 50px;
+    border-radius:8px;
+    border: 2px solid rgb(25,31,61);
+    font-family: "sans-serif", consolas, monaco; 
+    padding-left: 8px;
+}
+#small-input {
+    position: relative;
+    margin-bottom: 10px;
+    width: 150px;
+    height:30px;
+}
+#small-input2 {
+    position: relative;
+    margin-bottom: 10px;
+    width: 150px;
+    height:30px;
+}
+.container {
+    position:absolute;
+    right: 73%;
+    top: 150px;
+    grid-template-columns: 1fr;
+}
+::placeholder {
+    color: rgb(25,31,61);
+    font-weight: bold;
+}
+#check {
+    margin-bottom: 0px;
+    margin-top: 0px;
+}
+.BetterButton {
+    position: relative;
+    margin-left: 10px;
+    width: 70px;
+    height: 30px;
+    border-radius:5px;
+    border: 2px solid rgb(25,31,61);
+    font-family: "sans-serif", consolas, monaco;
+    font-weight: bold;
+    background-color: rgb(168, 179, 232)
+}
+.BetterButton:active {
+    background-color: rgb(148, 161, 230)
+}
+#submitAll {
+    top: -10px;
+    left: -10px;
+}
+#text {
+    font-family: "sans-serif", consolas, monaco;
+}
+.container2 {
+    position: absolute;
+}

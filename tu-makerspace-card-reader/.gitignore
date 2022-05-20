@@ -7,7 +7,6 @@ client/node_modules
 .pnp.js
 /.cert
 
-
 # testing
 /coverage
 

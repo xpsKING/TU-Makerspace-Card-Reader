@@ -30,8 +30,13 @@
 .submitButton {
     position: relative;
     top: 285px;
-    width: 75px;
-    height: 25px;
+
+    width: 90px;
+    height: 30px;
+    font-family: "sans-serif", consolas, monaco;
+    border: 2px solid rgb(25,31,61);
+    border-radius: 8px;
+    background-color:rgb(233, 245, 255);
 }
 #error {
     position: relative;
@@ -42,7 +47,7 @@
 }
 #container {
     position: fixed;
-    left: 41%;
+    left: 44%;
     grid-template-columns: 1fr;
 }
 #error-container {
@@ -51,4 +56,21 @@
     left: 16%;
     top: 80px;
     grid-template-columns: 1fr;
+}
+.doneButton {
+  position: relative;
+  top: 300px;
+  width: 90px;
+  height: 35px;
+  font-family: "sans-serif", consolas, monaco;
+  border: 2px solid rgb(25,31,61);
+  border-radius: 8px;
+  background-color:rgb(233, 245, 255);
+}
+.doneButton:active {
+background-color:rgb(205, 231, 251);
+}
+
+#text {
+  font-family: "sans-serif", consolas, monaco;
 }

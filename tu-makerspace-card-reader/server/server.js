@@ -10,7 +10,6 @@ var privateKey  = fs.readFileSync('../.cert/key.pem', 'utf8');
 var certificate = fs.readFileSync('../.cert/cert.pem', 'utf8');
 
 var credentials = {key: privateKey, cert: certificate};
-
 db.sequelize.sync();
 var corsOptions = {
   origin: ["http://localhost:3000","https://localhost:3000"]

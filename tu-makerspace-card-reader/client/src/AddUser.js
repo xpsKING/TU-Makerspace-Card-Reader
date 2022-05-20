@@ -2,7 +2,6 @@ import axios from "axios";
 import React from "react";
 import { addUser } from './APIRoutes.js';
 import './addUser.css';
-import {Navigate} from 'react-router';
 
 export default class AddUser extends React.Component {
     constructor(props) {
@@ -106,7 +105,15 @@ export default class AddUser extends React.Component {
 
     render() {
         if (this.state.successful) {
-            return <Navigate to='/successfullyAddedUser' />
+            return (
+                <div>
+                  <h1 id="text">Successfully Added User!</h1>
+                  <form action="/">
+                    <button className="doneButton">Go Back</button>
+                  </form>
+                </div>
+              )
+
           }
         return (
             <div>
