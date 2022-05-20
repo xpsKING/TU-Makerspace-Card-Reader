@@ -224,7 +224,7 @@ export default class MachineView extends React.Component {
             size="medium" 
             color="success" 
             disabled={!this.state.trained && !this.state.activated} 
-            inputprops={{ 'aria-label': 'Switch A' }}
+            inputprops={{ 'aria-label': 'Checkbox demo' }}
             onChange={(event)=>this.onButtonChange(event)}
       />
         {/*  <input

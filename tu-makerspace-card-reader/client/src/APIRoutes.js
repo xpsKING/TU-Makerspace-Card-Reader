@@ -41,7 +41,16 @@ export function getAllMachines(machineGroup) {
         }
     }
 }
-
+export function getFabTechs() {
+    return {
+        method: 'get',
+        url: 'https://localhost:8443/api/users/fabtech/',
+        proxy: {
+            host: 'localhost',
+            port: 8443,
+        }
+    }
+}
 export function addUser(newUser) {
     return {
         method: 'post',
@@ -50,6 +59,17 @@ export function addUser(newUser) {
         proxy: {
             host: 'localhost',
             port: 8080,
+        }
+    }
+}
+export function editUser(id, updatedUser, user, authPassword) {
+    return {
+        method: 'put',
+        data:{updatedUser: updatedUser, user: user, authPassword: authPassword},
+        url: 'https://localhost:8443/api/users/' + id,
+        proxy: {
+            host: 'localhost',
+            port: 8443,
         }
     }
 }

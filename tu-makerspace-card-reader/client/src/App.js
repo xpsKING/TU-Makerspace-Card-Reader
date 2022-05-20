@@ -2,6 +2,8 @@ import './App.css';
 import MachineView from './MachineView.js';
 import AddUser from './AddUser.js';
 import { Routes, Route, Link } from 'react-router-dom';
+import EditUser1 from './EditUser1.js';
+import EditUser2 from './EditUser2.js';
 
 function Home(){
   return(
@@ -16,6 +18,9 @@ function Home(){
         </form>
         <form action="/addUser">
           <button className = "Box">Add a User</button>
+        </form>
+        <form action="/editUser1">
+          <button className="Box">Edit User</button>
         </form>
       </nav>
     </>
@@ -44,6 +49,8 @@ function App() {
     {/* Maddie add a path for add user when u wanna start working on that and you now have a new page for that function! */}
       <Route path= "addUser" element = {<AddUser />} />
       <Route path="successfullyAddedUser" element = {<AddedUser />}/>
+      <Route path="editUser1" element = {<EditUser1 />}/>
+      <Route path="editUser2" element = {<EditUser2 />}/>
     </Routes>
     </div>
   );

@@ -109,10 +109,10 @@ exports.update = (req, res) => {
         return;
     }
     const authUser = {
-        email: req.body.user,
+        id: req.body.user,
         password: req.body.authPassword
     }
-    Users.findOne({ where: { email: authUser.email } })
+    Users.findOne({ where: { id: authUser.id } })
         .then(usera => {
             bcrypt.compare(authUser.password, usera.password, function (err, result) {
                 if (result == true && !(req.body.admin && !usera.admin) && !(req.body.fabTech && !usera.admin) && (usera.fabTech || usera.admin)) {

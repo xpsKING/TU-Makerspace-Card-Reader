@@ -56,7 +56,7 @@ export default class EditUser1 extends React.Component {
                 placeholder="FabTech ID"
                 onChange={(e) => this.handleUpdateID(e)}
             />
-            <button onClick={() => this.handleFabTechCheck()}>Submit</button>
+            <button className="BetterButton" onClick={() => this.handleFabTechCheck()}>Submit</button>
             </div>
         )
     }
