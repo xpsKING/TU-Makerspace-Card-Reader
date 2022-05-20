@@ -55,7 +55,7 @@ export function addUser(newUser) {
     return {
         method: 'post',
         data: {id: newUser.id, name: newUser.name, email: newUser.email, splash : newUser.splash, user: newUser.authID},
-        url: 'https://localhost:8080/api/users/',
+        url: 'https://localhost:8443/api/users/',
         proxy: {
             host: 'localhost',
             port: 8443,

@@ -26,16 +26,6 @@ function Home(){
   )
 }
 
-function AddedUser() {
-  return (
-    <div>
-      <h1>Successfully Added User!</h1>
-      <form action="/addUser">
-        <button className="submitButton">Go Back</button>
-      </form>
-    </div>
-  )
-}
 
 function App() {
   return (
@@ -47,7 +37,6 @@ function App() {
       <Route path= "metalShop1" element = {<MachineView machineGroup="metalShop1" />} />
     {/* Maddie add a path for add user when u wanna start working on that and you now have a new page for that function! */}
       <Route path= "addUser" element = {<AddUser />} />
-      <Route path="successfullyAddedUser" element = {<AddedUser />}/>
       <Route path="editUser" element = {<EditUser />}/>
     </Routes>
     </div>
