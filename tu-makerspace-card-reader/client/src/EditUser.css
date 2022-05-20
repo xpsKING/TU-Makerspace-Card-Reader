@@ -1,0 +1,8 @@
+.BoxInput {
+    margin-top:20px;
+    width: 200px;
+    height: 50px;
+    border-radius:8px;
+    border: 2px solid rgb(25,31,61);
+    
+}

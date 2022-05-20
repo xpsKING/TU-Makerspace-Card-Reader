@@ -1,0 +1,17 @@
+.submitButton {
+    position: relative;
+    top: 150px;
+    width: 90px;
+    height: 35px;
+    font-family: "sans-serif", consolas, monaco;
+    border: 2px solid rgb(25,31,61);
+    border-radius: 8px;
+    background-color:rgb(233, 245, 255);
+  }
+.submitButton:active {
+  background-color:rgb(205, 231, 251);
+}
+
+#text {
+    font-family: "sans-serif", consolas, monaco;
+}
