@@ -32,7 +32,7 @@ Feel free to contribute! Fork this repo and submit a pull request! Yes I (Bennet
 - GET /api/users/ returns all user data, not including password (passwords are hashed but should still not be accessible that feels wrong)
 - GET /api/users/fabTech returns all fabTech users, I dont know why i made this call, kinda useless. It's also broken atm.
 - GET /api/users/:id returns a user with specified id. id is the card number of their RFID card.
-- PUT /api/users/:id updates a user with specified id. id is the card number of their RFID card. (requires user and authPassword of fabTech/Admin)
+- PUT /api/users/:id updates a user with specified id. id is the card number of their RFID card. (requires user and authPassword of fabTech/Admin). Updated user data should be sent in body with key "updatedUser".
 - DELETE /api/users/:id deletes a user with specified id. (requires user and authPassword of fabTech/Admin)
 
 Similar api calls are availible for the machines sql table, go to machine.routes.js to see them.

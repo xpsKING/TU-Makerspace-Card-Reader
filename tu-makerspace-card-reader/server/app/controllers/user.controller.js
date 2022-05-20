@@ -102,7 +102,7 @@ exports.findOne = (req, res) => {
 };
 // Update a user by the id in the request
 exports.update = (req, res) => {
-    if (!req.body.user || !req.body.authPassword) {
+    if (!req.body.updatedUser|| !req.body.user || !req.body.authPassword) {
         res.status(400).send({
             message: "Content can not be empty!"
         });
@@ -116,7 +116,7 @@ exports.update = (req, res) => {
         .then(usera => {
             bcrypt.compare(authUser.password, usera.password, function (err, result) {
                 if (result == true && !(req.body.admin && !usera.admin) && !(req.body.fabTech && !usera.admin) && (usera.fabTech || usera.admin)) {
-                    user = req.body;
+                    user = req.body.updatedUser;
                     if (req.body.password) {
                         user.password = bcrypt.hashSync(req.body.password, 10);
                     }
