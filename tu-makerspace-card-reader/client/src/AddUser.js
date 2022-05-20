@@ -3,7 +3,6 @@ import React from "react";
 import { addUser } from './APIRoutes.js';
 import './addUser.css';
 
-
 export default class AddUser extends React.Component {
     constructor(props) {
         super(props);
@@ -114,6 +113,7 @@ export default class AddUser extends React.Component {
                   </form>
                 </div>
               )
+
           }
         return (
             <div>

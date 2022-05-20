@@ -4,6 +4,7 @@ import AddUser from './AddUser.js';
 import { Routes, Route, Link } from 'react-router-dom';
 import EditUser from './EditUser.js';
 
+
 function Home(){
   return(
     <>
@@ -26,6 +27,16 @@ function Home(){
   )
 }
 
+function AddedUser() {
+  return (
+    <div>
+      <h1>Successfully Added User!</h1>
+      <form action="/addUser">
+        <button className="submitButton">Go Back</button>
+      </form>
+    </div>
+  )
+}
 
 function App() {
   return (

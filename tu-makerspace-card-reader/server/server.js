@@ -23,6 +23,7 @@ app.use(express.urlencoded({ extended: true }));
 app.get("/", (req, res) => {
   res.json({ message: "Welcome to bezkoder application." });
 });
+
 var httpServer = http.createServer(app);
 var httpsServer = https.createServer(credentials, app);
 
@@ -31,9 +32,9 @@ var httpsServer = https.createServer(credentials, app);
 // shouldnt matter as no sensitive info could be scraped because this is only used for dev purposes.
 const HTTPPORT = process.env.PORT || 8080;
 const HTTPSPORT= process.env.PORT || 8443;
-
 require("./app/routes/user.routes")(app);
 require("./app/routes/machine.routes")(app);
+
 httpServer.listen(HTTPPORT, () => {
   console.log(`Server is running on port ${HTTPPORT}.`);
 });

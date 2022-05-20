@@ -51,6 +51,7 @@ export function getFabTechs() {
         }
     }
 }
+
 export function addUser(newUser) {
     return {
         method: 'post',
@@ -70,6 +71,7 @@ export function editUser(id, updatedUser, user, authPassword) {
         proxy: {
             host: 'localhost',
             port: 8443,
+
         }
     }
 }
