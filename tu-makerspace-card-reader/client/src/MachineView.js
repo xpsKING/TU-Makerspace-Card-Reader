@@ -128,7 +128,7 @@ export default class MachineView extends React.Component {
           
           {/* Creates multiple machines from the machine[] state! Machine state is filled on component load and is called via api GET machines/group/groupname */}
           {/* Change the machinegroup prop when you render the search component to set which tablet this is run on  */}
-          <div className='container'>
+          <div className='container2'>
             {this.state.machines.map((machine)=>(
               <Machine
                 machineID = {machine.id}
