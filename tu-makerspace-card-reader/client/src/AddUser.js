@@ -4,6 +4,7 @@ import { addUser } from './APIRoutes.js';
 import './addUser.css';
 import Inputs from './Inputs.js';
 
+
 export default class AddUser extends React.Component {
     constructor(props) {
         super(props);

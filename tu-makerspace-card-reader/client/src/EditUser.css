@@ -47,6 +47,7 @@
     background-color: rgb(148, 161, 230)
 }
 #submitAll {
+
     top: 10px;
     left: -10px;
 }
@@ -56,4 +57,5 @@
 .container {
     position: absolute;
     grid-template-columns: 1fr;
+
 }

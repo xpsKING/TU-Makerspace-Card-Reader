@@ -4,7 +4,9 @@ import './EditUser.css';
 import {getUser, editUser, getFabTechs} from './APIRoutes.js';
 import Checkbox from '@mui/material/Checkbox';
 import { FormControlLabel } from '@mui/material';
+
 import Inputs from './Inputs.js';
+
 //import { CheckBox } from '@material-ui/icons';
 
 // if admin makes someone fabtech, they must set a password
@@ -29,6 +31,7 @@ function DisplayChecks(props) {
                     />
                 </h1>
             ))}
+
             <FabTechToggle
                 isAdmin={props.isAdmin}
                 userIsFabTech={props.userIsFabTech}
@@ -118,9 +121,7 @@ export default class EditUser2 extends React.Component {
                             isAdmin: true,
                         })
                     }
-                    
                 } 
-               
             }
         })
     }
@@ -246,7 +247,6 @@ export default class EditUser2 extends React.Component {
                     </div>
                 
                     <DisplayChecks
-                    
                         trainings = {this.state.userTrainings}
                         handleChange={this.handleChange}
                         userIsFabTech={this.state.userIsFabTech}
@@ -270,7 +270,6 @@ export default class EditUser2 extends React.Component {
                         parentCallBack={this.handleCallBack}
                         />
                     <button className="BetterButton" onClick={() => this.handleFabTechCheck()}>Submit</button>
-                    
                 </div>
             )
         }
