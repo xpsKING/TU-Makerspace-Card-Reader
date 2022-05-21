@@ -1,27 +1,23 @@
-body {
+
+/*body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background: #9dcab2;
-  background-image: url('bigmakerspacelogo.png');
-  background-repeat: no-repeat;
-  background-position: 50% 80px;
-  
+  background: rgb(214, 249, 217);
 }
-code {
-  font-family: Monaco, Consolas, 'sans-serif',
-    monospace;
+.test {
+  color: rgb(12, 59, 14);
+  font-family: "sans-serif", consolas, monaco;
 }
 
 @media (prefers-color-scheme: dark) {
+  .test {
+    color: rgb(229, 250, 231);
+  }
   body {
-    
-    background: #002219;
+    background: rgb(28, 44, 28);
   }
-  ::placeholder {
-    color: rgb(222, 255, 238);
-  }
-}
+}*/
