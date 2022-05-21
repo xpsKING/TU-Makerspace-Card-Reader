@@ -15,6 +15,7 @@
   background-color: rgb(207, 203, 234);
   border: 2px solid rgb(25, 31, 61);
   color: rgb(25, 31, 61);
+  font-family: "sans-serif", consolas, monaco;
 }
 #input2:hover {
   background-color: rgb(201, 195, 242);
@@ -30,13 +31,18 @@
 .submitButton {
     position: relative;
     top: 285px;
-
     width: 90px;
     height: 30px;
     font-family: "sans-serif", consolas, monaco;
     border: 2px solid rgb(25,31,61);
     border-radius: 8px;
-    background-color:rgb(233, 245, 255);
+    background-color:rgb(220, 236, 249);
+}
+.submitButton:hover {
+  background-color:rgb(199, 227, 248);
+}
+.submitButton:active {
+  background-color:rgb(186, 221, 250);
 }
 #error {
     position: relative;
@@ -54,7 +60,7 @@
     position: fixed;
     text-align: right;
     left: 16%;
-    top: 80px;
+    top: 79px;
     grid-template-columns: 1fr;
 }
 .doneButton {

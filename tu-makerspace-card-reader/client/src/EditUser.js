@@ -4,11 +4,14 @@ import './EditUser.css';
 import {getUser, editUser, getFabTechs} from './APIRoutes.js';
 import Checkbox from '@mui/material/Checkbox';
 import { FormControlLabel } from '@mui/material';
+
+import Inputs from './Inputs.js';
+
 //import { CheckBox } from '@material-ui/icons';
 
 // if admin makes someone fabtech, they must set a password
 
-
+// displays the checkboxes based on the trainings
 function DisplayChecks(props) {
     return (
         <div className="check">
@@ -29,11 +32,41 @@ function DisplayChecks(props) {
                 </h1>
             ))}
 
+            <FabTechToggle
+                isAdmin={props.isAdmin}
+                userIsFabTech={props.userIsFabTech}
+                handleChange={props.handleChange}
+                trainings = {props.trainings}
+                toggleFabTech= {props.toggleFabTech}
+                />
+
         </div>
     )
 }
+function FabTechToggle(props) {
+    console.log('fabtechtoggle' + props.isAdmin);
+    if (props.isAdmin && props.trainings.length !== 0) {
+        return (
+            <div>
+                <FormControlLabel
+                    label="Fab Tech"
+                    control = {
+                        <Checkbox
+                            color="secondary"
+                            checked={props.userIsFabTech}
+                            size="medium"
+                            onChange={() => props.toggleFabTech()}        
+                        />
+                    }
+                    />
+            </div>
+        )
+    } else {
+        return null;
+    }
+}
 
-
+// only displays the done button if a user was found
 function ConditionalButton(props) {
     if (props.trainings.length !== 0) {
     return (
@@ -56,38 +89,18 @@ export default class EditUser2 extends React.Component {
             authPassword: '',
             user: {},
             userTrainings: [],
+            userIsFabTech: false,
             fabTechID: '',
             isFabTech: false,
+            isAdmin: false,
         })
         
         this.handleChange = this.handleChange.bind(this);
+        this.handleCallBack = this.handleCallBack.bind(this);
+        this.toggleFabTech = this.toggleFabTech.bind(this);
     }
-
-    handleUpdateID(e) {
-        const value = e.target.value;
-        this.setState({
-            id: value,
-        })
-
-    }
-    handleUpdateFabTechID(e) {
-        const value = e.target.value;
-        this.setState({
-            fabTechID: value,
-        })
-    }
-    handleUpdateAuthID(e) {
-        const value = e.target.value;
-        this.setState({
-            authID: value,
-        })
-    }
-    handleUpdateAuthPassword(e) {
-        const value = e.target.value;
-        this.setState({
-            authPassword: value,
-        })
-    }
+    // only allows a valid FabTech ID to access the editing page
+    // may later remove the input of a fabtech ID on the editing page and only require password
     handleFabTechCheck() {
         const id = parseInt(this.state.fabTechID);
         console.log('isFabTechRunning: ' + id);
@@ -97,16 +110,22 @@ export default class EditUser2 extends React.Component {
                 console.log('Problem retrieving users...');
             } else {
                 response.data.map((user) => console.log(user.id));
-                users = response.data;
-                if (users.some((user) => user.id === id)) {
+                users = response.data.filter((user) => user.id === id);
+                if (users.length !== 0) {
                     this.setState({
                         isFabTech: true,
                     })
+                    if (users[0].admin === true) {
+                        console.log('ADMIN');
+                        this.setState({
+                            isAdmin: true,
+                        })
+                    }
                 } 
-               
             }
         })
     }
+    // finds the user to display
     handleFindUser() {
         console.log(this.state.id);
         if (this.state.id) {
@@ -136,7 +155,7 @@ export default class EditUser2 extends React.Component {
             })
         }
     }
-
+    // Edits the user based on the changes in the checkboxes
     handleChange(training) {
         let errorLater = false;
         var trainings = this.state.userTrainings;
@@ -150,7 +169,8 @@ export default class EditUser2 extends React.Component {
                             console.log('Edited successfully!');
                         }
                     })
-                    return [train[0], !train[1]];
+                    if (train === training)
+                        return [train[0], !train[1]];   
                 } else {
                     return train;
                 }
@@ -163,6 +183,29 @@ export default class EditUser2 extends React.Component {
     }
         
     }
+    toggleFabTech() {
+        console.log(this.state.id);
+        axios(editUser(parseInt(this.state.id), {"fabTech":!this.state.userIsFabTech}, parseInt(this.state.authID), this.state.authPassword)).then((response, error) => {
+            if (error) {
+                console.log('Error making user FabTech!');
+            } else {
+                console.log('Edited FabTech !');
+                this.setState((currentState) => {
+                    console.log("FABTECHHHH");
+                    return {
+                        userIsFabTech: !currentState.userIsFabTech,
+                    }
+                })
+            }
+        })
+    }
+    // Receives input from the <Inputs />
+    handleCallBack(variable, value) {
+        this.setState({
+            [variable]: value,
+        })
+        console.log(this.state);
+    }
 
 
     render() {
@@ -171,38 +214,44 @@ export default class EditUser2 extends React.Component {
                 
                 <div>
                     <h1 id="text">Name: {this.state.user.name}</h1>
-                    <input
-                        autoComplete="off"
+                    <Inputs
                         className="BoxInput"
                         placeholder="Enter ID"
-                        value = {this.state.id}
-                        onChange={(e) => this.handleUpdateID(e)}
+                        value={this.state.id}
+                        variable="id"
+                        parentCallBack={this.handleCallBack}
                         />
                     <button className = "BetterButton" onClick={() => this.handleFindUser()}>Submit</button>
                     <div className="container">
-                    <input 
-                        autoComplete="off"
-                        className="BoxInput"
-                        id="small-input"
-                        placeholder="Enter Auth ID"
-                        value = {this.state.authID}
-                        onChange={(e) => this.handleUpdateAuthID(e)}
-                    />
-                    <input 
-                        autoComplete="off"
-                        className="BoxInput"
-                        id="small-input2"
-                        type="password"
-                        placeholder="Enter password"
-                        value={this.state.authPassword}
-                        onChange={(e) => this.handleUpdateAuthPassword(e)}
-                    />
+                    <div>
+                        <Inputs
+                            className="BoxInput"
+                            id='small-input'
+                            placeholder="Enter Auth ID"
+                            value={this.state.authID}
+                            variable="authID"
+                            parentCallBack={this.handleCallBack}
+                            />
+                        </div>
+                        <div>
+                        <Inputs
+                            className="BoxInput"
+                            id="small-input2"
+                            type="password"
+                            placeholder="Enter Password"
+                            value={this.state.authPassword}
+                            variable="authPassword"
+                            parentCallBack={this.handleCallBack}
+                            />
+                        </div>
                     </div>
                 
                     <DisplayChecks
-                    
-                    trainings = {this.state.userTrainings}
-                    handleChange={this.handleChange}
+                        trainings = {this.state.userTrainings}
+                        handleChange={this.handleChange}
+                        userIsFabTech={this.state.userIsFabTech}
+                        isAdmin={this.state.isAdmin}
+                        toggleFabTech={this.toggleFabTech}
                     />
                     <ConditionalButton 
                         trainings={this.state.userTrainings}
@@ -213,13 +262,13 @@ export default class EditUser2 extends React.Component {
         } else {
             return (
                 <div>
-                    <input
-                        autoComplete="off"
+                    <Inputs
                         className="BoxInput"
-                        value={this.state.fabTechID}
                         placeholder="FabTech ID"
-                        onChange={(e) => this.handleUpdateFabTechID(e)}
-                    />
+                        value={this.state.fabTechID}
+                        variable="fabTechID"
+                        parentCallBack={this.handleCallBack}
+                        />
                     <button className="BetterButton" onClick={() => this.handleFabTechCheck()}>Submit</button>
                 </div>
             )
