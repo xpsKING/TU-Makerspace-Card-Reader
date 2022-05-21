@@ -4,6 +4,7 @@ import './EditUser.css';
 import {getUser, editUser, getFabTechs} from './APIRoutes.js';
 import Checkbox from '@mui/material/Checkbox';
 import { FormControlLabel } from '@mui/material';
+
 import Inputs from './Inputs.js';
 import Typography from '@mui/material/Typography';
 //import { CheckBox } from '@material-ui/icons';
@@ -34,6 +35,7 @@ function DisplayChecks(props) {
                 </h1>
                 </div>
             ))}
+
             <FabTechToggle
                 isAdmin={props.isAdmin}
                 userIsFabTech={props.userIsFabTech}
@@ -123,9 +125,7 @@ export default class EditUser2 extends React.Component {
                             isAdmin: true,
                         })
                     }
-                    
                 } 
-               
             }
         })
     }
@@ -278,7 +278,6 @@ export default class EditUser2 extends React.Component {
                         parentCallBack={this.handleCallBack}
                         />
                     <button className="BetterButton" onClick={() => this.handleFabTechCheck()}>Submit</button>
-                    
                 </div>
             )
         }
