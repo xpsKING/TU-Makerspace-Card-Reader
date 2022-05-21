@@ -1,7 +1,7 @@
 import axios from "axios";
 import React from "react";
 import { addUser } from './APIRoutes.js';
-import './addUser.css';
+import './AddUser.css';
 import Inputs from './Inputs.js';
 
 export default class AddUser extends React.Component {
@@ -94,7 +94,8 @@ export default class AddUser extends React.Component {
               )
           }
         return (
-            <div>
+            <div className="center-container">
+                
                 <div id="error-container">
                     {this.state.errors.map((error) => (
                         <h3 id="error" key = {error}>{error[1]}</h3>
@@ -152,10 +153,11 @@ export default class AddUser extends React.Component {
                             parentCallBack={this.handleCallBack}
                             />
                     </div>
+                    <div>
+                    <button className = "submitButton2" onClick={() => this.handleSubmit()}>Submit</button>
                 </div>
-                <div>
-                    <button className = "submitButton" onClick={() => this.handleSubmit()}>Submit</button>
                 </div>
+                
             </div>
         );
     }

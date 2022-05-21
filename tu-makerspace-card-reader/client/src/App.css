@@ -1,23 +1,72 @@
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  background-color: #ffffff;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
 .Box {
+  position: relative;
   width: 150px;
   height: 50px;
-   border: 1.5px solid rgb(25, 31, 61);
+  border: 1.5px solid rgb(25, 31, 61);
   border-radius: 8px;
-  background: rgb(157,200,250);
   background: linear-gradient(90deg, rgba(157,200,250,1) 0%, rgba(172,215,249,1) 50%, rgba(174,216,255,1) 100%);
-  opacity: 0.7;
+  opacity: 1;
   box-shadow: 1px 2px 2px rgb(25, 31, 61);
   margin-bottom: 10px;
   font-size: 15px;
   font-weight: bold;
   font-family: "sans-serif", consolas, monaco;
-    
 }
 .Box:hover {
   background: linear-gradient(90deg, rgb(138, 190, 249) 0%, rgb(155, 208, 248) 50%, rgb(156, 204, 250) 100%);
 }
 .Box:active {
+  top: 2px;
   background: linear-gradient(90deg, rgb(128, 184, 248) 0%, rgb(144, 202, 247) 50%, rgb(147, 202, 253) 100%);
+  outline: none;
+}
+.Box:focus {
+  outline: none;
+}
+#logo {
+  position: absolute;
+  left: 20px;
+  top: 15px;
+  height: 45px;
+  width: 35px;
 }
 
 .text {
@@ -29,17 +78,46 @@
   font-size: 33px;
   font-weight: bold;
   font-family: "sans-serif", consolas, monaco;
-  background-color: rgb(168, 184, 238);
-  box-shadow: 3px 4px 2px rgb(25, 31, 61);
-  border-top: 1px solid rgb(25, 31, 61);
+  background-color: #006747;
+  box-shadow: 3px 4px 2px rgb(25, 61, 29);
+  border-top: 1px solid rgb(25, 61, 29);
   margin-top: 0px;
   line-height: 75px;
+  color: rgb(241, 241, 241);
 }
 .List {
   grid-template-columns: 1fr 1fr 1fr;
 }
-.submitButton {
-  width: 75px;
-  height: 25px;
-  font-family: "sans-serif", consolas, monaco;
+
+
+@media (prefers-color-scheme: dark) {
+  .text {
+    color: rgb(240, 254, 241);
+  }
+  .Box {
+    background: linear-gradient(90deg, #006747 0%, #05704e 50%, #0b865f 100%);
+    border-color: rgb(121, 121, 121);
+    border-width: 1.5px;
+    box-shadow: 1px 1px 1px rgb(121, 121, 121);
+    color: rgb(212, 217, 210);
+    opacity: 1;
+  }
+  .Box:hover {
+    background: linear-gradient(90deg, #018a5e 0%, #08986a 50%, #10996e 100%);
+    color: rgb(250, 255, 247);
+  }
+  .Box:active {
+    background: linear-gradient(90deg, rgb(21, 33, 26) 0%, rgb(20, 40, 21) 50%, rgb(21, 60, 38) 100%);
+    color: rgb(250, 255, 247);
+  }
+  .header {
+    background-color: rgb(9, 20, 11);
+    color: rgb(243, 255, 242);
+    border-bottom:2px solid rgb(121, 121, 121);
+    box-shadow: 2px 0px 2px rgb(121, 121, 121);
+  }
+  
+
+  
+
 }

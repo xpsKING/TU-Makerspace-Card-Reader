@@ -131,6 +131,7 @@ export default class MachineView extends React.Component {
           <div className='container2'>
             {this.state.machines.map((machine)=>(
               <Machine
+                
                 machineID = {machine.id}
                 machineName={machine.name} 
                 currentUser={this.state.currentUser} 
@@ -211,46 +212,25 @@ export default class MachineView extends React.Component {
   
     render() {
       return (
-        <span>
-     
+        <div className="MachineBoxContainer">
+          <div>
           <img src={this.state.image} className = {this.state.activated === true ? "MachineBoxTrue" : "MachineBox"} />
-          <ul id = "p2">
-          <span id="otherh3-2">{this.state.machineName}</span>
-          <SwitchUnstyled
-            component={Root} 
-            id = "switch"
-            className = "toggle"
-            checked={this.state.activated} 
-            size="medium" 
-            color="success" 
-            disabled={!this.state.trained && !this.state.activated} 
-            inputprops={{ 'aria-label': 'Checkbox demo' }}
-            onChange={(event)=>this.onButtonChange(event)}
-      />
-        {/*  <input
-            value = {machineID}
-            type="checkbox"
-            id="switch"
-            className="checkbox"
-            test = {console.log('hi')/*}disabled={!this.state.trained && !this.state.activated}
-            checked={this.state.activated} {}
-            onChange={this.onButtonChange}
-            />
-            <label htmlFor="switch" className="toggle">
-            </label> {*/}
-            </ul>
-          
-           {/*} 
-          <Switch 
-            id = "switch"
-            checked={this.state.activated} 
-            size="medium" 
-            color="error" 
-            disabled={!this.state.trained && !this.state.activated} 
-            inputProps={{ 'aria-label': 'Switch A' }}
-            onChange={(event)=>this.onButtonChange(event)}
-      />{*/}
-        </span>
+          </div>
+          <div>
+            <span id="otherh3-2">{this.state.machineName}</span>
+            <SwitchUnstyled
+              component={Root} 
+              id = "switch"
+              className = "toggle"
+              checked={this.state.activated} 
+              size="medium" 
+              color="success" 
+              disabled={!this.state.trained && !this.state.activated} 
+              inputprops={{ 'aria-label': 'Checkbox demo' }}
+              onChange={(event)=>this.onButtonChange(event)}
+              />
+            </div>
+        </div>
   
       );
       }

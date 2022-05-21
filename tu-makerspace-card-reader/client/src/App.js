@@ -3,6 +3,8 @@ import MachineView from './MachineView.js';
 import AddUser from './AddUser.js';
 import { Routes, Route, Link } from 'react-router-dom';
 import EditUser from './EditUser.js';
+import ThemeTester from './ThemeTester';
+import logo from './makerspacelogo.png';
 
 
 function Home(){
@@ -27,28 +29,20 @@ function Home(){
   )
 }
 
-function AddedUser() {
-  return (
-    <div>
-      <h1>Successfully Added User!</h1>
-      <form action="/addUser">
-        <button className="submitButton">Go Back</button>
-      </form>
-    </div>
-  )
-}
-
 function App() {
   return (
     <div className="App">
-      
-    <h1 className="header">Welcome to React Router!</h1>
+    
+    <h1 className="header">
+    <img src={logo} id="logo"/>
+      Tulane Makerspace</h1>
     <Routes>
       <Route path= "/" element = {<Home />} />
       <Route path= "metalShop1" element = {<MachineView machineGroup="metalShop1" />} />
     {/* Maddie add a path for add user when u wanna start working on that and you now have a new page for that function! */}
       <Route path= "addUser" element = {<AddUser />} />
       <Route path="editUser" element = {<EditUser />}/>
+      <Route path="themeTester" element = {<ThemeTester />}/>
     </Routes>
     </div>
   );

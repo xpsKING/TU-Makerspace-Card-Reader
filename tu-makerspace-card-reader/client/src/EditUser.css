@@ -1,22 +1,50 @@
+.editUserContainer {
+    position: relative;
+    display:block;
+    align-items: center;
+    justify-content: center;
+    margin: auto;
+    height: 750px;
+    width: 400px;
+    background-color: rgb(225, 251, 235);
+    border-radius: 10px;
+    border: 1.5px solid #288F65;
+    opacity: 0.83;
+}
+
 .BoxInput {
+    position: relative;
     width: 200px;
     height: 50px;
     border-radius:8px;
-    border: 2px solid rgb(25,31,61);
+    border: 2px solid #006747;
     font-family: "sans-serif", consolas, monaco; 
     padding-left: 8px;
+    background-color:rgb(207, 237, 220);
+    color: rgb(25, 61, 29);
+    font-size: 18px;
+}
+.BoxInput:hover {
+    background-color: rgb(198, 230, 211); /* decide which color you want as hover */
+}
+.BoxInput:focus {
+    outline: none;
+    background-color: rgb(201, 235, 215);
+    border-color: #288F65;
 }
 #small-input {
     position: relative;
     margin-bottom: 10px;
     width: 150px;
     height:30px;
+    font-size: 14px;
 }
 #small-input2 {
     position: relative;
     margin-bottom: 10px;
     width: 150px;
     height:30px;
+    font-size: 14px;
 }
 .container {
     position:absolute;
@@ -24,10 +52,7 @@
     top: 150px;
     grid-template-columns: 1fr;
 }
-::placeholder {
-    color: rgb(25,31,61);
-    font-weight: bold;
-}
+
 #check {
     margin-bottom: 0px;
     margin-top: 0px;
@@ -38,10 +63,11 @@
     width: 70px;
     height: 30px;
     border-radius:5px;
-    border: 2px solid rgb(25,31,61);
+    border: 2px solid rgb(25, 61, 29);
     font-family: "sans-serif", consolas, monaco;
     font-weight: bold;
-    background-color: rgb(168, 179, 232)
+    background-color: #006747;
+    color: rgb(240,240,240);
 }
 .BetterButton:active {
     background-color: rgb(148, 161, 230)
@@ -52,8 +78,28 @@
 }
 #text {
     font-family: "sans-serif", consolas, monaco;
+    font-size: 24px;
+    padding-left: 15px;
 }
 .container {
     position: absolute;
     grid-template-columns: 1fr;
+}
+.containerChecks {
+    position: relative;
+    grid-template-columns: 1fr 1fr;
+}
+
+@media (prefers-color-theme: light) {
+    ::placeholder {
+        color: rgb(25,31,61);
+        font-weight: bold;
+    }
+}
+.topper {
+    position: absolute;
+}
+#text2 {
+    font-family: "sans-serif", consolas, monaco;
+    color: rgb(25,31,61);
 }

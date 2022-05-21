@@ -5,6 +5,7 @@ import {getUser, editUser, getFabTechs} from './APIRoutes.js';
 import Checkbox from '@mui/material/Checkbox';
 import { FormControlLabel } from '@mui/material';
 import Inputs from './Inputs.js';
+import Typography from '@mui/material/Typography';
 //import { CheckBox } from '@material-ui/icons';
 
 // if admin makes someone fabtech, they must set a password
@@ -12,14 +13,17 @@ import Inputs from './Inputs.js';
 // displays the checkboxes based on the trainings
 function DisplayChecks(props) {
     return (
-        <div className="check">
+        <div className="containerChecks">
             {(props.trainings).map((training) => (
-                <h1 key = {training} > 
+                <div className="containerChecks">
+                <h1 key = {training}> 
                 <FormControlLabel 
-                    label = {training[0]}
+
+                    classes="checks"
+                    label = {<Typography id="text2" variant="body2" color="textSecondary">{training[0]}</Typography>}
                     control = {
                     <Checkbox
-                    color="primary"
+                    color="success"
                     inputprops={training}
                     checked={training[1]}
                     size="medium"
@@ -28,6 +32,7 @@ function DisplayChecks(props) {
                     }
                     />
                 </h1>
+                </div>
             ))}
             <FabTechToggle
                 isAdmin={props.isAdmin}
@@ -46,7 +51,7 @@ function FabTechToggle(props) {
         return (
             <div>
                 <FormControlLabel
-                    label="Fab Tech"
+                    label={<Typography id="text2" variant="body2" color="textSecondary">Fab Tech</Typography>}
                     control = {
                         <Checkbox
                             color="secondary"
@@ -212,7 +217,8 @@ export default class EditUser2 extends React.Component {
             return (
                 
                 <div>
-                    <h1 id="text">Name: {this.state.user.name}</h1>
+                    <div className = "editUserContainer">
+                    <h1 id="text" align="left">Name: {this.state.user.name}</h1>
                     <Inputs
                         className="BoxInput"
                         placeholder="Enter ID"
@@ -221,6 +227,18 @@ export default class EditUser2 extends React.Component {
                         parentCallBack={this.handleCallBack}
                         />
                     <button className = "BetterButton" onClick={() => this.handleFindUser()}>Submit</button>
+                    <DisplayChecks
+                    
+                        trainings = {this.state.userTrainings}
+                        handleChange={this.handleChange}
+                        userIsFabTech={this.state.userIsFabTech}
+                        isAdmin={this.state.isAdmin}
+                        toggleFabTech={this.toggleFabTech}
+                    />
+                    <ConditionalButton 
+                        trainings={this.state.userTrainings}
+                    />
+                    </div>
                     <div className="container">
                     <div>
                         <Inputs
@@ -245,17 +263,7 @@ export default class EditUser2 extends React.Component {
                         </div>
                     </div>
                 
-                    <DisplayChecks
                     
-                        trainings = {this.state.userTrainings}
-                        handleChange={this.handleChange}
-                        userIsFabTech={this.state.userIsFabTech}
-                        isAdmin={this.state.isAdmin}
-                        toggleFabTech={this.toggleFabTech}
-                    />
-                    <ConditionalButton 
-                        trainings={this.state.userTrainings}
-                    />
                 </div>
 
             )

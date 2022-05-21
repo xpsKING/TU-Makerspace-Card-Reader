@@ -21,8 +21,9 @@ const enabled = {
     width: 60px;
     height: 30px;
     cursor: pointer;
-    top: -114px;
-    right: 100px;
+    background-color: #DEEFE5;
+    border: 1px solid #006747;
+    border-radius: 16px;
   
     &.${switchUnstyledClasses.disabled} {
       opacity: 0.4;
@@ -48,6 +49,7 @@ const enabled = {
       background-color: #fff;
       position: relative;
       transition: all 200ms ease;
+      background-color: #9DCAB2;
     }
   
     &.${switchUnstyledClasses.focusVisible} .${switchUnstyledClasses.thumb} {
@@ -59,7 +61,7 @@ const enabled = {
       .${switchUnstyledClasses.thumb /* circle moves when toggled */} {
         left: 33px;
         top: 3px;
-        background-color: #fff;
+        background-color: #DEEFE5;
       }
   
       .${switchUnstyledClasses.track /* the color of the oval when it's toggled on */} {
