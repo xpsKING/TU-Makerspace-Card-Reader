@@ -4,7 +4,6 @@ import './EditUser.css';
 import {getUser, editUser, getFabTechs} from './APIRoutes.js';
 import Checkbox from '@mui/material/Checkbox';
 import { FormControlLabel } from '@mui/material';
-
 import Inputs from './Inputs.js';
 import Typography from '@mui/material/Typography';
 //import { CheckBox } from '@material-ui/icons';
@@ -228,7 +227,6 @@ export default class EditUser2 extends React.Component {
                         />
                     <button className = "BetterButton" onClick={() => this.handleFindUser()}>Submit</button>
                     <DisplayChecks
-                    
                         trainings = {this.state.userTrainings}
                         handleChange={this.handleChange}
                         userIsFabTech={this.state.userIsFabTech}
