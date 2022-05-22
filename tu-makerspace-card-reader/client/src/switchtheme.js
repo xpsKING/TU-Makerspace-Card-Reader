@@ -37,12 +37,11 @@ if (userPrefersDark) {
     vertical-align: middle;
     margin-left: 5px;
     opacity: 1;
-
     &.${switchUnstyledClasses.disabled} {
       opacity: 0.4;
       cursor: not-allowed;
     }
-  
+    
     & .${switchUnstyledClasses.track /* pretty sure this takes from the theme */} {
       background: ${'#9DCAB2'};
       border-radius: 15px;
@@ -69,7 +68,6 @@ if (userPrefersDark) {
       background-color: ${'switchbackground[100]'};
       box-shadow: 0 0 1px 8px rgba(0, 0, 0, 0.25);
     }
-  
     &.${switchUnstyledClasses.checked} {
       .${switchUnstyledClasses.thumb /* circle moves when toggled */} {
         left: 33px;
@@ -113,7 +111,6 @@ if (userPrefersDark) {
     vertical-align: middle;
     margin-left: 5px;
     opacity: 1;
-    
   
     &.${switchUnstyledClasses.disabled} {
       opacity: 0.4;
