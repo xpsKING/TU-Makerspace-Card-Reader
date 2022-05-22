@@ -10,6 +10,16 @@ export function getUser(id) {
         }
     }
 }
+export function getUserEmail(email){
+    return{
+        method: 'get',
+        url: 'https://localhost:8443/api/users/email/' + email,
+        proxy: {
+            host: 'localhost',
+            port: 8443
+        }
+    }
+}
 export function disableMachine(id) {
    return{
         method: 'get',

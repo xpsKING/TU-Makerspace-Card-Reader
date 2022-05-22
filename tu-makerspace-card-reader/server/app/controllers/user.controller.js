@@ -100,6 +100,25 @@ exports.findOne = (req, res) => {
             });
         });
 };
+exports.findEmail = (req,res)=>{
+    const email = req.params.email;
+    Users.findOne({where:{email : email}, attributes: { exclude: ['password'] } })
+        .then(data =>{
+            if(data){
+                res.send(data);
+            }
+            else{
+                res.status(404).send({
+                    message: `Cannot find User with email=${email}.`
+                });
+            }
+        })
+        .catch(err =>{
+            res.status(500).send({
+                message: "Error retrieving User with email=" + email
+            });
+        })
+}
 // Update a user by the id in the request
 exports.update = (req, res) => {
     if (!req.body.updatedUser|| !req.body.user || !req.body.authPassword) {
