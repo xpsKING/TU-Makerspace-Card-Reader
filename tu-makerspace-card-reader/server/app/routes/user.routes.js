@@ -17,6 +17,8 @@ module.exports = app => {
 
     // Retrieve a single Users with id
     router.get("/:id", users.findOne);
+    
+    router.get("/email/:email", users.findEmail);
 
     // Update a User with id
     //REQUIRES user, authPassword of higher permission (fabtech cannot update admin acct etc.)
