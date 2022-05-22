@@ -1,7 +1,7 @@
 import axios from "axios";
 import React from "react";
 import { addUser } from './APIRoutes.js';
-import './AddUser.css';
+import './addUser.css';
 import Inputs from './Inputs.js';
 import './DarkMode.css';
 
