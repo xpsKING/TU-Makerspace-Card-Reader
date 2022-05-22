@@ -186,7 +186,6 @@ export default class MachineView extends React.Component {
   
    //used to update buttons with perms on user change. does not change activated state on machine, so remote disable is not supported atm. to be supported if deemed needed.
     static getDerivedStateFromProps(props, state){
-      console.log("called cool");
       state={
         currentUser:props.currentUser,
         currentUser:props.currentUser,
@@ -196,16 +195,26 @@ export default class MachineView extends React.Component {
     }
     //called when button is clicked, changes state and calls api to database
     onButtonChange = () => {
-      console.log('changed');
       if (this.state.activated) {
         this.setState({activated:false});
-        disableMachine(this.state.machineID); //this doesnt work yet, to be implemented, so that database updates with button change
-       
+        axios(disableMachine(this.state.machineID)); 
       }
       else {
-        toggleMachine(this.state.machineID, this.state.currentUser);//same here
-        this.setState((currentState) => {
-          return {activated:!currentState.activated}}); 
+        axios(toggleMachine(this.state.machineID, this.state.currentUser.id))
+          .then((res,err)=>{
+            if(err){
+              console.log("Error setting Machine State!");
+            }
+            if(res.data.message !="Insufficent Permission!"){
+              this.setState({
+                activated:!this.state.activated
+              });
+            }
+            else{
+              console.log("Insufficent Permission!");
+            }
+          })
+        
         //console.log('enabled ' + this.state.machineName);
         //console.log('key: ' + this.state.machineID);
       }

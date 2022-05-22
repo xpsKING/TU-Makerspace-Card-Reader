@@ -131,7 +131,8 @@ export default class EditUser2 extends React.Component {
                         if (response.data.fabTech || response.data.admin) {
                             this.setState({
                                 isFabTech: response.data.fabTech,
-                                isAdmin: response.data.admin
+                                isAdmin: response.data.admin,
+                                authID: this.state.fabTechID
                             })
                         }
                         else {
@@ -149,7 +150,8 @@ export default class EditUser2 extends React.Component {
                         if (response.data.fabTech || response.data.admin) {
                             this.setState({
                                 isFabTech: response.data.fabTech,
-                                isAdmin: response.data.admin
+                                isAdmin: response.data.admin,
+                                authID: this.state.fabTechID
                             })
                         }
                         else {
