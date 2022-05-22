@@ -82,28 +82,65 @@
 }
   
 .MachineBox { /* encases the machine image */
-  z-index: 0;
   position:relative;
   width: 100px;
   height: 100px;
   border: 7px solid rgb(25, 61, 29);
+  margin-top: 11px;
+  margin-bottom: 7.25px;
+  
 }
-.MachineBoxTrue { /* If the machine is enabled */
+.MachineBoxTrue {
+  margin-top:0px;
+  margin-bottom: 0px;
+  border: 18px solid transparent;
   position:relative;
   width: 100px;
   height: 100px;
-  border: 7px solid #288F65;
-  margin: auto;
 }
+.MachineBoxBorder {
+  width: 136px;
+  height: 136px;
+  position: relative;
+  align-items: center;
+  justify-items: center;
+  background: repeating-linear-gradient(
+    45deg,
+  #fff41e,
+  #fff41e 5px,
+  #0d1910 10px,
+  #0d1910 20px,
+  #fff41e 25px,
+  #fff41e 30px
+);
+  background-size: 400% 400%;
+  animation: enabledMachine 5s linear infinite;
+
+
+}
+@keyframes enabledMachine {
+  0% {
+    background-position: 0% 0%;
+  }
+  50% {
+    background-position: 0% 50%;
+  }
+  100% {
+    background-position: 0% 100%;
+  }
+}
+
 #otherh3-2 { /* Machine Name Label next to switch*/
   color: rgb(25, 31, 61);
   font-size: 20px;
   font-family: "sans-serif", consolas, monaco;
   font-weight: bold;
   text-align: center;
+  overflow: visible;
+  position: relative;
+  top: 10px;
   
 }       
-  
 .container2 { /* container for the machines to be in a grid layout */
   z-index: 1;
   position:relative;
@@ -118,7 +155,7 @@
 .MachineBoxContainer {
   position: relative;
   display:block;
-  width: 180px;
+  width: 200px;
   height: 250px;
   align-items: center;
   justify-content: center;
