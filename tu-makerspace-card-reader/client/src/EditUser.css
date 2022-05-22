@@ -93,6 +93,7 @@
     left: -10px;
 }
 #text {
+    color: #193D2F;
     font-family: "sans-serif", consolas, monaco;
     font-size: 24px;
     padding-left: 15px;
@@ -105,12 +106,9 @@
     position: relative;
     grid-template-columns: 1fr 1fr;
 }
-
-@media (prefers-color-theme: light) {
-    ::placeholder {
-        color: rgb(25,31,61);
-        font-weight: bold;
-    }
+::placeholder {
+    color: rgb(25,61,29);
+    font-weight: bold;
 }
 .topper {
     position: absolute;

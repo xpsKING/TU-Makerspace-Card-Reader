@@ -40,22 +40,23 @@
   position: relative;
   width: 150px;
   height: 50px;
-  border: 1.5px solid rgb(25, 31, 61);
+  border: 1.5px solid #193D2F;
   border-radius: 8px;
-  background: linear-gradient(90deg, rgba(157,200,250,1) 0%, rgba(172,215,249,1) 50%, rgba(174,216,255,1) 100%);
+  background: linear-gradient(90deg, #60d1a3 0%, rgb(119, 204, 167) 50%, #6fd5a0 100%);
   opacity: 1;
-  box-shadow: 1px 2px 2px rgb(25, 31, 61);
-  margin-bottom: 10px;
+  box-shadow: 1px 2px 2px #193D2F;
   font-size: 15px;
   font-weight: bold;
   font-family: "sans-serif", consolas, monaco;
+  opacity: 1;
 }
 .Box:hover {
-  background: linear-gradient(90deg, rgb(138, 190, 249) 0%, rgb(155, 208, 248) 50%, rgb(156, 204, 250) 100%);
+  background: linear-gradient(90deg, #4ac594 0%, rgb(80, 190, 143) 50%, #4cc184 100%);
+  cursor:pointer;
 }
 .Box:active {
-  top: 2px;
-  background: linear-gradient(90deg, rgb(128, 184, 248) 0%, rgb(144, 202, 247) 50%, rgb(147, 202, 253) 100%);
+  top: 1px;
+  background: linear-gradient(90deg, #4ac594 0%, rgb(80, 190, 143) 50%, #4cc184 100%);
   outline: none;
 }
 .Box:focus {
@@ -103,8 +104,19 @@
   color: rgb(241, 241, 241);
 }
 .List {
-  grid-template-columns: 1fr 1fr 1fr;
+  position: relative;
+  display: grid;
+  border-radius: 7px;
+  width: 220px;
+  height: 240px;
+  margin: auto;
+  align-items: center;
+  justify-content: center;
+  opacity: 0.8;
+  background-color: rgb(225, 251, 235);
+  border: 1.5px solid #288F65;
 }
+
 
 
 @media (prefers-color-scheme: dark) {

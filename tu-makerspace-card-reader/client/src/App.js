@@ -14,7 +14,7 @@ function Home(){
         <h2 className = "text">Welcome to the homepage!</h2>
         <p className="text">You can do this, I believe in you.</p>
       </main>
-      <nav>
+      <nav className="List">
         <form action="/metalShop1">
         <button className = "Box">metalShop1</button>
         </form>
