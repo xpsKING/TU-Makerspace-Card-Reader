@@ -228,7 +228,6 @@ export default class EditUser2 extends React.Component {
                         />
                     <button className = "BetterButton" onClick={() => this.handleFindUser()}>Submit</button>
                     <DisplayChecks
-                    
                         trainings = {this.state.userTrainings}
                         handleChange={this.handleChange}
                         userIsFabTech={this.state.userIsFabTech}
