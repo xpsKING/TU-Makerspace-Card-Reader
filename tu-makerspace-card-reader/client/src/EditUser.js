@@ -176,7 +176,7 @@ export default class EditUser2 extends React.Component {
                         console.log(response.data);
                         this.setState({
                             user: response.data,
-                            idINT:id
+                            idINT: id
                         })
                         trainings = [
                             ["lathe", response.data.lathe],
@@ -193,31 +193,31 @@ export default class EditUser2 extends React.Component {
                     }
                 })
             }
-            else{ //if id is not a number, instead user entered an email
+            else { //if id is not a number, instead user entered an email
                 axios(getUserEmail(this.state.id))
-                .then((response,error)=>{
-                    if (error) {
-                        console.log('Error finding User');
-                    } else {
-                        console.log(response.data);
-                        this.setState({
-                            user: response.data,
-                            idINT: response.data.id
-                        })
-                        trainings = [
-                            ["lathe", response.data.lathe],
-                            ["metal1", response.data.metal1],
-                            ["metal2", response.data.metal2],
-                            ["mill", response.data.mill],
-                            ["waterjet", response.data.waterjet],
-                            ["wood1", response.data.wood1],
-                            ["wood2", response.data.wood2],
-                        ];
-                        this.setState({
-                            userTrainings: trainings,
-                        })
-                    }
-                })
+                    .then((response, error) => {
+                        if (error) {
+                            console.log('Error finding User');
+                        } else {
+                            console.log(response.data);
+                            this.setState({
+                                user: response.data,
+                                idINT: response.data.id
+                            })
+                            trainings = [
+                                ["lathe", response.data.lathe],
+                                ["metal1", response.data.metal1],
+                                ["metal2", response.data.metal2],
+                                ["mill", response.data.mill],
+                                ["waterjet", response.data.waterjet],
+                                ["wood1", response.data.wood1],
+                                ["wood2", response.data.wood2],
+                            ];
+                            this.setState({
+                                userTrainings: trainings,
+                            })
+                        }
+                    })
             }
         }
 
@@ -227,124 +227,124 @@ export default class EditUser2 extends React.Component {
         let errorLater = false;
         var trainings = this.state.userTrainings;
         let authID = parseInt(this.state.authID);
-        if(!authID){//convert email to id if its not an id
+        if (!authID) {//convert email to id if its not an id
             axios(getUserEmail(this.state.authID))
-            .then((response, error)=>{
-                if (error){
-                    console.log("Error getting authID");
-                }
-                else{
-                    authID = response.data.id;
-                    const changeTrainings =trainings.map((train) => {
-                        if (train === training) {
-                            console.log(this.state.idINT);
-                            axios(editUser(this.state.idINT, { [train[0]]: !train[1] }, authID, this.state.authPassword))
-                                .then((response, error) => {
-                                if (error) {
-                                    errorLater = true;
-                                    console.log('Error editing user !');
-                                    this.handleFindUser();
-                                } else {
-                                    console.log('Edited successfully!');
-                                }
-                            })
-                            .catch((err)=>{
-                                this.handleFindUser();
-                            })
-                            if (train === training)
-                                return [train[0], !train[1]];
-                        } else {
-                            return train;
-                        }
-                    })
-            
-                    if (!errorLater) {
-                        this.setState({
-                            userTrainings: changeTrainings,
-                        })
+                .then((response, error) => {
+                    if (error) {
+                        console.log("Error getting authID");
                     }
-                }
-            })
+                    else {
+                        authID = response.data.id;
+                        const changeTrainings = trainings.map((train) => {
+                            if (train === training) {
+                                console.log(this.state.idINT);
+                                axios(editUser(this.state.idINT, { [train[0]]: !train[1] }, authID, this.state.authPassword))
+                                    .then((response, error) => {
+                                        if (error) {
+                                            errorLater = true;
+                                            console.log('Error editing user !');
+                                            this.handleFindUser();
+                                        } else {
+                                            console.log('Edited successfully!');
+                                        }
+                                    })
+                                    .catch((err) => {
+                                        this.handleFindUser();
+                                    })
+                                if (train === training)
+                                    return [train[0], !train[1]];
+                            } else {
+                                return train;
+                            }
+                        })
+
+                        if (!errorLater) {
+                            this.setState({
+                                userTrainings: changeTrainings,
+                            })
+                        }
+                    }
+                })
         }
-        else{ //authid is a number
+        else { //authid is a number
             const changeTrainings = trainings.map((train) => {
                 if (train === training) {
                     axios(editUser(this.state.idINT, { [train[0]]: !train[1] }, parseInt(this.state.authID), this.state.authPassword))
-                    .then((response, error) => {
-                        if (error) {
+                        .then((response, error) => {
+                            if (error) {
+                                errorLater = true;
+                                console.log('Error editing user !');
+                                this.handleFindUser();
+                            } else {
+                                console.log('Edited successfully!');
+
+                            }
+                        })
+                        .catch((err) => {
                             errorLater = true;
-                            console.log('Error editing user !');
                             this.handleFindUser();
-                        } else {
-                            console.log('Edited successfully!');
-                            
-                        }
-                    })
-                    .catch((err)=>{
-                        errorLater = true;
-                        this.handleFindUser();
-                    })
+                        })
                     if (train === training)
                         return [train[0], !train[1]];
                 } else {
                     return train;
                 }
             })
-    
+
             if (!errorLater) {
                 this.setState({
                     userTrainings: changeTrainings,
                 })
             }
-            
+
         }
-        
+
 
     }
     toggleFabTech() {
         console.log(this.state.authID);
-            let authID = parseInt(this.state.authID);
-                if(!authID){//convert email to id if its not an id
-                    axios(getUserEmail(this.state.authID))
-                    .then((response, error)=>{
-                        if (error){
-                            console.log("Error getting authID");
-                        }
-                        else{
-                             authID = response.data.id;
-                             axios(editUser(parseInt(this.state.id), { "fabTech": !this.state.userIsFabTech }, authID, this.state.authPassword)).then((response, error) => {
-                                if (error) {
-                                    console.log('Error making user FabTech!');
-                                } else {
-                                    console.log('Edited FabTech !');
-                                    this.setState((currentState) => {
-                                        console.log("FABTECHHHH");
-                                        return {
-                                            userIsFabTech: !currentState.userIsFabTech,
-                                        }
-                                    })
-                                }
-                            })
-                        }
-                    })
-                }else{
-                    axios(editUser(parseInt(this.state.id), { "fabTech": !this.state.userIsFabTech }, authID, this.state.authPassword)).then((response, error) => {
-                        if (error) {
-                            console.log('Error making user FabTech!');
-                        } else {
-                            console.log('Edited FabTech !');
-                            this.setState((currentState) => {
-                                //console.log("FABTECHHHH");
-                                return {
-                                    userIsFabTech: !currentState.userIsFabTech,
-                                }
-                            })
+        let authID = parseInt(this.state.authID);
+        if (!authID) {//convert email to id if its not an id
+            axios(getUserEmail(this.state.authID))
+                .then((response, error) => {
+                    if (error) {
+                        console.log("Error getting authID");
+                    }
+                    else {
+                        authID = response.data.id;
+                        axios(editUser(parseInt(this.state.id), { "fabTech": !this.state.userIsFabTech }, authID, this.state.authPassword)).then((response, error) => {
+                            if (error) {
+                                console.log('Error making user FabTech!');
+                            } else {
+                                console.log('Edited FabTech !');
+                                this.setState((currentState) => {
+                                    console.log("FABTECHHHH");
+                                    return {
+                                        userIsFabTech: !currentState.userIsFabTech,
+                                    }
+                                })
+                            }
+                        })
+                    }
+                })
+        } else {
+            axios(editUser(parseInt(this.state.id), { "fabTech": !this.state.userIsFabTech }, authID, this.state.authPassword)).then((response, error) => {
+                if (error) {
+                    console.log('Error making user FabTech!');
+                } else {
+                    console.log('Edited FabTech !');
+                    this.setState((currentState) => {
+                        //console.log("FABTECHHHH");
+                        return {
+                            userIsFabTech: !currentState.userIsFabTech,
                         }
                     })
                 }
+            })
+        }
 
-        
-        
+
+
     }
     // Receives input from the <Inputs />
     handleCallBack(variable, value) {
@@ -361,7 +361,7 @@ export default class EditUser2 extends React.Component {
 
                 <div>
                     <div className="editUserContainer">
-                    <h1 id="text3" align="left"> </h1>
+                        <h1 id="text3" align="left"> </h1>
                         <Inputs
                             className="BoxInput"
                             placeholder="Enter ID"
@@ -403,7 +403,7 @@ export default class EditUser2 extends React.Component {
                                 variable="authPassword"
                                 parentCallBack={this.handleCallBack}
                             />
-                            
+
                         </div>
                     </div>
 
