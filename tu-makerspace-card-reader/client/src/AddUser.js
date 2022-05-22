@@ -3,6 +3,7 @@ import React from "react";
 import { addUser } from './APIRoutes.js';
 import './AddUser.css';
 import Inputs from './Inputs.js';
+import './DarkMode.css';
 
 
 export default class AddUser extends React.Component {
@@ -95,7 +96,7 @@ export default class AddUser extends React.Component {
               )
           }
         return (
-            <div className="center-container">
+            <div className="container-center">
                 
                 <div id="error-container">
                     {this.state.errors.map((error) => (

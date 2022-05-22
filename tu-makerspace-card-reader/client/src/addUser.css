@@ -1,4 +1,4 @@
-.center-container {
+.container-center {
   position: relative;
   display:flex;
   align-items: center;
@@ -48,21 +48,23 @@
     width: 90px;
     height: 30px;
     font-family: "sans-serif", consolas, monaco;
-    border: 2px solid rgb(25,31,61);
+    border: 2px solid #193D2F;
     border-radius: 8px;
     background-color:#006747;
     color: rgb(240,240,240);
     font-weight: bold;
     font-size: 14px;
-
 }
 .submitButton2:hover {
   background-color:#027d56;
+  cursor:pointer;
 }
 .submitButton2:active {
+  background-color:#027d56;
   top: 1px;
 }
 .submitButton2:focus {
+  background-color:#027d56;
   outline: none;
 }
 #error {
@@ -92,16 +94,90 @@
   width: 90px;
   height: 35px;
   font-family: "sans-serif", consolas, monaco;
-  border: 2px solid #006747;
+  font-weight: bold;
+  border: 2px solid #193D2F;
   border-radius: 8px;
-  background-color:rgb(233, 245, 255);
+  background-color: rgb(222, 239, 229)
+}
+.doneButton:hover {
+  background-color: rgb(202, 233, 215);
+  cursor:pointer;
 }
 .doneButton:active {
-background-color:rgb(205, 231, 251);
+  top: 301px;
+  background-color: rgb(190, 224, 204);
+}
+.doneButton:focus {
+  background-color: rgb(190, 224, 204);
+  outline: none;
 }
 
 #text {
   font-family: "sans-serif", consolas, monaco;
 }
-
-
+@media (prefers-color-scheme: dark) {
+  .nameInputBox {
+    color: #193D2F;
+  }
+  .nameInputBox::placeholder {
+      color: #193D2F;
+      opacity: 0.7;
+  }
+  #input2 {
+    background-color: rgb(155, 228, 198);
+    color: #193D2F;
+    border: 1.5px solid #193D2F;
+  }
+  #input2:hover {
+    background-color: rgb(117, 195, 162);
+    color: #265543;
+  }
+  #input2:focus {
+    border: 1.5px solid #193D2F;
+  }
+  .container-center {
+    background-color: #207b5e;
+    border-radius: 10px;
+    border: 1.5px solid rgb(13, 54, 38);
+  }
+  .submitButton2 {
+    border: 2px solid #193D2F;
+    background-color:rgb(155, 228, 198);
+    color: #193D2F;
+  }
+  .submitButton2:hover {
+    background-color: rgb(117, 195, 162);
+    color: #265543;
+  }
+  .submitButton2:active {
+    background-color: rgb(117, 195, 162);
+    color: #265543;
+    top: 1px;
+  }
+  .submitButton2:focus {
+    background-color: rgb(117, 195, 162);
+    color: #265543;
+    outline: none;
+  }
+  #error {
+    color: rgb(220, 61, 61);
+  }
+  .doneButton {
+    border: 2px solid #193D2F;
+    background-color: rgb(112, 201, 150);
+  }
+  .doneButton:hover {
+    background-color: rgb(142, 224, 177);
+  }
+  .doneButton:active {
+    top: 301px;
+    background-color: rgb(142, 224, 177);
+  }
+  .doneButton:focus {
+    background-color: rgb(142, 224, 177);
+    outline: none;
+  }
+  #text {
+    color: rgb(243, 255, 242);
+  }
+}

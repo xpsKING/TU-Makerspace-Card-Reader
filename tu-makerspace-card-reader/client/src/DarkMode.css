@@ -1,21 +1,4 @@
 @media (prefers-color-scheme: dark) {
-    #input2 {
-      background-color: rgb(32, 94, 58);
-      border: 2px solid rgb(25, 31, 61);
-      color: rgb(222, 255, 238);
-      border: 1.5px solid rgb(101, 102, 101);
-    }
-    #input2:hover {
-      background-color: rgb(44, 126, 78);
-      color: rgb(248, 255, 251);
-    }
-    #input2:focus {
-      border: 1.5px solid rgb(179, 178, 178);
-    }
-    .nameInputBox {
-      color: rgb(222, 255, 238);
-      border: 1.5px solid rgb(150,150,150);
-    }
     ::placeholder {
       color: rgb(222, 255, 238);
     }
@@ -36,7 +19,7 @@
 
     }
     .MachineBoxTrue {
-        border: 7px solid #6EDB7F;
+        border: 7px solid #288F65;
     }
     #otherh3-2 {
       color: rgb(243, 255, 242);
@@ -51,4 +34,43 @@
         color: #006747;
         opacity: 0.75;
     }
+    .BetterBox {
+        background-color: rgb(48, 96, 75);
+        color:rgb(233, 230, 230);
+        opacity: 1;
+    }
+    .BetterBox:hover {
+        background-color: rgb(61, 117, 92);
+        color:rgb(244, 242, 242);
+    }
+    .BetterBox:active {
+        border: 2px solid rgb(30, 77, 56);
+    }
+    .BetterBox:focus {
+        background-color: rgb(61, 117, 92);
+        color:rgb(244, 242, 242);
+        border: 2px solid rgb(30, 77, 56);
+    }
+    .BetterTextField {
+        background-color: rgb(117, 197, 149);
+    }
+    .BetterTextField::placeholder {
+        color: #006747;
+        opacity:0.75;
+    }
+    #input2false {
+        background-color: rgb(198, 240, 215);
+    }
+    #input2false:hover {
+        background-color: rgb(169, 223, 191);
+    }
+    #input2false:active {
+        background-color: rgb(159, 217, 182);
+    }
+    .container-center {
+        background-color: blue;
+        border-radius: 10px;
+        border: 1.5px solid #288F65;
+      }
+
   }
