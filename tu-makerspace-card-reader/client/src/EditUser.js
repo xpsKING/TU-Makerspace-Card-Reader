@@ -4,6 +4,7 @@ import './EditUser.css';
 import {getUser, editUser, getFabTechs} from './APIRoutes.js';
 import Checkbox from '@mui/material/Checkbox';
 import { FormControlLabel } from '@mui/material';
+import './DarkMode.css';
 import Inputs from './Inputs.js';
 import Typography from '@mui/material/Typography';
 //import { CheckBox } from '@material-ui/icons';

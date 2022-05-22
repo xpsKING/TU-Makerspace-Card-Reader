@@ -39,12 +39,18 @@
     height:30px;
     font-size: 14px;
 }
+#small-input:hover {
+    background-color: rgb(185, 214, 196);
+}
 #small-input2 {
     position: relative;
     margin-bottom: 10px;
     width: 150px;
     height:30px;
     font-size: 14px;
+}
+#small-input2:hover {
+    background-color: rgb(185, 214, 196);
 }
 .container {
     position:absolute;
@@ -69,8 +75,17 @@
     background-color: #006747;
     color: rgb(240,240,240);
 }
+.BetterButton:hover {
+    background-color: #047652;
+    color: rgb(255, 255, 255);
+    cursor: pointer;
+}
 .BetterButton:active {
-    background-color: rgb(148, 161, 230)
+    background-color: #047652;
+    top: 1px;
+}
+.BetterButton:focus {
+    outline: none;
 }
 #submitAll {
 

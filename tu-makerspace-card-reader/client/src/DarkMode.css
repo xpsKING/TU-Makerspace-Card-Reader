@@ -1,0 +1,54 @@
+@media (prefers-color-scheme: dark) {
+    #input2 {
+      background-color: rgb(32, 94, 58);
+      border: 2px solid rgb(25, 31, 61);
+      color: rgb(222, 255, 238);
+      border: 1.5px solid rgb(101, 102, 101);
+    }
+    #input2:hover {
+      background-color: rgb(44, 126, 78);
+      color: rgb(248, 255, 251);
+    }
+    #input2:focus {
+      border: 1.5px solid rgb(179, 178, 178);
+    }
+    .nameInputBox {
+      color: rgb(222, 255, 238);
+      border: 1.5px solid rgb(150,150,150);
+    }
+    ::placeholder {
+      color: rgb(222, 255, 238);
+    }
+    .submitButton2 {
+      color: rgb(248, 255, 251);
+      border: 2px solid rgb(117, 117, 117);
+      border-radius: 8px;
+      background-color:rgb(14, 63, 25);
+    }
+    .submitButton2:hover {
+      background-color:rgb(17, 78, 30);
+    }
+    .submitButton2:active {
+      background-color:rgb(21, 98, 38);
+    }
+    .MachineBox {
+      border: 7px solid rgb(22, 45, 36);
+
+    }
+    .MachineBoxTrue {
+        border: 7px solid #6EDB7F;
+    }
+    #otherh3-2 {
+      color: rgb(243, 255, 242);
+    }
+    #otherh3 {
+      color: rgb(243, 255, 242);
+    }
+    .BoxInput {
+        color: #006747;
+    }
+    .BoxInput::placeholder {
+        color: #006747;
+        opacity: 0.75;
+    }
+  }
