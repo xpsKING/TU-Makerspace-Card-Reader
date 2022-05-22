@@ -107,11 +107,11 @@
   background: repeating-linear-gradient(
     45deg,
   #fff41e,
-  #fff41e 5px,
-  #0d1910 10px,
-  #0d1910 20px,
-  #fff41e 25px,
-  #fff41e 30px
+  #fff41e 6px,
+  #0d1910 12px,
+  #0d1910 24px,
+  #fff41e 30px,
+  #fff41e 36px
 );
   background-size: 400% 400%;
   animation: enabledMachine 5s linear infinite;
@@ -122,12 +122,10 @@
   0% {
     background-position: 0% 0%;
   }
-  50% {
-    background-position: 0% 50%;
-  }
   100% {
     background-position: 0% 100%;
   }
+  
 }
 
 #otherh3-2 { /* Machine Name Label next to switch*/
@@ -184,7 +182,7 @@
   .container2 {
     position: relative;
     top: -120px;
-    margin-right: 40px;
+    margin-right: 50px;
     width: 700px;
     
     grid-template-columns: 200px 200px 200px;
