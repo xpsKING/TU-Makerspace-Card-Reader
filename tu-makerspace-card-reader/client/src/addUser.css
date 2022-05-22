@@ -54,7 +54,6 @@
     color: rgb(240,240,240);
     font-weight: bold;
     font-size: 14px;
-
 }
 .submitButton2:hover {
   background-color:#027d56;
@@ -103,5 +102,3 @@ background-color:rgb(205, 231, 251);
 #text {
   font-family: "sans-serif", consolas, monaco;
 }
-
-

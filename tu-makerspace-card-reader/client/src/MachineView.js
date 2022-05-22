@@ -219,6 +219,7 @@ export default class MachineView extends React.Component {
           </div>
           <span>
             <span id="otherh3-2">{this.state.machineName}
+
             <SwitchUnstyled
               component={Root} 
               id = "switch"

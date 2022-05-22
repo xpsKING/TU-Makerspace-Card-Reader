@@ -26,7 +26,6 @@
 }
 .BoxInput:hover {
     background-color: rgb(198, 230, 211); /* decide which color you want as hover */
-    
 }
 .BoxInput:focus {
     outline: none;

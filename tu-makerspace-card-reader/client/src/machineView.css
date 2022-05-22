@@ -103,7 +103,6 @@
   font-family: "sans-serif", consolas, monaco;
   font-weight: bold;
   text-align: center;
-  
 }
   
 
@@ -140,14 +139,5 @@ p {
   height: 125px;
   margin-left: 10px;
   align-items: center;
-  justify-content: center;
-  
-}
-
-
-  
-  
-  
-  
-  
-  
+  justify-content: center; 
+} 
