@@ -34,7 +34,11 @@ function App() {
     <div className="App">
     
     <h1 className="header">
+    <form action="/" className = "form2">
+      <button className="logo-button"></button>
+      </form>
     <img src={logo} id="logo"/>
+    
       Tulane Makerspace</h1>
     <Routes>
       <Route path= "/" element = {<Home />} />

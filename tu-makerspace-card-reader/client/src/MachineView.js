@@ -7,6 +7,7 @@ import SwitchUnstyled from '@mui/base/SwitchUnstyled';
 import React from 'react';
 import { getUser, disableMachine, toggleMachine, getAllMachines } from './APIRoutes';
 import Root from './switchtheme.js'
+import './DarkMode.css'
 
 export default class MachineView extends React.Component {
     constructor(props) {
@@ -106,8 +107,8 @@ export default class MachineView extends React.Component {
       let err = this.state.$error;
       return (
       
-        <div className='SearchWindow' align = "left">
-          
+        <div>
+          <div className='login-container' align = "left">
           {/* Create textfield for user input, highlights red if error! Blue if valid name! */}
           <h3 id = "otherh3">Name: {this.state.currentUser.name !== "Enter ID" ? this.state.currentUser.name : ' '}</h3>
           
@@ -124,7 +125,7 @@ export default class MachineView extends React.Component {
               className = "BetterBox" 
               onClick={() => this.handleLogOut()} 
               > Log Out </button>
-          
+            </div>
           
           {/* Creates multiple machines from the machine[] state! Machine state is filled on component load and is called via api GET machines/group/groupname */}
           {/* Change the machinegroup prop when you render the search component to set which tablet this is run on  */}
@@ -212,12 +213,12 @@ export default class MachineView extends React.Component {
   
     render() {
       return (
-        <div className="MachineBoxContainer">
+        <div className="MachineBoxContainer" align="center">
           <div>
           <img src={this.state.image} className = {this.state.activated === true ? "MachineBoxTrue" : "MachineBox"} />
           </div>
-          <div>
-            <span id="otherh3-2">{this.state.machineName}</span>
+          <span>
+            <span id="otherh3-2">{this.state.machineName}
             <SwitchUnstyled
               component={Root} 
               id = "switch"
@@ -229,7 +230,8 @@ export default class MachineView extends React.Component {
               inputprops={{ 'aria-label': 'Checkbox demo' }}
               onChange={(event)=>this.onButtonChange(event)}
               />
-            </div>
+              </span>
+            </span>
         </div>
   
       );

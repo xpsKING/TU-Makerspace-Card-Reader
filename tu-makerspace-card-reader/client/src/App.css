@@ -68,6 +68,23 @@
   height: 45px;
   width: 35px;
 }
+.logo-button {
+  position: absolute;
+  z-index:1;
+  left: 20px;
+  top: 15px;
+  width:35px;
+  height: 45px;
+  background-color: transparent;
+  border: none;
+}
+.logo-button:hover {
+  cursor: pointer
+}
+.form2 {
+  position: absolute;
+  
+}
 
 .text {
   font-family: "sans-serif", consolas, monaco;
@@ -105,6 +122,7 @@
   .Box:hover {
     background: linear-gradient(90deg, #018a5e 0%, #08986a 50%, #10996e 100%);
     color: rgb(250, 255, 247);
+    cursor: pointer;
   }
   .Box:active {
     background: linear-gradient(90deg, rgb(21, 33, 26) 0%, rgb(20, 40, 21) 50%, rgb(21, 60, 38) 100%);
@@ -116,6 +134,7 @@
     border-bottom:2px solid rgb(121, 121, 121);
     box-shadow: 2px 0px 2px rgb(121, 121, 121);
   }
+  
   
 
   
