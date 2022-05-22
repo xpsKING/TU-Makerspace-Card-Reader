@@ -114,6 +114,7 @@
 
 #text {
   font-family: "sans-serif", consolas, monaco;
+  color:#193D2F;
 }
 @media (prefers-color-scheme: dark) {
   .nameInputBox {
@@ -178,6 +179,7 @@
     outline: none;
   }
   #text {
-    color: rgb(243, 255, 242);
+    font-family: "sans-serif", consolas, monaco;
+    color:#193D2F;
   }
 }

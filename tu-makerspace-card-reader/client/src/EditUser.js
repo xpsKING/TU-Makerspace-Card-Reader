@@ -4,7 +4,6 @@ import './EditUser.css';
 import {getUser, editUser, getFabTechs} from './APIRoutes.js';
 import Checkbox from '@mui/material/Checkbox';
 import { FormControlLabel } from '@mui/material';
-import './DarkMode.css';
 import Inputs from './Inputs.js';
 import Typography from '@mui/material/Typography';
 //import { CheckBox } from '@material-ui/icons';
@@ -218,7 +217,7 @@ export default class EditUser2 extends React.Component {
                 
                 <div>
                     <div className = "editUserContainer">
-                    <h1 id="text" align="left">Name: {this.state.user.name}</h1>
+                    <h1 id="text3" align="left">Name: {this.state.user.name}</h1>
                     <Inputs
                         className="BoxInput"
                         placeholder="Enter ID"

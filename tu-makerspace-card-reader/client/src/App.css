@@ -120,25 +120,29 @@
 
 
 @media (prefers-color-scheme: dark) {
+  .List {
+    background-color: #135440;
+    border-color: rgb(9, 20, 11);
+  }
   .text {
     color: rgb(240, 254, 241);
   }
   .Box {
-    background: linear-gradient(90deg, #006747 0%, #05704e 50%, #0b865f 100%);
+    background: linear-gradient(90deg, #2bb88b 0%, #31b088 50%, #4ec6a0 100%);
     border-color: rgb(121, 121, 121);
     border-width: 1.5px;
     box-shadow: 1px 1px 1px rgb(121, 121, 121);
-    color: rgb(212, 217, 210);
+    color: rgb(18, 51, 34);
     opacity: 1;
   }
   .Box:hover {
-    background: linear-gradient(90deg, #018a5e 0%, #08986a 50%, #10996e 100%);
-    color: rgb(250, 255, 247);
+    background: linear-gradient(90deg, #1aa87b 0%, #17946d 50%, #37c497 100%);
+    color: rgb(5, 22, 10);
     cursor: pointer;
   }
   .Box:active {
-    background: linear-gradient(90deg, rgb(21, 33, 26) 0%, rgb(20, 40, 21) 50%, rgb(21, 60, 38) 100%);
-    color: rgb(250, 255, 247);
+    background: linear-gradient(90deg, #1aa87b 0%, #17946d 50%, #37c497 100%);
+    color: rgb(5, 22, 10);
   }
   .header {
     background-color: rgb(9, 20, 11);

@@ -19,10 +19,13 @@
 
     }
     .MachineBoxTrue {
-        border: 7px solid #288F65;
+     border: 18px solid transparent;
     }
+
     #otherh3-2 {
       color: rgb(243, 255, 242);
+      margin-top:10px;
+
     }
     #otherh3 {
       color: rgb(243, 255, 242);

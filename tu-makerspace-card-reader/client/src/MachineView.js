@@ -213,9 +213,11 @@ export default class MachineView extends React.Component {
   
     render() {
       return (
-        <div className="MachineBoxContainer" >
-          <div>
-          <img src={this.state.image} className = {this.state.activated === true ? "MachineBoxTrue" : "MachineBox"} />
+        
+        <div className="MachineBoxContainer" align="center">
+          
+          <div className = {this.state.activated ? "MachineBoxBorder" : ''}>
+          <img src={this.state.image} className = {this.state.activated ? "MachineBoxTrue" : "MachineBox"} />
           </div>
           <span>
             <span id="otherh3-2">{this.state.machineName}
@@ -233,6 +235,7 @@ export default class MachineView extends React.Component {
               />
               </span>
             </span>
+        
         </div>
   
       );
