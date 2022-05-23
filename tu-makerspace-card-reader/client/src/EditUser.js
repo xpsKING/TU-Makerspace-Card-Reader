@@ -51,7 +51,7 @@ function EditPassword(props) {
     return null;
 }
 
-export default class EditUser2 extends React.Component {
+export default class EditUser extends React.Component {
     constructor(props) {
         super(props);
         //EXAMPLE TRAININGS ARRAY
