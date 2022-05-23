@@ -88,9 +88,6 @@ export default class EditUser extends React.Component {
     handleFabTechCheck() {
         let er = false;
         const id = parseInt(this.state.fabTechID);
-
-        console.log('isFabTechRunning: ' + id);
-        var users = [];
         if (!id) { //if id is a tulane login instead, changes id into the actual id:
             er = true;
             axios(getUserEmail(this.state.fabTechID))
@@ -194,7 +191,6 @@ export default class EditUser extends React.Component {
     // filter =>  
     handleChange(training) {
         let er = false;
-        let errorLater = false;
         var trainings = this.state.userTrainings;
         let authID = parseInt(this.state.authID);
         if (!authID) {//convert email to id if its not an id
@@ -211,34 +207,21 @@ export default class EditUser extends React.Component {
                 });
             }
             if (!er) {
-                const changeTrainings = trainings.map((train) => {
-                    if (train === training) {
-                        console.log(this.state.idINT);
-                        axios(editUser(this.state.idINT, { [train[0]]: !train[1] }, authID, this.state.authPassword))
-                            .then((response, error) => {
-                                if (error) {
-                                    errorLater = true;
-                                    console.log('Error editing user !');
-                                    this.handleFindUser();
-                                } else {
-                                    console.log('Edited successfully!');
-                                }
+                axios(editUser(this.state.idINT, { [training[0]]: !training[1] }, authID, this.state.authPassword))
+                    .then((response, error) => {
+                        if (error) {
+                            console.log('Error editing user !');
+                            this.handleFindUser();
+                        } else {
+                            console.log('Edited successfully!');
+                            this.setState({
+                                trainings: (trainings[trainings.indexOf(training)])[1] = !training[1],
                             })
-                            .catch((err) => {
-                                errorLater = true;
-                                this.handleFindUser();
-                            })
-                        if (train === training)
-                            return [train[0], !train[1]];
-                    } else {
-                        return train;
-                    }
-                })
-                if (!errorLater) {
-                    this.setState({
-                        userTrainings: changeTrainings,
+                        }
                     })
-                }
+                    .catch((err) => {
+                        this.handleFindUser();
+                    })
             }
     }
     
@@ -259,9 +242,6 @@ export default class EditUser extends React.Component {
                             er = false;
                         }})  
                 } 
-                console.log("AUTH ID: " + authID);
-                console.log('AUTH PASSWORD: ' + this.state.authPassword);
-                console.log(this.state.idINT, {"password":this.state.createdPassword}, authID, this.state.authPassword);
                 if (!er) {
                 axios(editUser(this.state.idINT, {"password":this.state.createdPassword}, authID, this.state.authPassword))
                     .then((response, error) => {
@@ -274,7 +254,6 @@ export default class EditUser extends React.Component {
                                 createdPassword: '',
                                 hasPassword: true,
                             });
-                            console.log('createdPassword: ' + this.state.createdPassword);
                         }
                         })
                         .catch((err) => {
