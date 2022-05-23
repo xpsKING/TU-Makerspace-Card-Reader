@@ -84,9 +84,10 @@ exports.findAll = (req, res) => {
 // Find a single user with an id
 exports.findOne = (req, res) => {
     const id = req.params.id;
-    Users.findByPk(id, { attributes: { exclude: ['password'] } })
+    Users.findByPk(id)
         .then(data => {
             if (data) {
+                data.password = data.password !== '';
                 res.send(data);
             } else {
                 res.status(404).send({
@@ -136,8 +137,8 @@ exports.update = (req, res) => {
             bcrypt.compare(authUser.password, usera.password, function (err, result) {
                 if (result == true && !(req.body.admin && !usera.admin) && !(req.body.fabTech && !usera.admin) && (usera.fabTech || usera.admin)) {
                     user = req.body.updatedUser;
-                    if (req.body.password) {
-                        user.password = bcrypt.hashSync(req.body.password, 10);
+                    if (req.body.updatedUser.password) {
+                        user.password = bcrypt.hashSync(req.body.updatedUser.password, 10);
                     }
 
                     const id = req.params.id;
