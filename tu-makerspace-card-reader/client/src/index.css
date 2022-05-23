@@ -20,8 +20,12 @@ code {
   body {
     
     background: #002219;
+    background-image: url('darkbigmakerspacelogo.png');
+    background-repeat: no-repeat;
+    background-position: 50% 80px;
   }
   ::placeholder {
     color: rgb(222, 255, 238);
+
   }
 }

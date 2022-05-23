@@ -20,7 +20,7 @@
     border: 2px solid #006747;
     font-family: "sans-serif", consolas, monaco; 
     padding-left: 8px;
-    background-color:rgb(234, 255, 243);
+    background-color:rgb(238, 251, 243);
     color: rgb(25, 61, 29);
     font-size: 18px;
 }
@@ -58,14 +58,15 @@
     top: 150px;
     grid-template-columns: 1fr;
 }
-
 #check {
     margin-bottom: 0px;
     margin-top: 0px;
 }
+
 .BetterButton {
     position: relative;
     margin-left: 10px;
+    text-align: center;
     width: 70px;
     height: 30px;
     border-radius:5px;
@@ -74,6 +75,19 @@
     font-weight: bold;
     background-color: #006747;
     color: rgb(240,240,240);
+    
+}
+#submit {
+    margin-left: 0px;
+    margin-top: 10px;
+}
+#biggerButton {
+    position: relative;
+    margin: auto;
+    text-align: center;
+    margin-bottom: 6px;
+    width: 100px;
+    height: 50px;
 }
 .BetterButton:hover {
     background-color: #047652;
@@ -87,11 +101,6 @@
 .BetterButton:focus {
     outline: none;
 }
-#submitAll {
-
-    top: 10px;
-    left: -10px;
-}
 #text3 {
     color: #193D2F;
     font-family: "sans-serif", consolas, monaco;
@@ -104,7 +113,7 @@
 }
 .containerChecks {
     position: relative;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr;
 }
 ::placeholder {
     color: rgb(25,61,29);
