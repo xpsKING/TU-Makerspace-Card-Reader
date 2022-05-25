@@ -21,8 +21,6 @@ function ConditionalButton(props) {
         return null;
     }
 }
-
-function RenderEditPassword(props) {
     console.log('test: ' + props.hasPassword);
     if (props.userIsFabTech && !props.hasPassword) {
         console.log('should return the box');
@@ -81,30 +79,25 @@ export default class EditUser2 extends React.Component {
     // only allows a valid FabTech ID to access the editing page
     // may later remove the input of a fabtech ID on the editing page and only require password (Note from bennett: instead of removing it we should just autofill)
     handleFabTechCheck() {
+        let er = false;
         const id = parseInt(this.state.fabTechID);
 
         console.log('isFabTechRunning: ' + id);
         var users = [];
-        if (!id) { //if id is a tulane login instead:
+        if (!id) { //if id is a tulane login instead, changes id into the actual id:
+            er = true;
             axios(getUserEmail(this.state.fabTechID))
                 .then((response, error) => {
                     if (error) {
                         console.log('Problem retrieving users...');
                     }
                     else {
-                        if (response.data.fabTech || response.data.admin) {
-                            this.setState({
-                                isFabTech: response.data.fabTech,
-                                isAdmin: response.data.admin,
-                                authID: this.state.fabTechID
-                            })
-                        }
-                        else {
-                            console.log("not a fabtech/admin!");
-                        }
+                        er = false;
+                        id = response.data.id;
                     }
                 })
-        } else { //if id is an id.
+        } 
+        if (!er) { // if no error in case the email was called first
             axios(getUser(id))
                 .then((response, error) => {
                     if (error) {
@@ -189,17 +182,21 @@ export default class EditUser2 extends React.Component {
 
     }
     // Edits the user based on the changes in the checkboxes
+
+    // filter =>  
     handleChange(training) {
         var trainings = this.state.userTrainings;
         trainings[trainings.indexOf(training)][1] = !training[1];
         let authID = parseInt(this.state.authID);
         if (!authID) {//convert email to id if its not an id
+            er = true;
             axios(getUserEmail(this.state.authID))
                 .then((response, error) => {
                     if (error) {
                         console.log("Error getting authID");
                     }
                     else {
+                        er = false;
                         authID = response.data.id;
                         axios(editUser(this.state.idINT, { [training[0]]: !training[1] }, authID, this.state.authPassword))
                             .then((response, error) => {
@@ -293,15 +290,18 @@ export default class EditUser2 extends React.Component {
     }
 
     toggleFabTech() {
+        let er = false;
         console.log(this.state.authID);
         let authID = parseInt(this.state.authID);
         if (!authID) {//convert email to id if its not an id
+            er = true;
             axios(getUserEmail(this.state.authID))
                 .then((response, error) => {
                     if (error) {
                         console.log("Error getting authID");
                     }
                     else {
+                        er = false;
                         authID = response.data.id;
                         axios(editUser(parseInt(this.state.id), { "fabTech": !this.state.userIsFabTech }, authID, this.state.authPassword)).then((response, error) => {
                             if (error) {
