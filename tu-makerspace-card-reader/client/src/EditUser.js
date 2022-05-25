@@ -5,7 +5,6 @@ import { getUser, editUser, hasPassword, getUserEmail } from './APIRoutes.js';
 import Inputs from './Inputs.js';
 import DisplayChecks from './DisplayChecks.js';
 
-
 //import { CheckBox } from '@material-ui/icons';
 
 // if admin makes someone fabtech, they must set a password
@@ -23,38 +22,34 @@ function ConditionalButton(props) {
     }
 }
 
-function EditPassword(props) {
+function RenderEditPassword(props) {
     console.log('test: ' + props.hasPassword);
     if (props.userIsFabTech && !props.hasPassword) {
         console.log('should return the box');
         return (
             <div>
                 <Inputs
-                    type="password"
                     className="BoxInput"
                     placeholder="Create Password"
                     value={props.createdPassword}
                     variable="createdPassword"
                     parentCallBack={props.handleCallBack}
-                    />
-                <button className="BetterButton"  onClick={() => props.handleCreatePassword()}>Submit</button>
-
+                />
+                <button className="BetterButton" onClick={() => props.handleCreatePassword()}>Submit</button>
             </div>
         )
     } else if (props.userIsFabTech) {
         return (
-            
             <button className="BetterButton" id="biggerButton" onClick={() => props.handleCreatePassword()}>Edit Password</button>
         )
     }
-
     return null;
 }
 
-export default class EditUser extends React.Component {
+export default class EditUser2 extends React.Component {
     constructor(props) {
         super(props);
-        //EXAMPLE TRAININGS ARRAY
+        //EXAMPLE USErTRAININGS ARRAY
         // [ ["lathe", 0],
         // ["metal1", 1],
         // ["metal2", 0],
@@ -86,22 +81,30 @@ export default class EditUser extends React.Component {
     // only allows a valid FabTech ID to access the editing page
     // may later remove the input of a fabtech ID on the editing page and only require password (Note from bennett: instead of removing it we should just autofill)
     handleFabTechCheck() {
-        let er = false;
         const id = parseInt(this.state.fabTechID);
-        if (!id) { //if id is a tulane login instead, changes id into the actual id:
-            er = true;
+
+        console.log('isFabTechRunning: ' + id);
+        var users = [];
+        if (!id) { //if id is a tulane login instead:
             axios(getUserEmail(this.state.fabTechID))
                 .then((response, error) => {
                     if (error) {
                         console.log('Problem retrieving users...');
                     }
                     else {
-                        er = false;
-                        id = response.data.id;
+                        if (response.data.fabTech || response.data.admin) {
+                            this.setState({
+                                isFabTech: response.data.fabTech,
+                                isAdmin: response.data.admin,
+                                authID: this.state.fabTechID
+                            })
+                        }
+                        else {
+                            console.log("not a fabtech/admin!");
+                        }
                     }
                 })
-        } 
-        if (!er) { // if no error in case the email was called first
+        } else { //if id is an id.
             axios(getUser(id))
                 .then((response, error) => {
                     if (error) {
@@ -128,7 +131,6 @@ export default class EditUser extends React.Component {
         if (this.state.id) {
             const id = parseInt(this.state.id);
             var trainings;
-
             if (id) { // if id is an id (opposed to an email)
                 axios(getUser(id)).then((response, error) => {
                     if (error) {
@@ -187,74 +189,96 @@ export default class EditUser extends React.Component {
 
     }
     // Edits the user based on the changes in the checkboxes
-
-    // filter =>  
     handleChange(training) {
-        let er = false;
         var trainings = this.state.userTrainings;
+        trainings[trainings.indexOf(training)][1] = !training[1];
         let authID = parseInt(this.state.authID);
         if (!authID) {//convert email to id if its not an id
-            er = true;
             axios(getUserEmail(this.state.authID))
                 .then((response, error) => {
                     if (error) {
                         console.log("Error getting authID");
                     }
                     else {
-                        er = false;
                         authID = response.data.id;
-                    }
-                });
-            }
-            if (!er) {
-                axios(editUser(this.state.idINT, { [training[0]]: !training[1] }, authID, this.state.authPassword))
-                    .then((response, error) => {
-                        if (error) {
-                            console.log('Error editing user !');
-                            this.handleFindUser();
-                        } else {
-                            console.log('Edited successfully!');
-                            this.setState({
-                                trainings: (trainings[trainings.indexOf(training)])[1] = !training[1],
+                        axios(editUser(this.state.idINT, { [training[0]]: !training[1] }, authID, this.state.authPassword))
+                            .then((response, error) => {
+                                if (error) {
+                                    console.log('Error editing user !');
+                                    this.handleFindUser();
+                                } else {
+                                    console.log('Edited successfully!');
+                                    this.setState({
+                                        userTrainings: trainings,
+                                    })
+                                }
                             })
-                        }
-                    })
-                    .catch((err) => {
+                            .catch((err) => {
+                                this.handleFindUser();
+                            })
+                    }
+                })
+        }
+        else { //authid is a number
+            axios(editUser(this.state.idINT, { [training[0]]: !training[1] }, parseInt(this.state.authID), this.state.authPassword))
+                .then((response, error) => {
+                    if (error) {
+                        console.log('Error editing user !');
                         this.handleFindUser();
-                    })
-            }
+                    } else {
+                        console.log('Edited successfully!');
+                        this.setState({
+                            userTrainings: trainings,
+                        })
+                    }
+                })
+                .catch((err) => {
+                    this.handleFindUser();
+                })
+        }
     }
-    
+
     handleCreatePassword() {
-        let er = false;
         if (!this.state.hasPassword) {
             let authID = parseInt(this.state.authID);
             if (this.state.createdPassword) {
                 if (!authID) {
-                    er = true;
                     axios(getUserEmail(this.state.authID))
-                    .then((response, error) => {
-                        if (error) {
-                            console.log("Error getting authID");
-                        }
-                        else {
-                            authID = response.data.id;
-                            er = false;
-                        }})  
-                } 
-                if (!er) {
-                axios(editUser(this.state.idINT, {"password":this.state.createdPassword}, authID, this.state.authPassword))
-                    .then((response, error) => {
-                        if (error) {
-                            console.log('Error creating password');
-                            this.handleFindUser();
-                        } else {
-                            console.log('Set password.');
-                            this.setState({
-                                createdPassword: '',
-                                hasPassword: true,
-                            });
-                        }
+                        .then((response, error) => {
+                            if (error) {
+                                console.log("Error getting authID");
+                            }
+                            else {
+                                authID = response.data.id;
+                                axios(editUser(this.state.idINT, { "password": this.state.createdPassword }, authID, this.state.authPassword))
+                                    .then((response, error) => {
+                                        if (error) {
+                                            console.log('Error creating password');
+                                            this.handleFindUser();
+                                        } else {
+                                            console.log('Set password.');
+                                            this.setState({
+                                                createdPassword: '',
+                                            })
+                                        }
+                                    })
+                                    .catch((err) => {
+                                        this.handleFindUser();
+                                    })
+                            }
+                        })
+                } else {
+                    axios(editUser(this.state.idINT, { "password": this.state.createdPassword }, authID, this.state.authPassword))
+                        .then((response, error) => {
+                            if (error) {
+                                console.log('Error creating password');
+                                this.handleFindUser();
+                            } else {
+                                console.log('Set password.');
+                                this.setState({
+                                    createdPassword: '',
+                                })
+                            }
                         })
                         .catch((err) => {
                             this.handleFindUser();
@@ -269,51 +293,56 @@ export default class EditUser extends React.Component {
     }
 
     toggleFabTech() {
-        let er = false;
         console.log(this.state.authID);
         let authID = parseInt(this.state.authID);
         if (!authID) {//convert email to id if its not an id
-            er = true;
             axios(getUserEmail(this.state.authID))
                 .then((response, error) => {
                     if (error) {
                         console.log("Error getting authID");
                     }
                     else {
-                        er = false;
                         authID = response.data.id;
-                    }
-                })
-            }
-            if (!er) {
-                axios(editUser(parseInt(this.state.id), { "fabTech": !this.state.userIsFabTech }, authID, this.state.authPassword)).then((response, error) => {
-                    if (error) {
-                        console.log('Error making user FabTech!');
-                    } else {
-                        console.log('Edited FabTech !');
-                        this.setState((currentState) => {
-                            console.log("FABTECHHHH");
-                            return {
-                                userIsFabTech: !currentState.userIsFabTech,
+                        axios(editUser(parseInt(this.state.id), { "fabTech": !this.state.userIsFabTech }, authID, this.state.authPassword)).then((response, error) => {
+                            if (error) {
+                                console.log('Error making user FabTech!');
+                            } else {
+                                console.log('Edited FabTech !');
+                                this.setState((currentState) => {
+                                    return {
+                                        userIsFabTech: !currentState.userIsFabTech,
+                                    }
+                                })
                             }
                         })
                     }
                 })
-            }
+        } else {
+            axios(editUser(parseInt(this.state.id), { "fabTech": !this.state.userIsFabTech }, authID, this.state.authPassword)).then((response, error) => {
+                if (error) {
+                    console.log('Error making user FabTech!');
+                } else {
+                    console.log('Edited FabTech !');
+                    this.setState((currentState) => {
+                        //console.log("FABTECHHHH");
+                        return {
+                            userIsFabTech: !currentState.userIsFabTech,
+                        }
+                    })
+                }
+            })
+        }
     }
     // Receives input from the <Inputs />
     handleCallBack(variable, value) {
         this.setState({
             [variable]: value,
         })
-        console.log(this.state);
     }
-
 
     render() {
         if (this.state.isFabTech) {
             return (
-
                 <div>
                     <div className="editUserContainer">
                         <h1 id="text3" align="left"> </h1>
@@ -333,7 +362,7 @@ export default class EditUser extends React.Component {
                             isAdmin={this.state.isAdmin}
                             toggleFabTech={this.toggleFabTech}
                         />
-                        <EditPassword 
+                        <RenderEditPassword
                             userIsFabTech={this.state.userIsFabTech}
                             hasPassword={this.state.hasPassword}
                             createdPassword={this.state.createdPassword}
@@ -365,13 +394,9 @@ export default class EditUser extends React.Component {
                                 variable="authPassword"
                                 parentCallBack={this.handleCallBack}
                             />
-
                         </div>
                     </div>
-
-
                 </div>
-
             )
         } else {
             return (

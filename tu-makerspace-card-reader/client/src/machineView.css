@@ -1,37 +1,38 @@
 .BetterTextField {
-  padding-left: 10px;
-  margin-top: 10px;
-  font-size: 20px;
-  font-family: "sans-serif", consolas, monaco;
-  font-style: bold;
-  background-color: rgb(246, 250, 255);
-  color: #193D2F;
-  height: 50px;
   width: 200px;
-  border-radius: 5px;
-  margin-left: 20px;
-  margin-bottom: 10px;
+  height: 50px;
   min-width: 200px;
   min-height: 50px;
+  background-color: rgb(246, 250, 255);
+  /* no border color ??? */
+  border-radius: 5px;
+  color: #193D2F;
+  font-family: "sans-serif", consolas, monaco;
+  font-size: 20px;
+  font-style: bold;
+  margin-top: 10px;
+  margin-left: 20px;
+  margin-bottom: 10px;
+  padding-left: 10px;
 }
 .BetterBox {
   position: relative;
-  margin-bottom: 5px;
-  margin-left: 10px;
-  font-size: 18px;
-  font-weight: bold;
-  font-family: "sans-serif", consolas, monaco;
-  text-align:center;
-  color: rgb(25, 61, 29);
-  background-color: #DEEFE5;
   width: 80px;
   height: 40x;
-  vertical-align: middle;
-  border: 2px solid rgb(25, 61, 29);
-  outline: none;
-  border-radius: 4px;
   min-width: 80px;
   min-height: 40px;
+  background-color: #DEEFE5;
+  border: 2px solid rgb(25, 61, 29);
+  border-radius: 4px;
+  color: rgb(25, 61, 29);
+  font-family: "sans-serif", consolas, monaco;
+  font-size: 18px;
+  font-weight: bold;
+  text-align:center;
+  vertical-align: middle;
+  outline: none;
+  margin-bottom: 5px;
+  margin-left: 10px;
 }
 .BetterBox:hover {
   background-color: #cceeda;
@@ -45,12 +46,12 @@
 }
 #otherh3 {
   color: rgb(25, 61, 29);
+  font-family: "sans-serif", consolas, monaco;
+  font-size: 25px;
+  font-weight: bold;
   white-space: pre;
   margin-left: 20px;
   margin-bottom: 0px;
-  font-size: 25px;
-  font-family: "sans-serif", consolas, monaco;
-  font-style: bold;
   margin-top:5px;
 }
 #input2false {
@@ -60,14 +61,14 @@
     
 }
 #input2false:hover {
-  border: 2px solid rgb(25, 61, 29);
   background-color: #cbecd9;
+  border: 2px solid rgb(25, 61, 29);
 }
   /* this is just testing */
   
 #input2false:focus {
-  border: 2px solid #006747;
   background-color: #cbecd9;
+  border: 2px solid #006747;
   outline: none;
 }
 #input2true {
@@ -91,19 +92,17 @@
   
 }
 .MachineBoxTrue {
-  margin-top:0px;
-  margin-bottom: 0px;
-  border: 18px solid transparent;
   position:relative;
   width: 100px;
   height: 100px;
+  border: 18px solid transparent;
+  margin-top:0px;
+  margin-bottom: 0px;
 }
 .MachineBoxBorder {
+  position: relative;
   width: 136px;
   height: 136px;
-  position: relative;
-  align-items: center;
-  justify-items: center;
   background: repeating-linear-gradient(
     45deg,
   #fff41e,
@@ -115,8 +114,8 @@
 );
   background-size: 400% 400%;
   animation: enabledMachine 5s linear infinite;
-
-
+  align-items: center;
+  justify-items: center;
 }
 @keyframes enabledMachine {
   0% {
@@ -125,54 +124,50 @@
   100% {
     background-position: 0% 100%;
   }
-  
 }
 
 #otherh3-2 { /* Machine Name Label next to switch*/
+  position: relative;
   color: rgb(25, 31, 61);
-  font-size: 20px;
   font-family: "sans-serif", consolas, monaco;
+  font-size: 20px;
   font-weight: bold;
   text-align: center;
   overflow: visible;
-  position: relative;
   top: 10px;
-  
 }       
 .container2 { /* container for the machines to be in a grid layout */
-  z-index: 1;
   position:relative;
-  margin: auto;
-  justify-content: center;
   width: max-width;
   height: fit-content;
+  margin: auto;
   display:grid;
+  justify-content: center;
   grid-template-columns: 250px 250px;
   grid-area: machines;
 }
 .MachineBoxContainer {
   position: relative;
-  display:block;
   width: 200px;
   height: 250px;
+  margin: auto;
+  display:block;
   align-items: center;
   justify-content: center;
-  margin: auto;
+
 }
 .login-container {
   position: relative;
-  z-index: 1;
   width: 350px;
   height: 125px;
-  margin-left: 10px;
   align-items: center;
   justify-content: center;
+  margin-left: 10px;
   
 }
 @media (min-width: 600px) {
   .container2 {
     position: relative;
-    margin-right: 40px;
     width: fit-content;
     grid-template-columns: 200px 200px 200px;
     margin: auto;
@@ -181,11 +176,10 @@
 @media (min-width: 1000px) { /* ipad pro portrait width is 730px */
   .container2 {
     position: relative;
-    top: -120px;
-    margin-right: 50px;
     width: 700px;
-    
+    margin-right: 50px;
     grid-template-columns: 200px 200px 200px;
+    top: -120px;
   }
 }
 @media (min-width: 1310px) { /* ipad pro landscape is 1194px */

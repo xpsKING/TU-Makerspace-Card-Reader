@@ -1,31 +1,31 @@
-.editUserContainer {
+.editUserContainer { /* container that holds the checkboxes, user ID input, and t*/
     position: relative;
+    width: 400px;
+    height: 750px;
+    background-color: rgb(225, 251, 235);
+    border: 1.5px solid #288F65;
+    border-radius: 10px;
+    opacity: 0.83;
+    margin: auto;
     display:block;
     align-items: center;
     justify-content: center;
-    margin: auto;
-    height: 750px;
-    width: 400px;
-    background-color: rgb(225, 251, 235);
-    border-radius: 10px;
-    border: 1.5px solid #288F65;
-    opacity: 0.83;
 }
 
-.BoxInput {
+.BoxInput { /* Box used for the user ID input and the authID/authPassword */
     position: relative;
     width: 200px;
     height: 50px;
-    border-radius:8px;
-    border: 2px solid #006747;
-    font-family: "sans-serif", consolas, monaco; 
-    padding-left: 8px;
     background-color:rgb(238, 251, 243);
+    border: 2px solid #006747;
+    border-radius:8px;
     color: rgb(25, 61, 29);
+    font-family: "sans-serif", consolas, monaco; 
     font-size: 18px;
+    padding-left: 8px;
 }
 .BoxInput:hover {
-    background-color: rgb(198, 230, 211); /* decide which color you want as hover */
+    background-color: rgb(198, 230, 211); 
 }
 .BoxInput:focus {
     outline: none;
@@ -34,20 +34,20 @@
 }
 #small-input {
     position: relative;
-    margin-bottom: 10px;
     width: 150px;
     height:30px;
     font-size: 14px;
+    margin-bottom: 10px;
 }
 #small-input:hover {
     background-color: rgb(185, 214, 196);
 }
 #small-input2 {
     position: relative;
-    margin-bottom: 10px;
     width: 150px;
     height:30px;
     font-size: 14px;
+    margin-bottom: 10px;
 }
 #small-input2:hover {
     background-color: rgb(185, 214, 196);
@@ -65,17 +65,16 @@
 
 .BetterButton {
     position: relative;
-    margin-left: 10px;
-    text-align: center;
     width: 70px;
     height: 30px;
-    border-radius:5px;
+    background-color: #006747;
     border: 2px solid rgb(25, 61, 29);
+    border-radius: 5px;
+    color: rgb(240,240,240);
     font-family: "sans-serif", consolas, monaco;
     font-weight: bold;
-    background-color: #006747;
-    color: rgb(240,240,240);
-    
+    margin-left: 10px;
+    text-align: center;
 }
 #submit {
     margin-left: 0px;
@@ -83,11 +82,11 @@
 }
 #biggerButton {
     position: relative;
+    width: 100px;
+    height: 50px;
     margin: auto;
     text-align: center;
     margin-bottom: 6px;
-    width: 100px;
-    height: 50px;
 }
 .BetterButton:hover {
     background-color: #047652;

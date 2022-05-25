@@ -3,7 +3,6 @@ import MachineView from './MachineView.js';
 import AddUser from './AddUser.js';
 import { Routes, Route, Link } from 'react-router-dom';
 import EditUser from './EditUser.js';
-import ThemeTester from './ThemeTester';
 import logo from './makerspacelogo.png';
 
 
@@ -46,7 +45,6 @@ function App() {
     {/* Maddie add a path for add user when u wanna start working on that and you now have a new page for that function! */}
       <Route path= "addUser" element = {<AddUser />} />
       <Route path="editUser" element = {<EditUser />}/>
-      <Route path="themeTester" element = {<ThemeTester />}/>
     </Routes>
     </div>
   );

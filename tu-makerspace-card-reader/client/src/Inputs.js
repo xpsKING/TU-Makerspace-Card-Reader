@@ -20,7 +20,6 @@ export default class Inputs extends React.Component {
         this.setState({
             value: value,
         })
-        console.log({[this.state.variable]:value});
         this.props.parentCallBack(this.state.variable, value);
     }
 
