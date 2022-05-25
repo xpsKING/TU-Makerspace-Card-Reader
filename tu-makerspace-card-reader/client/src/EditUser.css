@@ -1,0 +1,136 @@
+.editUserContainer { /* container that holds the checkboxes, user ID input, and t*/
+    position: relative;
+    width: 400px;
+    height: 750px;
+    background-color: rgb(225, 251, 235);
+    border: 1.5px solid #288F65;
+    border-radius: 10px;
+    opacity: 0.83;
+    margin: auto;
+    display:block;
+    align-items: center;
+    justify-content: center;
+}
+
+.BoxInput { /* Box used for the user ID input and the authID/authPassword */
+    position: relative;
+    width: 200px;
+    height: 50px;
+    background-color:rgb(238, 251, 243);
+    border: 2px solid #006747;
+    border-radius:8px;
+    color: rgb(25, 61, 29);
+    font-family: "sans-serif", consolas, monaco; 
+    font-size: 18px;
+    padding-left: 8px;
+}
+.BoxInput:hover {
+    background-color: rgb(198, 230, 211); 
+}
+.BoxInput:focus {
+    outline: none;
+    background-color: rgb(201, 235, 215);
+    border-color: #288F65;
+}
+#small-input {
+    position: relative;
+    width: 150px;
+    height:30px;
+    font-size: 14px;
+    margin-bottom: 10px;
+}
+#small-input:hover {
+    background-color: rgb(185, 214, 196);
+}
+#small-input2 {
+    position: relative;
+    width: 150px;
+    height:30px;
+    font-size: 14px;
+    margin-bottom: 10px;
+}
+#small-input2:hover {
+    background-color: rgb(185, 214, 196);
+}
+.container {
+    position:absolute;
+    right: 73%;
+    top: 150px;
+    grid-template-columns: 1fr;
+}
+#check {
+    margin-bottom: 0px;
+    margin-top: 0px;
+}
+
+.BetterButton {
+    position: relative;
+    width: 70px;
+    height: 30px;
+    background-color: #006747;
+    border: 2px solid rgb(25, 61, 29);
+    border-radius: 5px;
+    color: rgb(240,240,240);
+    font-family: "sans-serif", consolas, monaco;
+    font-weight: bold;
+    margin-left: 10px;
+    text-align: center;
+}
+#submit {
+    margin-left: 0px;
+    margin-top: 10px;
+}
+#biggerButton {
+    position: relative;
+    width: 100px;
+    height: 50px;
+    margin: auto;
+    text-align: center;
+    margin-bottom: 6px;
+}
+.BetterButton:hover {
+    background-color: #047652;
+    color: rgb(255, 255, 255);
+    cursor: pointer;
+}
+.BetterButton:active {
+    background-color: #047652;
+    top: 1px;
+}
+.BetterButton:focus {
+    outline: none;
+}
+#text3 {
+    color: #193D2F;
+    font-family: "sans-serif", consolas, monaco;
+    font-size: 24px;
+    padding-left: 15px;
+}
+.container {
+    position: absolute;
+    grid-template-columns: 1fr;
+}
+.containerChecks {
+    position: relative;
+    grid-template-columns: 1fr;
+}
+::placeholder {
+    color: rgb(25,61,29);
+    font-weight: bold;
+}
+.topper {
+    position: absolute;
+}
+#text2 {
+    font-family: "sans-serif", consolas, monaco;
+    color: rgb(25,31,61);
+    font-weight: bold;
+}
+@media (prefers-color-scheme: dark) {
+    #text3 {
+        color: rgb(25,31,61);
+    }
+    .editUserContainer {
+        background-color:#8cc8af;
+    }
+}

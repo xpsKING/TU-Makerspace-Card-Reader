@@ -2,7 +2,9 @@ import axios from "axios";
 import React from "react";
 import { addUser } from './APIRoutes.js';
 import './addUser.css';
-import {Navigate} from 'react-router';
+import Inputs from './Inputs.js';
+import './DarkMode.css';
+
 
 export default class AddUser extends React.Component {
     constructor(props) {
@@ -15,53 +17,28 @@ export default class AddUser extends React.Component {
             email: '',
             splashID: '',
             authID: '',
-            errors: new Array(5).fill(' '),
+            errors: [
+                ["name", ' '],
+                ["email", ' '],
+                ["splashID", ' '],
+                ["id", ' '],
+                ["authID", ' '],
+            ],
         }     
+
+        this.handleCallBack = this.handleCallBack.bind(this);
     }
-    handleUpdateID(e) {
-        const value = e.target.value;
+    // takes the input from the <Inputs />
+    handleCallBack(variable, value) {
         this.setState({
-            id: value,
+            [variable]: value,
         })
     }
-    handleUpdateName(e) {
-        const value = e.target.value;
-        this.setState({
-            name: value,
-        })
-    }
-    handleUpdateEmail(e) {
-        const value = e.target.value;
-        this.setState({
-            email: value,
-        })
-    }
-    handleUpdateSplashID(e) {
-        const value = e.target.value;
-        this.setState({
-            splashID: value,
-        })
-    }
-    handleUpdateAuthID(e) {
-        const value = e.target.value;
-        this.setState({
-            authID: value,
-        })
-    }
-    handleUpdateID(e) {
-        const value = e.target.value;
-        this.setState({
-            id: value,
-        })
-    }
+    // First checks if all values have been filled, then submits if so
     handleSubmit() {
-        console.log('submit!');
-        console.log(this.state);
-        if (!this.state.name || !this.state.email || !this.state.splashID || !this.state.id || !this.state.authID) {
-            console.log('wtf');
+        if (!this.state.name || !this.state.email || !this.state.splashID || !this.state.id || !this.state.authID) { 
             this.handleErrors();
         } else {
-            console.log("GETS HERE");
             axios(addUser({
                 id: parseInt(this.state.id),
                 name: this.state.name,
@@ -85,93 +62,104 @@ export default class AddUser extends React.Component {
                 id: '',
                 splashID: '',
                 authID: '',
-                errors: new Array(5).fill(' '),
+                errors: [
+                    ["name", ' '],
+                    ["email", ' '],
+                    ["splashID", ' '],
+                    ["id", ' '],
+                    ["authID", ' '],
+                ],
             })
         }
     }
+    // sets the error messages, prompted by handleSubmit()
     handleErrors() {
-        var errs = new Array(5).fill('');
-        errs[0] = this.state.name === '' ? 'Please enter a name: ' : ' ';
-        errs[1] = this.state.email === '' ? 'Please enter an email: ' : ' ';
-        errs[2] = this.state.splashID === '' ? 'Please enter a splashID: ' : ' ';
-        errs[3] = this.state.id === '' ? 'Please enter the Makerspace ID: ' : ' ';
-        errs[4] = this.state.authID === '' ? 'Please enter an authID: ' : ' ';
+        var errs = this.state.errors;
+        errs[0][1] = this.state.name === '' ? 'Please enter a name: ' : ' ';
+        errs[1][1] = this.state.email === '' ? 'Please enter an email: ' : ' ';
+        errs[2][1] = this.state.splashID === '' ? 'Please enter a splashID: ' : ' ';
+        errs[3][1] = this.state.id === '' ? 'Please enter the Makerspace ID: ' : ' ';
+        errs[4][1] = this.state.authID === '' ? 'Please enter an authID: ' : ' ';
         this.setState({
             errors: errs,
         })
     }
-
-
-
-
     render() {
         if (this.state.successful) {
-            return <Navigate to='/successfullyAddedUser' />
+            return (
+                <div>
+                  <h1 id="text">Successfully Added User!</h1>
+                  <form action="/">
+                    <button className="doneButton">Go Back</button>
+                  </form>
+                </div>
+              )
           }
         return (
-            <div>
+            <div className="container-center">
+                
                 <div id="error-container">
-                    <h3 id="error">{this.state.errors[0]}</h3>
-                    <h3 id="error">{this.state.errors[1]}</h3>
-                    <h3 id="error">{this.state.errors[2]}</h3>
-                    <h3 id="error">{this.state.errors[4]}</h3>
-                    <h3 id="error">{this.state.errors[3]}</h3>
+                    {this.state.errors.map((error) => (
+                        <h3 id="error" key = {error}>{error[1]}</h3>
+                    ))}
+                    
                 </div>
                 <div id="container">
                     <div>
-                        <input 
-                            id = "input2"
+                        <Inputs
                             className="nameInputBox"
-                            value={this.state.name}
-                            onChange={(e) => this.handleUpdateName(e)}
-                            autoComplete="off"
+                            id='input2'
                             placeholder="Name"
+                            value={this.state.name}
+                            variable="name"
+                            parentCallBack={this.handleCallBack}
                             />
                     </div>
                     <div>
-                        <input
-                        id = "input2"
+                        <Inputs
                             className="nameInputBox"
+                            id="input2"
+                            placeholder="Tulane Username "
                             value={this.state.email}
-                            onChange={(e) => this.handleUpdateEmail(e)}
-                            autoComplete="off"
-                            placeholder="Tulane Email"
+                            variable="email"
+                            parentCallBack={this.handleCallBack}
                             />
                     </div>
                     <div>
-                        <input
-                            id = "input2"
-                            className = "nameInputBox"
-                            value={this.state.splashID}
-                            onChange={(e) => this.handleUpdateSplashID(e)}
-                            autoComplete="off"
-                            placeholder="Splash ID"
-                            />
+                    <Inputs
+                        className="nameInputBox"
+                        id="input2"
+                        placeholder="Splash ID"
+                        value={this.state.splashID}
+                        variable="splashID"
+                        parentCallBack={this.handleCallBack}
+                        />
                     </div>
                     <div>
-                        <input 
-                            id = "input2"
+                        <Inputs
                             className="nameInputBox"
-                            value={this.state.authEmail}
-                            onChange={(e) => this.handleUpdateAuthID(e)}
-                            autoComplete="off"
-                            placeholder="authID"
-                            />
-                    </div>
-                    <div>
-                        <input 
-                            id = "input2"
-                            className="nameInputBox"
+                            id="input2"
+                            placeholder="New Makerspace ID"
                             value={this.state.id}
-                            onChange={(e) => this.handleUpdateID(e)}
-                            autoComplete="off"
-                            placeholder="Makerspace ID"
+                            variable="id"
+                            parentCallBack={this.handleCallBack}
                             />
                     </div>
+                    <div>
+                        <Inputs
+                            className="nameInputBox"
+                            id="input2"
+                            placeholder="authID"
+                            value={this.state.authID}
+                            variable="authID"
+                            parentCallBack={this.handleCallBack}
+                            />
+                    </div>
+                    <div>
+                    <button className = "submitButton2" onClick={() => this.handleSubmit()}>Submit</button>
                 </div>
-                <div>
-                    <button className = "submitButton" onClick={() => this.handleSubmit()}>Submit</button>
                 </div>
+                
             </div>
         );
     }

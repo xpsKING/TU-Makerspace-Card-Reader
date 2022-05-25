@@ -32,10 +32,23 @@ Feel free to contribute! Fork this repo and submit a pull request! Yes I (Bennet
 - GET /api/users/ returns all user data, not including password (passwords are hashed but should still not be accessible that feels wrong)
 - GET /api/users/fabTech returns all fabTech users, I dont know why i made this call, kinda useless. It's also broken atm.
 - GET /api/users/:id returns a user with specified id. id is the card number of their RFID card.
-- PUT /api/users/:id updates a user with specified id. id is the card number of their RFID card. (requires user and authPassword of fabTech/Admin)
+- PUT /api/users/:id updates a user with specified id. id is the card number of their RFID card. (requires user and authPassword of fabTech/Admin). Updated user data should be sent in body with key "updatedUser".
 - DELETE /api/users/:id deletes a user with specified id. (requires user and authPassword of fabTech/Admin)
 
 Similar api calls are availible for the machines sql table, go to machine.routes.js to see them.
 
 Basically the backend is in a working state, with new features to be added as neccesary. time to get working on that frontend.
 
+### Self signing instructions for HTTPS key
+
+install mkcert
+```
+brew install mkcert
+mkcert --install
+```
+
+create new keys in a .cert directory (should be done in the tu-makerspace-card-reader directory)
+```
+mkdir -p .cert
+mkcert -key-file ./.cert/key.pem -cert-file ./.cert/cert.pem "localhost"
+```

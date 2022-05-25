@@ -5,11 +5,27 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background: rgb(182, 194, 221);
+  background: #9dcab2;
+  background-image: url('bigmakerspacelogo.png');
+  background-repeat: no-repeat;
+  background-position: 50% 80px;
+  
+}
+code {
+  font-family: Monaco, Consolas, 'sans-serif',
+    monospace;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
-  
+@media (prefers-color-scheme: dark) {
+  body {
+    
+    background: #002219;
+    background-image: url('darkbigmakerspacelogo.png');
+    background-repeat: no-repeat;
+    background-position: 50% 80px;
+  }
+  ::placeholder {
+    color: rgb(222, 255, 238);
+
+  }
 }

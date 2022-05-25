@@ -84,9 +84,10 @@ exports.findAll = (req, res) => {
 // Find a single user with an id
 exports.findOne = (req, res) => {
     const id = req.params.id;
-    Users.findByPk(id, { attributes: { exclude: ['password'] } })
+    Users.findByPk(id)
         .then(data => {
             if (data) {
+                data.password = data.password !== '';
                 res.send(data);
             } else {
                 res.status(404).send({
@@ -100,25 +101,44 @@ exports.findOne = (req, res) => {
             });
         });
 };
+exports.findEmail = (req,res)=>{
+    const email = req.params.email;
+    Users.findOne({where:{email : email}, attributes: { exclude: ['password'] } })
+        .then(data =>{
+            if(data){
+                res.send(data);
+            }
+            else{
+                res.status(404).send({
+                    message: `Cannot find User with email=${email}.`
+                });
+            }
+        })
+        .catch(err =>{
+            res.status(500).send({
+                message: "Error retrieving User with email=" + email
+            });
+        })
+}
 // Update a user by the id in the request
 exports.update = (req, res) => {
-    if (!req.body.user || !req.body.authPassword) {
+    if (!req.body.updatedUser|| !req.body.user || !req.body.authPassword) {
         res.status(400).send({
             message: "Content can not be empty!"
         });
         return;
     }
     const authUser = {
-        email: req.body.user,
+        id: req.body.user,
         password: req.body.authPassword
     }
-    Users.findOne({ where: { email: authUser.email } })
+    Users.findOne({ where: { id: authUser.id } })
         .then(usera => {
             bcrypt.compare(authUser.password, usera.password, function (err, result) {
                 if (result == true && !(req.body.admin && !usera.admin) && !(req.body.fabTech && !usera.admin) && (usera.fabTech || usera.admin)) {
-                    user = req.body;
-                    if (req.body.password) {
-                        user.password = bcrypt.hashSync(req.body.password, 10);
+                    user = req.body.updatedUser;
+                    if (req.body.updatedUser.password) {
+                        user.password = bcrypt.hashSync(req.body.updatedUser.password, 10);
                     }
 
                     const id = req.params.id;
