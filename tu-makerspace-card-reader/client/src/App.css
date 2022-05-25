@@ -2,18 +2,53 @@
   text-align: center;
 }
 
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  background-color: #ffffff;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
 .Box {
   position: relative;
   width: 150px;
   height: 50px;
-  background: linear-gradient(90deg, #60d1a3 0%, rgb(119, 204, 167) 50%, #6fd5a0 100%);
   border: 1.5px solid #193D2F;
   border-radius: 8px;
-  box-shadow: 1px 2px 2px #193D2F;
+  background: linear-gradient(90deg, #60d1a3 0%, rgb(119, 204, 167) 50%, #6fd5a0 100%);
   opacity: 1;
-  font-family: "sans-serif", consolas, monaco;
+  box-shadow: 1px 2px 2px #193D2F;
   font-size: 15px;
   font-weight: bold;
+  font-family: "sans-serif", consolas, monaco;
+  opacity: 1;
 }
 .Box:hover {
   background: linear-gradient(90deg, #4ac594 0%, rgb(80, 190, 143) 50%, #4cc184 100%);
@@ -29,20 +64,20 @@
 }
 #logo {
   position: absolute;
-  width: 35px;
-  height: 45px;
   left: 20px;
   top: 15px;
+  height: 45px;
+  width: 35px;
 }
 .logo-button {
   position: absolute;
+  z-index:1;
+  left: 20px;
+  top: 15px;
   width:35px;
   height: 45px;
   background-color: transparent;
-  left: 20px;
-  top: 15px;
   border: none;
-  z-index:1;
 }
 .logo-button:hover {
   cursor: pointer
@@ -58,56 +93,56 @@
 
 .header {
   height: 75px;
-  background-color: #006747;
-  box-shadow: 3px 4px 2px rgb(25, 61, 29);
-  color: rgb(241, 241, 241);
-  font-family: "sans-serif", consolas, monaco;
   font-size: 33px;
   font-weight: bold;
+  font-family: "sans-serif", consolas, monaco;
+  background-color: #006747;
+  box-shadow: 3px 4px 2px rgb(25, 61, 29);
+  border-top: 1px solid rgb(25, 61, 29);
   margin-top: 0px;
   line-height: 75px;
+  color: rgb(241, 241, 241);
 }
 .List {
   position: relative;
-  width: 240px;
-  height: 270px;
-  background-color: rgb(225, 251, 235);
-  opacity: 0.8;
-  border: 1.5px solid #288F65;
-  border-radius: 7px;
   display: grid;
+  border-radius: 7px;
+  width: 220px;
+  height: 240px;
+  margin: auto;
   align-items: center;
   justify-content: center;
-  margin: auto;
+  opacity: 0.8;
+  background-color: rgb(225, 251, 235);
+  border: 1.5px solid #288F65;
 }
-/* DARK MODE */
+
+
+
 @media (prefers-color-scheme: dark) {
   .List {
-    opacity: 1;
-    background-color: rgba(24, 75, 59, 0.9);
+    background-color: #135440;
     border-color: rgb(9, 20, 11);
-    border-width: 3px;
-    box-shadow: 1px 2px 2px rgb(9, 20, 11);
   }
   .text {
     color: rgb(240, 254, 241);
   }
   .Box {
-    background: linear-gradient(90deg, #19624b 0%, #136c51 50%, #0a6d4e 100%);
-    border-color: rgb(8, 34, 23);
+    background: linear-gradient(90deg, #2bb88b 0%, #31b088 50%, #4ec6a0 100%);
+    border-color: rgb(121, 121, 121);
     border-width: 1.5px;
-    box-shadow: 1px 1px 1px rgb(8, 34, 23);
-    color: rgb(199, 239, 219);
-
+    box-shadow: 1px 1px 1px rgb(121, 121, 121);
+    color: rgb(18, 51, 34);
+    opacity: 1;
   }
   .Box:hover {
-    background: linear-gradient(90deg, #1b8966 0%, #199872 50%, #0a8d63 100%);
-    color: rgb(248, 255, 251);
+    background: linear-gradient(90deg, #1aa87b 0%, #17946d 50%, #37c497 100%);
+    color: rgb(5, 22, 10);
     cursor: pointer;
   }
   .Box:active {
-    background: linear-gradient(90deg, #146048 0%, #10654b 50%, #04563c 100%);
-    color: rgb(248, 255, 251);
+    background: linear-gradient(90deg, #1aa87b 0%, #17946d 50%, #37c497 100%);
+    color: rgb(5, 22, 10);
   }
   .header {
     background-color: rgb(9, 20, 11);

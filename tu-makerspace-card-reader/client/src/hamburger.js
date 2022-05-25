@@ -1,10 +1,9 @@
-//import {AppBar, Toolbar, IconButton, Drawer, Box} from '@mui/material'
-/*
+import {AppBar, Toolbar, IconButton, Drawer, Box} from '@mui/material'
+
 <AppBar position="static">
     <Toolbar>
 
-        {/* hamburger icon shows the drawer on click *//*}
-      
+        {/* hamburger icon shows the drawer on click */}
         <IconButton 
           edge="start"
           color="inherit"
@@ -14,7 +13,7 @@
           
         </IconButton>
 
-        {/* The outside of the drawer *//*}
+        {/* The outside of the drawer */}
         <Drawer
           
           anchor="right" //from which side the drawer slides in
@@ -29,10 +28,9 @@
         >
             
             <Box>
-              {/* The inside of the drawer *//*}
+              {/* The inside of the drawer */}
             </Box>
         </Drawer>
 
       </Toolbar>
 </AppBar>
-*/
