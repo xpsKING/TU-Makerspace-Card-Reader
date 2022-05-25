@@ -1,54 +1,170 @@
+
 .App {
   text-align: center;
 }
+.BetterTextField {
+  padding-left: 10px;
+  margin-top: 10px;
+  font-size: 20px;
+  font-family: "sans-serif", consolas, monaco;
+  font-style: bold;
+  background-color: rgb(246, 250, 255);
+  color: rgb(25, 31, 61);
+  height: 50px;
+  width: 200px;
+  border-radius: 5px;
+  margin-left: 20px;
+  margin-bottom: 10px;
+  min-width: 200px;
+  min-height: 50px;
+  
+}
+.BetterBox {
+  margin-bottom: 5px;
+  margin-left: 10px;
+  font-size: 18px;
+  font-weight: bold;
+  font-family: "sans-serif", consolas, monaco;
+  text-align:center;
+  color: rgb(25, 31, 61);
+  background-color: rgb(220, 236, 255);
+  width: 80px;
+  height: 40x;
+  vertical-align: middle;
+  border: 2px solid black;
+  outline: none;
+  border-radius: 4px;
+  min-width: 80px;
+  min-height: 40px;
+}
+.BetterBox:active {
+  background-color: rgb(199, 211, 227);
+  border-color: rgb(59, 61, 135);
+  color: rgb(59, 61, 135);
+}
+#otherh3 {
+  color: rgb(25, 31, 61);
+  white-space: pre;
+  margin-left: 20px;
+  margin-bottom: 0px;
+  font-size: 25px;
+  font-family: "sans-serif", consolas, monaco;
+  font-style: bold;
+}
+#input2false {
+  border: 2px solid black;
+  color: rgb(30, 37, 77);
+  
+}
+#input2false:hover {
+  border: 2px solid rgb(0, 0, 0);
+  background-color: rgb(239, 246, 255);
+}
+/* this is just testing */
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+#input2false:focus {
+  border: 2px solid rgb(90, 94, 205);
+  background-color: rgb(231, 238, 252);
+  outline: none;
+  animation-name: input2falsefocus;
+  animation-duration: 0.2s;
+}
+#input2true {
+  background-color: rgb(255, 230, 230);
+  border: 2px solid rgb(255, 132, 132);
+  color: rgb(30, 37, 77);
+  outline: none;
+}
+#input2true:hover {
+  border: 2px solid rgb(255, 132, 132);
+  background-color: rgb(255, 230, 230);
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+@keyframes input2falsehover {
+  from {background-color: rgb(246, 250, 255);}
+  to {background-color: rgb(239, 246, 255);}
 }
-
-.App-header {
-  background-color: #ffffff;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
+@keyframes input2falsefocus {
   from {
-    transform: rotate(0deg);
+    border: 2px solid black;
+    background-color: rgb(239, 246, 255);
   }
   to {
-    transform: rotate(360deg);
+    border: 2px solid rgb(90, 94, 205);
+    background-color: rgb(231, 238, 252);
   }
 }
+.MachineBox {
+  position:relative;
+  top: -120px;
+  right: 210px;
+  width: 100px;
+  height: 100px;
+  border: 7px solid rgb(25, 31, 61);
+  margin-left: 70%;
+  margin-top: 20px;
+  margin-bottom: 0px;
+}
+.MachineBoxTrue {
+  position:relative;
+  top: -120px;
+  right: 210px;
+  width: 100px;
+  height: 100px;
+  border: 7px solid green;
+  margin-left: 70%;
+  margin-top: 20px;
+  margin-bottom: 0px;
+}
+#otherh3-2 {
+  position: relative;
+  top: -120px;
+  right: 100px;
+  color: rgb(25, 31, 61);
+  white-space: pre;
+  margin-left: 20px;
+  margin-bottom: 0px;
+  margin-right: 10px;
+  font-size: 20px;
+  font-family: "sans-serif", consolas, monaco;
+  font-weight: bold;
+}
+
+#p2 {
+  text-align: right;
+  margin-right: 23%;
+  font-size: 10px;
+  white-space: pre;
+  padding: 4px;
+
+ 
+}
+
+      
+/* Toggle text */
+p {
+  font-family: Arial, Helvetica, "sans-serif", consolas, monaco;
+  font-weight: bold;
+}
+
+.container {
+  display: grid;
+  margin-left: 35%;
+  grid-template-columns: 250px 250px 250px;
+}
+
 .Box {
   position: relative;
   width: 150px;
   height: 50px;
+  background: linear-gradient(90deg, #60d1a3 0%, rgb(119, 204, 167) 50%, #6fd5a0 100%);
   border: 1.5px solid #193D2F;
   border-radius: 8px;
-  background: linear-gradient(90deg, #60d1a3 0%, rgb(119, 204, 167) 50%, #6fd5a0 100%);
-  opacity: 1;
   box-shadow: 1px 2px 2px #193D2F;
+  opacity: 1;
+  font-family: "sans-serif", consolas, monaco;
   font-size: 15px;
   font-weight: bold;
-  font-family: "sans-serif", consolas, monaco;
-  opacity: 1;
 }
 .Box:hover {
   background: linear-gradient(90deg, #4ac594 0%, rgb(80, 190, 143) 50%, #4cc184 100%);
@@ -64,20 +180,20 @@
 }
 #logo {
   position: absolute;
+  width: 35px;
+  height: 45px;
   left: 20px;
   top: 15px;
-  height: 45px;
-  width: 35px;
 }
 .logo-button {
   position: absolute;
-  z-index:1;
-  left: 20px;
-  top: 15px;
   width:35px;
   height: 45px;
   background-color: transparent;
+  left: 20px;
+  top: 15px;
   border: none;
+  z-index:1;
 }
 .logo-button:hover {
   cursor: pointer
@@ -93,56 +209,61 @@
 
 .header {
   height: 75px;
-  font-size: 33px;
-  font-weight: bold;
-  font-family: "sans-serif", consolas, monaco;
   background-color: #006747;
   box-shadow: 3px 4px 2px rgb(25, 61, 29);
-  border-top: 1px solid rgb(25, 61, 29);
+  color: rgb(241, 241, 241);
+  font-family: "sans-serif", consolas, monaco;
+  font-size: 33px;
+  font-weight: bold;
   margin-top: 0px;
   line-height: 75px;
-  color: rgb(241, 241, 241);
 }
 .List {
   position: relative;
-  display: grid;
+  width: 240px;
+  height: 270px;
+  background-color: rgb(225, 251, 235);
+  opacity: 0.8;
+  border: 1.5px solid #288F65;
   border-radius: 7px;
-  width: 220px;
-  height: 240px;
-  margin: auto;
+  display: grid;
   align-items: center;
   justify-content: center;
-  opacity: 0.8;
-  background-color: rgb(225, 251, 235);
-  border: 1.5px solid #288F65;
+  margin: auto;
 }
-
-
-
+.submitButton {
+  width: 75px;
+  height: 25px;
+  font-family: "sans-serif", consolas, monaco;
+}
+/* DARK MODE */
 @media (prefers-color-scheme: dark) {
   .List {
-    background-color: #135440;
+    opacity: 1;
+    background-color: rgba(24, 75, 59, 0.9);
     border-color: rgb(9, 20, 11);
+    border-width: 3px;
+    box-shadow: 1px 2px 2px rgb(9, 20, 11);
   }
   .text {
     color: rgb(240, 254, 241);
   }
   .Box {
-    background: linear-gradient(90deg, #2bb88b 0%, #31b088 50%, #4ec6a0 100%);
-    border-color: rgb(121, 121, 121);
+    background: linear-gradient(90deg, #19624b 0%, #136c51 50%, #0a6d4e 100%);
+    border-color: rgb(8, 34, 23);
     border-width: 1.5px;
-    box-shadow: 1px 1px 1px rgb(121, 121, 121);
-    color: rgb(18, 51, 34);
-    opacity: 1;
+    box-shadow: 1px 1px 1px rgb(8, 34, 23);
+    color: rgb(199, 239, 219);
+
   }
   .Box:hover {
-    background: linear-gradient(90deg, #1aa87b 0%, #17946d 50%, #37c497 100%);
-    color: rgb(5, 22, 10);
+    background: linear-gradient(90deg, #1b8966 0%, #199872 50%, #0a8d63 100%);
+    color: rgb(248, 255, 251);
     cursor: pointer;
   }
   .Box:active {
-    background: linear-gradient(90deg, #1aa87b 0%, #17946d 50%, #37c497 100%);
-    color: rgb(5, 22, 10);
+    background: linear-gradient(90deg, #146048 0%, #10654b 50%, #04563c 100%);
+    color: rgb(248, 255, 251);
   }
   .header {
     background-color: rgb(9, 20, 11);
@@ -151,3 +272,4 @@
     box-shadow: 2px 0px 2px rgb(121, 121, 121);
   }
 }
+

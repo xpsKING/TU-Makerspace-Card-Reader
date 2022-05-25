@@ -12,8 +12,6 @@ export default function DisplayChecks(props) {
                 <div className="containerChecks">
                     <h1 key={training}>
                         <FormControlLabel
-
-                            classes="checks"
                             label={<Typography id="text2" variant="body2" color="textSecondary">{training[0]}</Typography>}
                             control={
                                 <Checkbox
@@ -27,8 +25,8 @@ export default function DisplayChecks(props) {
                         />
                     </h1>
                 </div>
-            ))}
-
+            ))
+}
             <FabTechToggle
                 isAdmin={props.isAdmin}
                 userIsFabTech={props.userIsFabTech}
@@ -44,7 +42,6 @@ export default function DisplayChecks(props) {
 
 
 function FabTechToggle(props) {
-    console.log('fabtechtoggle' + props.isAdmin);
     if (props.isAdmin && props.trainings.length !== 0) {
         return (
             <div>

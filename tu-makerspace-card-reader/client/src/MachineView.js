@@ -139,11 +139,9 @@ export default class MachineView extends React.Component {
               currentUser={this.state.currentUser}
               activated={machine.status}
               trained={this.state.currentUser[machine.requiredTraining]}
-              test={console.log('test ' + machine.id)}
             />
           ))}
           {this.state.machines.map((machine) => {
-            console.log('MACHINE IDS TEST: ' + machine.id);
           })}
         </div>
 
