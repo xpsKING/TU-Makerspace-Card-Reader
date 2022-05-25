@@ -27,7 +27,6 @@ export default function DisplayChecks(props) {
                 </div>
             ))
 }
-
             <FabTechToggle
                 isAdmin={props.isAdmin}
                 userIsFabTech={props.userIsFabTech}
