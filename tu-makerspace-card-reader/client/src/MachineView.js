@@ -115,6 +115,8 @@ export default class MachineView extends React.Component {
 
   handleLogOut() {
     this.setState({
+      isAdmin: false,
+      adminView: false,
       value: '',
       $error: false,
       currentUser: {
@@ -204,7 +206,7 @@ class Machine extends React.Component {
       trained: props.trained,
       adminView: props.adminView,
       taggedOut: props.taggedOut,
-
+      userID: props.userID,
     };
   }
 
@@ -230,6 +232,7 @@ class Machine extends React.Component {
       currentUser: props.currentUser,
       trained: props.trained,
       adminView: props.adminView,
+      userID: props.userID,
     };
     return state
   }
@@ -259,9 +262,9 @@ class Machine extends React.Component {
       //console.log('key: ' + this.state.machineID);
     }
   }
-  handleToggleTagOut(props) {
-    if (false) {
-    axios(editMachine(this.state.machineID, {"taggedOut":!this.state.taggedOut}, props.userID))
+  handleToggleTagOut() {
+    if (this.state.adminView) {
+    axios(editMachine(this.state.machineID, {"taggedOut":!this.state.taggedOut}, this.state.userID))
       .then((response, error) => {
         if (error) {
           console.log('Error tagging in/out');
