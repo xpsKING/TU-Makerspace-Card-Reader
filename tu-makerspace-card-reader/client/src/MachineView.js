@@ -5,7 +5,7 @@ import tempimage from './tempimage.png';
 import axios from 'axios';
 import SwitchUnstyled from '@mui/base/SwitchUnstyled';
 import React from 'react';
-import { getUser, disableMachine, toggleMachine, getAllMachines } from './APIRoutes';
+import { getUser, disableMachine, toggleMachine, getAllMachines, updateMachine } from './APIRoutes';
 import Root from './switchtheme.js'
 import './DarkMode.css'
 function AdminButton(props) {
@@ -260,13 +260,27 @@ class Machine extends React.Component {
     }
   }
   handleToggleTagOut() {
-    this.setState((currentState) => {
-      console.log(currentState.machineID + ' ' + !currentState.taggedOut);
-      return {
-        taggedOut: !currentState.taggedOut,
-        activated: false,
-      }
-    })
+    if (this.state.adminView) {
+    axios(updateMachine(this.state.machineID, {"taggedOut":!this.state.taggedOut}))
+      .then((response, error) => {
+        if (error) {
+          console.log('Error tagging in/out');
+        } else {
+          console.log('Success tagging in/out');
+          this.setState((currentState) => {
+            console.log(currentState.machineID + ' ' + !currentState.taggedOut);
+            return {
+              taggedOut: !currentState.taggedOut,
+              activated: false,
+            }
+          })
+
+        }
+      }).catch((err) => {
+        console.log(err);
+      })
+    }
+    
   }
 
   render() {

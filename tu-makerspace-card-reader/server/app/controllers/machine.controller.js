@@ -85,19 +85,19 @@ exports.findOne = (req, res) => {
 };
 
 exports.update = (req, res) => {
-    if (!req.body.user || !req.body.authPassword|| !req.body.updatedMachine) {
+    if (!req.body.user || !req.body.updatedMachine) {
         res.status(400).send({
             message: "Content can not be empty!"
         });
         return;
     }
     const authUser = {
-        id: req.body.user,
+        id: req.params.id,
     }
     Users.findOne({ where: { id: authUser.id } })
         .then(usera => {
                 if (usera.fabTech) {
-                    machine = req.body.updatedMachine;
+                    let machine = req.body.updatedMachine;
                     const id = req.params.id;
                     Machines.update(machine, {
                         where: { id: id }
@@ -215,7 +215,7 @@ exports.disableMachine = (req, res) => {
                 machine.status = !machine.status
                 Machines.update(
                     {status: machine.status},
-                    {where: { id: machine.id }
+                    {where: { id: req.params.id }
                 })
                     .then(num => {
                         if (num == 1) {
