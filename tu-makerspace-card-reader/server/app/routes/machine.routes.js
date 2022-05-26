@@ -14,7 +14,7 @@ module.exports = app => {
 
     router.put("/toggle/:id",machines.toggleMachine);
 
-    router.put("/disable/:id",machines.disableMachine);
+    router.put("/disable/:id", machines.disableMachine);
 
     app.use('/api/machines',router);
 }
