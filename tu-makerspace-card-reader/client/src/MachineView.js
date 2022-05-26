@@ -5,7 +5,7 @@ import tempimage from './tempimage.png';
 import axios from 'axios';
 import SwitchUnstyled from '@mui/base/SwitchUnstyled';
 import React from 'react';
-import { getUser, disableMachine, toggleMachine, getAllMachines } from './APIRoutes';
+import { getUser, disableMachine, toggleMachine, getAllMachines, editMachine } from './APIRoutes';
 import Root from './switchtheme.js'
 import './DarkMode.css'
 function AdminButton(props) {
@@ -115,6 +115,8 @@ export default class MachineView extends React.Component {
 
   handleLogOut() {
     this.setState({
+      isAdmin: false,
+      adminView: false,
       value: '',
       $error: false,
       currentUser: {
@@ -177,6 +179,7 @@ export default class MachineView extends React.Component {
               taggedOut={machine.taggedOut}
               isAdmin={this.state.isAdmin}
               adminView={this.state.adminView}
+              userID={this.state.currentUser.id}
             />
           ))}
         
@@ -203,7 +206,7 @@ class Machine extends React.Component {
       trained: props.trained,
       adminView: props.adminView,
       taggedOut: props.taggedOut,
-
+      userID: props.userID,
     };
   }
 
@@ -229,15 +232,15 @@ class Machine extends React.Component {
       currentUser: props.currentUser,
       trained: props.trained,
       adminView: props.adminView,
+      userID: props.userID,
     };
     return state
   }
   //called when button is clicked, changes state and calls api to database
-  onButtonChange = () => {
+  onButtonChange() {
     if (this.state.activated) {
       this.setState({ activated: false });
       axios(disableMachine(this.state.machineID));
-      console.log(this.state.machineID + " " + this.state.adminView);
     }
     else {
       axios(toggleMachine(this.state.machineID, this.state.currentUser.id))
@@ -260,15 +263,27 @@ class Machine extends React.Component {
     }
   }
   handleToggleTagOut() {
-    if (this.state.adminView) { 
-      this.setState((currentState) => {
-        console.log(currentState.machineID + ' ' + !currentState.taggedOut);
-        return {
-          taggedOut: !currentState.taggedOut,
-          activated: false,
+    if (this.state.adminView) {
+    axios(editMachine(this.state.machineID, {"taggedOut":!this.state.taggedOut}, this.state.userID))
+      .then((response, error) => {
+        if (error) {
+          console.log('Error tagging in/out');
+        } else {
+          console.log('Success tagging in/out');
+          this.setState((currentState) => {
+            console.log(currentState.machineID + ' ' + !currentState.taggedOut);
+            return {
+              taggedOut: !currentState.taggedOut,
+              activated: false,
+            }
+          })
+
         }
+      }).catch((err) => {
+        console.log(err);
       })
-  }
+    }
+    
   }
 
   render() {
@@ -293,7 +308,7 @@ class Machine extends React.Component {
               color="success"
               disabled={(!this.state.trained && !this.state.activated) || this.state.taggedOut}
               inputprops={{ 'aria-label': 'Checkbox demo' }}
-              onChange={(event) => this.onButtonChange(event)}
+              onChange={() => this.onButtonChange()}
             />
           </span>
         </span>

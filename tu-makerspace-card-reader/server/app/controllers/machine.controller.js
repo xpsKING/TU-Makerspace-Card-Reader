@@ -85,21 +85,19 @@ exports.findOne = (req, res) => {
 };
 
 exports.update = (req, res) => {
-    if (!req.body.user || !req.body.authPassword) {
+    if (!req.body.user || !req.body.updatedMachine) {
         res.status(400).send({
             message: "Content can not be empty!"
         });
         return;
     }
     const authUser = {
-        email: req.body.user,
-        password: req.body.authPassword
+        id: req.body.user,
     }
-    Users.findOne({ where: { email: authUser.email } })
+    Users.findOne({ where: { id: authUser.id } })
         .then(usera => {
-            bcrypt.compare(authUser.password, usera.password, function (err, result) {
-                if (result == true && usera.admin) {
-                    machine = req.body;
+                if (usera.fabTech) {
+                    machine = req.body.updatedMachine;
                     const id = req.params.id;
                     Machines.update(machine, {
                         where: { id: id }
@@ -121,13 +119,7 @@ exports.update = (req, res) => {
                             });
                         });
                 }
-                else {
-                    res.status(400).send({
-                        message: "Incorrect Password or Higher permission required!"
-                    });
-                    return;
-                }
-            })
+                
         });
 
 };

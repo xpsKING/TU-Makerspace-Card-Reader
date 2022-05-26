@@ -191,13 +191,16 @@
   top: 11px;
   width: 114px;
   height: 114px;
+  outline: none;
   border: none;
+  background-color: transparent;
+  cursor:not-allowed;
 }
 #tagged-out-false {
   background-color: transparent;
 }
 #tagged-out-true {
-  z-index: 1;
+  z-index: 2;
   background-color: rgba(233, 95, 95, 0.7);
 }
 @media (min-width: 600px) {
