@@ -8,11 +8,21 @@ import React from 'react';
 import { getUser, disableMachine, toggleMachine, getAllMachines } from './APIRoutes';
 import Root from './switchtheme.js'
 import './DarkMode.css'
-
+function AdminButton(props) {
+  if (props.isAdmin) {
+    return (
+      <button className="BetterBox" onClick={() => props.toggleAdminView()}>Admin</button>
+    )
+  } else {
+    return null;
+  }
+}
 export default class MachineView extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      isAdmin: false,
+      adminView: false,
       value: '',
       $error: false,// added $ before boolean
       currentUser: {
@@ -27,6 +37,8 @@ export default class MachineView extends React.Component {
         "requiredTraining": "nullTraining",
       }], //temporary "loading" machine that gets overirdden in componentdidmount()
     };
+    
+    this.toggleAdminView = this.toggleAdminView.bind(this);
   }
   componentDidMount() { //gets called when component starts, gets machines for specific machinegroup from api
     axios(getAllMachines(this.state.machineGroup)).then((response, error) => {
@@ -63,6 +75,8 @@ export default class MachineView extends React.Component {
           this.setState({
             currentUser: response.data,
             $error: false,
+            isAdmin: response.data.admin,
+            adminView: false,
           });
           //currentUser is set in state of search, need to build function to check user perms and apply to machines as they are mapped
         }
@@ -70,7 +84,10 @@ export default class MachineView extends React.Component {
           console.log("error fetching name: " + err);
           this.setState({
             $error: true,
-            currentUser: { "name": "Enter ID", "nullTraining": false },
+            currentUser: { 
+              "name": "Enter ID", 
+            "nullTraining": false 
+          },
           });
 
         }
@@ -78,7 +95,10 @@ export default class MachineView extends React.Component {
         console.log("error fetching name: " + err);
         this.setState({
           $error: true,
-          currentUser: { "name": "Enter ID", "nullTraining": false },
+          currentUser: {
+            "name": "Enter ID", 
+            "nullTraining": false 
+          },
         });
       });
     } else { // unsets error when empty
@@ -103,12 +123,27 @@ export default class MachineView extends React.Component {
       },
     })
   }
+  toggleAdminView() {
+    this.setState((currentState) => {
+      console.log(!currentState.adminView);
+      return {
+        adminView: !currentState.adminView,
+      }
+    })
+    
+  }
 
   render() {
     let err = this.state.$error;
     return (
 
       <div>
+        <div id="adminToggle">
+          <AdminButton 
+            isAdmin={this.state.isAdmin}
+            toggleAdminView={this.toggleAdminView}
+            />
+        </div>
         <div className='login-container' align="left">
           {/* Create textfield for user input, highlights red if error! Blue if valid name! */}
           <h3 id="otherh3">Name: {this.state.currentUser.name !== "Enter ID" ? this.state.currentUser.name : ' '}</h3>
@@ -117,7 +152,7 @@ export default class MachineView extends React.Component {
             id={err === true ? "input2true" : "input2false"}
             className='BetterTextField'
             placeholder={this.state.currentUser.name}
-            $error={this.state.error}
+            $error={this.state.$error}
             value={this.state.value}
             onChange={this.handlenewSearch}
             autoComplete="off"
@@ -139,10 +174,12 @@ export default class MachineView extends React.Component {
               currentUser={this.state.currentUser}
               activated={machine.status}
               trained={this.state.currentUser[machine.requiredTraining]}
+              taggedOut={machine.taggedOut}
+              isAdmin={this.state.isAdmin}
+              adminView={this.state.adminView}
             />
           ))}
-          {this.state.machines.map((machine) => {
-          })}
+        
         </div>
 
 
@@ -164,12 +201,14 @@ class Machine extends React.Component {
       currentUser: props.currentUser,
       image: this.getImage(props.machineName, props.machineID),
       trained: props.trained,
+      adminView: props.adminView,
+      taggedOut: props.taggedOut,
 
     };
   }
 
   //used to determine which image to grab for machine diplay. may move this to its own file later to clean up code.
-  getImage(machineName, machineID) {
+  getImage(machineName) {
     //console.log(machineName + " " + machineID);
     if (machineName === "CNC Mill") {
       return mill;
@@ -188,7 +227,8 @@ class Machine extends React.Component {
     state = {
       currentUser: props.currentUser,
       currentUser: props.currentUser,
-      trained: props.trained
+      trained: props.trained,
+      adminView: props.adminView,
     };
     return state
   }
@@ -197,6 +237,7 @@ class Machine extends React.Component {
     if (this.state.activated) {
       this.setState({ activated: false });
       axios(disableMachine(this.state.machineID));
+      console.log(this.state.machineID + " " + this.state.adminView);
     }
     else {
       axios(toggleMachine(this.state.machineID, this.state.currentUser.id))
@@ -218,14 +259,25 @@ class Machine extends React.Component {
       //console.log('key: ' + this.state.machineID);
     }
   }
+  handleToggleTagOut() {
+    this.setState((currentState) => {
+      console.log(currentState.machineID + ' ' + !currentState.taggedOut);
+      return {
+        taggedOut: !currentState.taggedOut,
+        activated: false,
+      }
+    })
+  }
 
   render() {
     return (
 
       <div className="MachineBoxContainer" align="center">
-
+        
         <div className={this.state.activated ? "MachineBoxBorder" : ''}>
-          <img src={this.state.image} className={this.state.activated ? "MachineBoxTrue" : "MachineBox"} />
+            
+            <img src={this.state.image} className={this.state.activated ? "MachineBoxTrue" : "MachineBox"} />
+            <button className={this.state.adminView ? "AdminToggle": "AdminToggleFalse"} id={this.state.taggedOut ? "tagged-out-true" : "tagged-out-false"} onClick={() => this.handleToggleTagOut()} ></button>
         </div>
         <span>
           <span id="otherh3-2">{this.state.machineName}
@@ -237,7 +289,7 @@ class Machine extends React.Component {
               checked={this.state.activated}
               size="medium"
               color="success"
-              disabled={!this.state.trained && !this.state.activated}
+              disabled={(!this.state.trained && !this.state.activated) || this.state.taggedOut}
               inputprops={{ 'aria-label': 'Checkbox demo' }}
               onChange={(event) => this.onButtonChange(event)}
             />
