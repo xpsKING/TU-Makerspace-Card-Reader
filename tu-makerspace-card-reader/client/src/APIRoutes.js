@@ -51,17 +51,6 @@ export function getAllMachines(machineGroup) {
         }
     }
 }
-export function updateMachine(id, updatedMachine) {
-    return{
-        method:'put',
-        data: {user: id, updatedMachine: updatedMachine},
-        url: "https://localhost:8443/api/machines/" + id,
-        proxy: {
-            host: 'localhost',
-            port: 8443,
-        }
-    }
-}
 export function getFabTechs() {
     return {
         method: 'get',
