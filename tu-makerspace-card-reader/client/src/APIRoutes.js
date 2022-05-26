@@ -85,3 +85,15 @@ export function editUser(id, updatedUser, user, authPassword) {
         }
     }
 }
+export function editMachine(machineId, updatedMachine, authUser) {
+    return {
+        method: 'put',
+        data:{updatedMachine: updatedMachine, user: authUser},
+        url: 'https://localhost:8443/api/machines/' + machineId,
+        proxy: {
+            host: 'localhost',
+            port: 8443,
+
+        }
+    }
+}
