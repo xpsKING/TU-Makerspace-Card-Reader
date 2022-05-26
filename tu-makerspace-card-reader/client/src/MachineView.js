@@ -234,7 +234,7 @@ class Machine extends React.Component {
     return state
   }
   //called when button is clicked, changes state and calls api to database
-  onButtonChange = () => {
+  onButtonChange() {
     if (this.state.activated) {
       this.setState({ activated: false });
       axios(disableMachine(this.state.machineID));
@@ -260,7 +260,7 @@ class Machine extends React.Component {
     }
   }
   handleToggleTagOut(props) {
-    if (this.state.adminView) {
+    if (false) {
     axios(editMachine(this.state.machineID, {"taggedOut":!this.state.taggedOut}, props.userID))
       .then((response, error) => {
         if (error) {
@@ -305,7 +305,7 @@ class Machine extends React.Component {
               color="success"
               disabled={(!this.state.trained && !this.state.activated) || this.state.taggedOut}
               inputprops={{ 'aria-label': 'Checkbox demo' }}
-              onChange={(event) => this.onButtonChange(event)}
+              onChange={() => this.onButtonChange()}
             />
           </span>
         </span>
