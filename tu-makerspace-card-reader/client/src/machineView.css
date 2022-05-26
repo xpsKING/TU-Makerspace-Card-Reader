@@ -141,25 +141,25 @@
   overflow: visible;
   top: 10px;
 }       
-.container3 { /* container for the machines to be in a grid layout */
+.container2 { /* container for the machines to be in a grid layout */
   position:relative;
   width: max-width;
   height: fit-content;
   margin: auto;
   display:grid;
   justify-content: center;
-  align-items: center;
   grid-template-columns: 250px 250px;
+  grid-area: machines;
 }
 .MachineBoxContainer {
-  border: 3px solid pink;
   position: relative;
   width: 200px;
   height: 250px;
   margin: auto;
-  display: block;
+  display:block;
   align-items: center;
   justify-content: center;
+
 }
 .login-container {
   position: relative;
@@ -179,27 +179,29 @@
   height: 114px;
   background-color: transparent;
   border: none;
+  outline: none;
 }
 .AdminToggle:hover {
   cursor:pointer;
 }
 .AdminToggleFalse {
-  position: relative;
-  z-index:2;
-  width: 100px;
-  height: 100px;
-  outline: none;
-  border: 18px solid white;
-  display: contents;
+  position: absolute;
+  z-index:-1;
+  left: 43px;
+  top: 11px;
+  width: 114px;
+  height: 114px;
+  border: none;
 }
 #tagged-out-false {
-  box-shadow: none;
+  background-color: transparent;
 }
 #tagged-out-true {
+  z-index: 1;
   background-color: rgba(233, 95, 95, 0.7);
 }
 @media (min-width: 600px) {
-  .container3 {
+  .container2 {
     position: relative;
     width: fit-content;
     grid-template-columns: 200px 200px 200px;
@@ -207,7 +209,7 @@
   }
 }
 @media (min-width: 1000px) { /* ipad pro portrait width is 730px */
-  .container3 {
+  .container2 {
     position: relative;
     width: 700px;
     margin-right: 50px;
@@ -216,7 +218,7 @@
   }
 }
 @media (min-width: 1310px) { /* ipad pro landscape is 1194px */
-  .container3 {
+  .container2 {
     position: relative;
     width: 1000px;
     grid-template-columns: 250px 250px 250px 250px;
