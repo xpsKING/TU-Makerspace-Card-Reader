@@ -9,9 +9,9 @@ import { getUser, disableMachine, toggleMachine, getAllMachines, editMachine } f
 import Root from './switchtheme.js'
 import './DarkMode.css'
 function AdminButton(props) {
-  if (props.isAdmin) {
+  if (props.isFabTech) {
     return (
-      <button className="BetterBox" onClick={() => props.toggleAdminView()}>Admin</button>
+      <button className="BetterBox" onClick={() => props.toggleFabTechView()}>Tag Out</button>
     )
   } else {
     return null;
@@ -21,8 +21,8 @@ export default class MachineView extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      isAdmin: false,
-      adminView: false,
+      isFabTech: false,
+      fabTechView: false,
       value: '',
       $error: false,// added $ before boolean
       currentUser: {
@@ -38,7 +38,7 @@ export default class MachineView extends React.Component {
       }], //temporary "loading" machine that gets overirdden in componentdidmount()
     };
     
-    this.toggleAdminView = this.toggleAdminView.bind(this);
+    this.toggleFabTechView = this.toggleFabTechView.bind(this);
   }
   componentDidMount() { //gets called when component starts, gets machines for specific machinegroup from api
     axios(getAllMachines(this.state.machineGroup)).then((response, error) => {
@@ -75,8 +75,8 @@ export default class MachineView extends React.Component {
           this.setState({
             currentUser: response.data,
             $error: false,
-            isAdmin: response.data.admin,
-            adminView: false,
+            isFabTech: response.data.fabTech,
+            fabTechView: false,
           });
           //currentUser is set in state of search, need to build function to check user perms and apply to machines as they are mapped
         }
@@ -115,8 +115,8 @@ export default class MachineView extends React.Component {
 
   handleLogOut() {
     this.setState({
-      isAdmin: false,
-      adminView: false,
+      isFabTech: false,
+      fabTechView: false,
       value: '',
       $error: false,
       currentUser: {
@@ -125,11 +125,10 @@ export default class MachineView extends React.Component {
       },
     })
   }
-  toggleAdminView() {
+  toggleFabTechView() {
     this.setState((currentState) => {
-      console.log(!currentState.adminView);
       return {
-        adminView: !currentState.adminView,
+        fabTechView: !currentState.fabTechView,
       }
     })
     
@@ -142,8 +141,8 @@ export default class MachineView extends React.Component {
       <div>
         <div id="adminToggle">
           <AdminButton 
-            isAdmin={this.state.isAdmin}
-            toggleAdminView={this.toggleAdminView}
+            isFabTech={this.state.isFabTech}
+            toggleFabTechView={this.toggleFabTechView}
             />
         </div>
         <div className='login-container' align="left">
@@ -177,8 +176,8 @@ export default class MachineView extends React.Component {
               activated={machine.status}
               trained={this.state.currentUser[machine.requiredTraining]}
               taggedOut={machine.taggedOut}
-              isAdmin={this.state.isAdmin}
-              adminView={this.state.adminView}
+              isFabTech={this.state.isFabTech}
+              fabTechView={this.state.fabTechView}
               userID={this.state.currentUser.id}
             />
           ))}
@@ -204,7 +203,7 @@ class Machine extends React.Component {
       currentUser: props.currentUser,
       image: this.getImage(props.machineName, props.machineID),
       trained: props.trained,
-      adminView: props.adminView,
+      fabTechView: props.fabTechView,
       taggedOut: props.taggedOut,
       userID: props.userID,
     };
@@ -231,7 +230,7 @@ class Machine extends React.Component {
       currentUser: props.currentUser,
       currentUser: props.currentUser,
       trained: props.trained,
-      adminView: props.adminView,
+      fabTechView: props.fabTechView,
       userID: props.userID,
     };
     return state
@@ -263,7 +262,7 @@ class Machine extends React.Component {
     }
   }
   handleToggleTagOut() {
-    if (this.state.adminView) {
+    if (this.state.fabTechView) {
     axios(editMachine(this.state.machineID, {"taggedOut":!this.state.taggedOut}, this.state.userID))
       .then((response, error) => {
         if (error) {
@@ -271,7 +270,6 @@ class Machine extends React.Component {
         } else {
           console.log('Success tagging in/out');
           this.setState((currentState) => {
-            console.log(currentState.machineID + ' ' + !currentState.taggedOut);
             return {
               taggedOut: !currentState.taggedOut,
               activated: false,
@@ -291,10 +289,10 @@ class Machine extends React.Component {
 
       <div className="MachineBoxContainer" align="center">
         
-        <div className={this.state.activated ? "MachineBoxBorder" : ''}>
+        <div className={this.state.activated ? "MachineBoxBorder" : 'MachineBoxBorder-false'}>
             
             <img src={this.state.image} className={this.state.activated ? "MachineBoxTrue" : "MachineBox"} />
-            <button className={this.state.adminView ? "AdminToggle": "AdminToggleFalse"} id={this.state.taggedOut ? "tagged-out-true" : "tagged-out-false"} onClick={() => this.handleToggleTagOut()} ></button>
+            <button className={this.state.fabTechView ? "AdminToggle": "AdminToggleFalse"} id={this.state.taggedOut ? "tagged-out-true" : "tagged-out-false"} onClick={() => this.handleToggleTagOut()} ></button>
         </div>
         <span>
           <span id="otherh3-2">{this.state.machineName}

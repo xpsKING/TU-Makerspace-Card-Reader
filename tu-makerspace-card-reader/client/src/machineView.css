@@ -103,6 +103,14 @@
   margin-top:0px;
   margin-bottom: 0px;
 }
+.MachineBoxBorder-false {
+  position: relative;
+  width: 136px;
+  height: 136px;
+  background-color: transparent;
+  align-items: center;
+  justify-items: center;
+}
 .MachineBoxBorder {
   position: relative;
   width: 136px;
@@ -173,12 +181,13 @@
 .AdminToggle {
   position: absolute;
   z-index: 2;
-  left: 43px;
+  margin: auto;
+  left: 11px;
   top: 11px;
   width: 114px;
   height: 114px;
   background-color: transparent;
-  border: none;
+  border: 7px solid red;
   outline: none;
 }
 .AdminToggle:hover {
@@ -187,7 +196,7 @@
 .AdminToggleFalse {
   position: absolute;
   z-index:-1;
-  left: 43px;
+  left: 11px;
   top: 11px;
   width: 114px;
   height: 114px;
@@ -225,5 +234,7 @@
     position: relative;
     width: 1000px;
     grid-template-columns: 250px 250px 250px 250px;
+    margin-right: 80px;
   }
+  
 }
