@@ -92,13 +92,11 @@ exports.update = (req, res) => {
         return;
     }
     const authUser = {
-        email: req.body.user,
-        password: req.body.authPassword
+        id: req.body.user,
     }
-    Users.findOne({ where: { email: authUser.email } })
+    Users.findOne({ where: { id: authUser.id } })
         .then(usera => {
-            bcrypt.compare(authUser.password, usera.password, function (err, result) {
-                if (result == true && usera.admin) {
+                if (usera.fabTech) {
                     machine = req.body.updatedMachine;
                     const id = req.params.id;
                     Machines.update(machine, {
@@ -121,13 +119,7 @@ exports.update = (req, res) => {
                             });
                         });
                 }
-                else {
-                    res.status(400).send({
-                        message: "Incorrect Password or Higher permission required!"
-                    });
-                    return;
-                }
-            })
+                
         });
 
 };
