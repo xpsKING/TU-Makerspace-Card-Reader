@@ -21,11 +21,8 @@ function ConditionalButton(props) {
         return null;
     }
 }
-<<<<<<< HEAD
-=======
 
 function RenderEditPassword(props) {
->>>>>>> 4a727b822fa2eeb173c15773295711f61cb34e2d
     console.log('test: ' + props.hasPassword);
     if (props.userIsFabTech && !props.hasPassword) {
         console.log('should return the box');
