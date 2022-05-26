@@ -238,7 +238,6 @@ class Machine extends React.Component {
     if (this.state.activated) {
       this.setState({ activated: false });
       axios(disableMachine(this.state.machineID));
-      console.log(this.state.machineID + " " + this.state.adminView);
     }
     else {
       axios(toggleMachine(this.state.machineID, this.state.currentUser.id))
