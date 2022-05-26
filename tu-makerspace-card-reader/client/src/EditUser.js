@@ -29,7 +29,6 @@ function RenderEditPassword(props) {
         return (
             <div>
                 <Inputs
-                    type="password"
                     className="BoxInput"
                     placeholder="Create Password"
                     value={props.createdPassword}
