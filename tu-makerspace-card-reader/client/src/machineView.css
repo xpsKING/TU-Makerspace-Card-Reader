@@ -5,7 +5,7 @@
   min-height: 50px;
   background-color: rgb(246, 250, 255);
   /* no border color ??? */
-  border-radius: 5px;
+  border-radius: 10px;
   color: #193D2F;
   font-family: "sans-serif", consolas, monaco;
   font-size: 20px;
@@ -14,6 +14,21 @@
   margin-left: 20px;
   margin-bottom: 10px;
   padding-left: 10px;
+}
+.SmallerTextField {
+  width: 120px;
+  height: 30px;
+  background-color: rgb(246, 250, 255);
+  border-radius: 6px;
+  color: #193D2F;
+  font-family: "sans-serif", consolas, monaco;
+  font-size: 14px;
+  font-style: bold;
+  overflow: scroll;
+  padding-left: 10px;
+}
+.SmallerTextField:focus {
+  outline: none;
 }
 .BetterBox {
   z-index: 1;
@@ -24,7 +39,7 @@
   min-height: 40px;
   background-color: #DEEFE5;
   border: 2px solid rgb(25, 61, 29);
-  border-radius: 4px;
+  border-radius: 8px;
   color: rgb(25, 61, 29);
   font-family: "sans-serif", consolas, monaco;
   font-size: 18px;
@@ -45,10 +60,24 @@
   background-color: #bfebd1;
   border-color: #288F65;
 }
+#smaller-box {
+  width: 58px;
+  height: 30px;
+  min-width: 0;
+  min-height: 0;
+  font-size: 12px;
+  margin-bottom: 0px;
+  margin-left: 5px;
+}
 #adminToggle {
   position: absolute;
   right: 35px;
 }
+#fabViewOn {
+  background-color: #ff6c84;
+  color: #193D2F;
+}
+
 #otherh3 {
   color: rgb(25, 61, 29);
   font-family: "sans-serif", consolas, monaco;
@@ -85,8 +114,7 @@
 #input2true:hover {
   border: 2px solid rgb(255, 132, 132);
   background-color: rgb(255, 230, 230);
-}
-  
+} 
 .MachineBox { /* encases the machine image */
   position:relative;
   width: 100px;
@@ -162,12 +190,13 @@
 .MachineBoxContainer {
   position: relative;
   width: 200px;
-  height: 250px;
+  height: fit-content;
+  min-height: 200px;
   margin: auto;
   display:block;
   align-items: center;
   justify-content: center;
-
+  margin-top: 0px;
 }
 .login-container {
   position: relative;
@@ -212,6 +241,22 @@
   z-index: 2;
   background-color: rgba(233, 95, 95, 0.7);
 }
+.tagOutText {
+  width: 195px;
+  height: fit-content;
+  position: relative;
+  color: rgb(248, 80, 77);
+  font-family: "sans-serif", consolas, monaco;
+  font-size: 12px;
+  font-weight: bold;
+  text-align: center;
+  word-break:break-word;
+  font-style: italic;
+  text-decoration:underline;
+  margin-top:0px;
+  top: -5px;
+  
+}
 @media (min-width: 600px) {
   .container2 {
     position: relative;
@@ -229,7 +274,20 @@
     top: -120px;
   }
 }
-@media (min-width: 1310px) { /* ipad pro landscape is 1194px */
+@media (min-width: 1130px) {
+  .container2 {
+    position: relative;
+    width: 700px;
+    margin-right: 120px;
+    grid-template-columns: 200px 200px 200px 200px;
+    top: -120px;
+  }
+  #adminToggle {
+    position: absolute;
+    right: 17px;
+  }
+}
+@media (min-width: 1380px) { /* ipad pro landscape is 1194px */
   .container2 {
     position: relative;
     width: 1000px;

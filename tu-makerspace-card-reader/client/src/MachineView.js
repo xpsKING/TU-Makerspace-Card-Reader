@@ -6,15 +6,59 @@ import axios from 'axios';
 import SwitchUnstyled from '@mui/base/SwitchUnstyled';
 import React from 'react';
 import { getUser, disableMachine, toggleMachine, getAllMachines, editMachine } from './APIRoutes';
-import Root from './switchtheme.js'
-import './DarkMode.css'
+import Root from './switchtheme.js';
+import './DarkMode.css';
+import Inputs from './Inputs.js';
 function AdminButton(props) {
   if (props.isFabTech) {
     return (
-      <button className="BetterBox" onClick={() => props.toggleFabTechView()}>Tag Out</button>
+      <button className="BetterBox" id={props.fabTechView ? "fabViewOn" : ""} onClick={() => props.toggleFabTechView()}>Tag Out</button>
     )
   } else {
     return null;
+  }
+}
+function TagOutInformation(props) {
+  if (props.fabTechView && props.taggedOut) {
+    return (
+      <span id="otherh3-2">
+      <Inputs
+        className="SmallerTextField"
+        placeholder="Enter Reason"
+        value={props.tagOutMessageValue}
+        variable="tagOutMessageValue"
+        parentCallBack={props.handleCallBack}
+        />
+      <button className="BetterBox" id="smaller-box" onClick={() => props.submitMessage()}>Submit</button>
+      </span>
+    )
+    
+  } else if (props.taggedOut) {
+    return (
+      <span>
+      <div className="tagOutText">{props.machineName}: </div>
+      <div className="tagOutText">{props.tagOutMessage || 'Unlisted reason'}</div>
+      </span>
+    )
+  } else {
+    return (
+      <span>
+            <span id="otherh3-2">{props.machineName}
+
+              <SwitchUnstyled
+                component={Root}
+                id="switch"
+                className="toggle"
+                checked={props.activated}
+                size="medium"
+                color="success"
+                disabled={(!props.trained && !props.activated) || props.taggedOut}
+                inputprops={{ 'aria-label': 'Checkbox demo' }}
+                onChange={() => props.onButtonChange()}
+              />
+            </span>
+          </span>
+    )
   }
 }
 export default class MachineView extends React.Component {
@@ -142,6 +186,7 @@ export default class MachineView extends React.Component {
         <div id="adminToggle">
           <AdminButton 
             isFabTech={this.state.isFabTech}
+            fabTechView = {this.state.fabTechView}
             toggleFabTechView={this.toggleFabTechView}
             />
         </div>
@@ -179,6 +224,7 @@ export default class MachineView extends React.Component {
               isFabTech={this.state.isFabTech}
               fabTechView={this.state.fabTechView}
               userID={this.state.currentUser.id}
+              description={machine.description}
             />
           ))}
         
@@ -206,7 +252,13 @@ class Machine extends React.Component {
       fabTechView: props.fabTechView,
       taggedOut: props.taggedOut,
       userID: props.userID,
+      tagOutMessageValue: '',
+      tagOutMessage: props.description || '',
     };
+
+    this.handleCallBack = this.handleCallBack.bind(this);
+    this.submitMessage = this.submitMessage.bind(this);
+    this.onButtonChange = this.onButtonChange.bind(this);
   }
 
   //used to determine which image to grab for machine diplay. may move this to its own file later to clean up code.
@@ -281,8 +333,34 @@ class Machine extends React.Component {
         console.log(err);
       })
     }
-    
   }
+
+  // Receives input from the <Inputs />
+  handleCallBack(variable, value) {
+    this.setState({
+        [variable]: value,
+    })
+  }
+  submitMessage() {
+    if (this.state.tagOutMessageValue) {
+      axios(editMachine(this.state.machineID, {"description":this.state.tagOutMessageValue}, this.state.userID))
+        .then((response, error) => {
+          if (error) {
+            console.log('Error editing machine description');
+          } else {
+            console.log('Successfully edited machine description');
+            this.setState((currentState) => {
+              return {
+                tagOutMessage: currentState.tagOutMessageValue,
+                tagOutMessageValue: '',
+              }
+            })
+          }
+          })
+      }
+  }
+
+    
 
   render() {
     return (
@@ -294,23 +372,18 @@ class Machine extends React.Component {
             <img src={this.state.image} className={this.state.activated ? "MachineBoxTrue" : "MachineBox"} />
             <button className={this.state.fabTechView ? "AdminToggle": "AdminToggleFalse"} id={this.state.taggedOut ? "tagged-out-true" : "tagged-out-false"} onClick={() => this.handleToggleTagOut()} ></button>
         </div>
-        <span>
-          <span id="otherh3-2">{this.state.machineName}
-
-            <SwitchUnstyled
-              component={Root}
-              id="switch"
-              className="toggle"
-              checked={this.state.activated}
-              size="medium"
-              color="success"
-              disabled={(!this.state.trained && !this.state.activated) || this.state.taggedOut}
-              inputprops={{ 'aria-label': 'Checkbox demo' }}
-              onChange={() => this.onButtonChange()}
-            />
-          </span>
-        </span>
-
+        <TagOutInformation
+          fabTechView={this.state.fabTechView}
+          taggedOut={this.state.taggedOut}
+          tagOutMessageValue={this.state.tagOutMessageValue}
+          tagOutMessage={this.state.tagOutMessage}
+          machineName={this.state.machineName}
+          activated={this.state.activated}
+          trained={this.state.trained}
+          submitMessage={this.submitMessage}
+          handleCallBack={this.handleCallBack}
+          onButtonChange={this.onButtonChange}
+          />
       </div>
 
     );
