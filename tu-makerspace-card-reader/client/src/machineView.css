@@ -26,6 +26,7 @@
   font-style: bold;
   overflow: scroll;
   padding-left: 10px;
+  margin-bottom: 8px;
 }
 .SmallerTextField:focus {
   outline: none;
@@ -252,10 +253,12 @@
   text-align: center;
   word-break:break-word;
   font-style: italic;
-  text-decoration:underline;
   margin-top:0px;
   top: -5px;
-  
+}
+#tagOutHeader {
+  text-decoration:underline;
+  font-size: 13px;
 }
 @media (min-width: 600px) {
   .container2 {
