@@ -169,3 +169,19 @@
         top: -100px;
     }
 }
+@media (min-width: 850px) {
+    .container {
+        position:relative;
+        display: block;
+        top: 50px;
+        right: 34%;
+        margin-left: 1fr;
+        grid-template-columns: 1fr;
+    }
+    #small-input {
+        margin-right: 0px;
+    }
+    .editUserContainer { /* container that holds the checkboxes, user ID input, and t*/
+        top: -100px;
+    }
+}
