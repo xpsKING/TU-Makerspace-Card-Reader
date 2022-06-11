@@ -4,7 +4,7 @@ import AddUser from './AddUser.js';
 import { Routes, Route, Link } from 'react-router-dom';
 import EditUser from './EditUser.js';
 import logo from './makerspacelogo.png';
-
+import Hamburger from  './hamburger.js';
 
 function Home(){
   return(
@@ -33,10 +33,12 @@ function App() {
     <div className="App">
     
     <h1 className="header">
+    <Hamburger />
     <form action="/" className = "form2">
       <button className="logo-button"></button>
       </form>
     <img src={logo} id="logo"/>
+    
     
       Tulane Makerspace</h1>
     <Routes>

@@ -149,7 +149,7 @@ export default class AddUser extends React.Component {
                         <Inputs
                             className="nameInputBox"
                             id="input2"
-                            placeholder="authID"
+                            placeholder="Authorized FabTech ID"
                             value={this.state.authID}
                             variable="authID"
                             parentCallBack={this.handleCallBack}

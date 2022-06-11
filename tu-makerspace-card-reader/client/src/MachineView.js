@@ -5,10 +5,8 @@ import tempimage from './tempimage.png';
 import axios from 'axios';
 import React from 'react';
 import { getUser, disableMachine, toggleMachine, getAllMachines, editMachine } from './APIRoutes';
-
-import './DarkMode.css';
-
 import { TagOutButton, TagOutInformation } from './TagOut.js';
+
 export default class MachineView extends React.Component {
   constructor(props) {
     super(props);

@@ -1,11 +1,28 @@
+:root {
+    --eu-text-color: #193D2F;
+    --eu-container-background: rgb(196, 238, 217);
+    --eu-container-border: #288F65;
+    --eu-input-background: rgb(233, 254, 241);
+    --eu-button-background: #006747;
+    --eu-placeholder: #006747;
+}
+@media (prefers-color-scheme: dark) {
+    :root {
+        --eu-text-color: rgb(25, 61, 51);
+        --eu-container-background: #123f35;
+        --eu-container-border: #0d4233;
+        --eu-input-background: rgb(201, 250, 229);
+        --eu-button-background: #1b5845;
+    }
+}
 .editUserContainer { /* container that holds the checkboxes, user ID input, and t*/
     position: relative;
     width: 400px;
     height: 720px;
-    background-color: rgb(225, 251, 235);
-    border: 1.5px solid #288F65;
+    background-color: var(--eu-container-background);
+    border: 1.5px solid var(--eu-container-border);
     border-radius: 10px;
-    opacity: 0.83;
+    opacity: 0.92;
     margin: auto;
     top: -10px;
     display: block;
@@ -17,7 +34,7 @@
     position: relative;
     width: 200px;
     height: 50px;
-    background-color:rgb(238, 251, 243);
+    background-color:var(--eu-input-background);
     border: 2px solid #006747;
     border-radius:8px;
     color: rgb(25, 61, 29);
@@ -34,6 +51,7 @@
     border-color: #288F65;
 }
 #small-input {
+    color: rgb(25, 61, 29);
     position: relative;
     width: 150px;
     height:30px;
@@ -69,7 +87,7 @@
     position: relative;
     width: 70px;
     height: 30px;
-    background-color: #006747;
+    background-color: var(--eu-button-background);
     border: 2px solid rgb(25, 61, 29);
     border-radius: 5px;
     color: rgb(240,240,240);
@@ -103,7 +121,7 @@
     outline: none;
 }
 #text3 {
-    color: #193D2F;
+    color: var(--mv-text-color);
     font-family: "sans-serif", consolas, monaco;
     font-size: 24px;
     padding-left: 15px;
@@ -115,7 +133,7 @@
     grid-template-columns: 1fr;
 }
 ::placeholder {
-    color: rgb(25,61,29);
+    color: var(--eu-placeholder);
     font-weight: bold;
 }
 .topper {
@@ -123,9 +141,9 @@
 }
 #text2 {
     font-family: "sans-serif", consolas, monaco;
-    color: rgb(25,31,61);
+    color: var(--mv-text-color);
     font-weight: bold;
-    font-size: 12px;
+    font-size: 14px;
     margin: 0px;
     padding: 0px;
     display: block;
@@ -134,14 +152,6 @@
     padding: 0px;
     margin: 0px;
     height: 10px;
-}
-@media (prefers-color-scheme: dark) {
-    #text3 {
-        color: rgb(25,31,61);
-    }
-    .editUserContainer {
-        background-color:#8cc8af;
-    }
 }
 @media (min-width: 850px) {
     .container {
