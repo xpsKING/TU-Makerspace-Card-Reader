@@ -78,6 +78,7 @@
   top: 15px;
   border: none;
   z-index:1;
+  touch-action: none;
 }
 .logo-button:hover {
   cursor: pointer
