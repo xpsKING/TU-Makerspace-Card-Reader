@@ -3,7 +3,7 @@ import MachineView from './MachineView.js';
 import AddUser from './AddUser.js';
 import { Routes, Route, Link } from 'react-router-dom';
 import EditUser from './EditUser.js';
-import logo from './makerspacelogo.png';
+import { logo } from './images';
 import Hamburger from  './hamburger.js';
 
 function Home(){
@@ -42,10 +42,12 @@ function App() {
     
       Tulane Makerspace</h1>
     <Routes>
-      <Route path= "/" element = {<Home />} />
-      <Route path= "metalShop1" element = {<MachineView machineGroup="metalShop1" />} />
+      <Route path="/" element = {<Home />} />
+      <Route path="metalShop1" element = {<MachineView machineGroup="metalShop1" />} />
+      <Route path="metalShop2" element = {<MachineView machineGroup="metalShop2" />} />
+      <Route path="woodShop" element = {<MachineView machineGroup="woodShop"/>} />
     {/* Maddie add a path for add user when u wanna start working on that and you now have a new page for that function! */}
-      <Route path= "addUser" element = {<AddUser />} />
+      <Route path="addUser" element = {<AddUser />} />
       <Route path="editUser" element = {<EditUser />}/>
     </Routes>
     </div>

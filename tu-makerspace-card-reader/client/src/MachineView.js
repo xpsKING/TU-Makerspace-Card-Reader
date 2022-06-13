@@ -1,7 +1,5 @@
 import './machineView.css';
-import mill from './mill.png';
-import bandsaw from './bandsaw.jpeg';
-import tempimage from './tempimage.png';
+import { tempimage, mill, bandsaw, belt_sander } from './images';
 import axios from 'axios';
 import React from 'react';
 import { getUser, disableMachine, toggleMachine, getAllMachines, editMachine } from './APIRoutes';
@@ -212,14 +210,16 @@ class Machine extends React.Component {
   // used to determine which image to grab for machine diplay. may move this to its own file later to clean up code.
   getImage(machineName) {
     // console.log(machineName + " " + machineID);
-    if (machineName === "CNC Mill") {
-      return mill;
-    }
-    else if (machineName === 'Bandsaw') {
-      return bandsaw;
-    }
-    else {
-      return tempimage;
+    switch (machineName) {
+      case "CNC Mill":
+        return mill;
+      case "Bandsaw":
+        return bandsaw;
+      case "Belt Sander":
+        return belt_sander;
+      
+      default:
+        return tempimage;
     }
 
   }
