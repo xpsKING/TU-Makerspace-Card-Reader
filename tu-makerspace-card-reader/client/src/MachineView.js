@@ -67,7 +67,6 @@ export default class MachineView extends React.Component {
             error: false,
             isFabTech: response.data.fabTech,
             fabTechView: false,
-            
           });
           //currentUser is set in state of search, need to build function to check user perms and apply to machines as they are mapped
         }
@@ -331,6 +330,7 @@ class Machine extends React.Component {
           handleCallBack={this.handleCallBack}
           onButtonChange={this.onButtonChange}
           />
+
       </div>
 
     );
