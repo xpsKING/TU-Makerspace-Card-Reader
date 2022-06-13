@@ -12,7 +12,7 @@
 @media (prefers-color-scheme: dark) {
   :root {
     --back: rgb(9, 20, 11);
-    --menu-color: #004634;
+    --menu-color: #002e23;
     --border-color: rgb(9, 20, 11);
   }
 }

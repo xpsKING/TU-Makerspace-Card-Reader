@@ -23,9 +23,7 @@ function ConditionalButton(props) {
 }
 
 function RenderEditPassword(props) {
-    console.log('test: ' + props.hasPassword);
     if (props.isAdmin && !props.hasPassword && props.userIsFabTech) {
-        console.log('should return the box');
         return (
             <div>
                 <Inputs
@@ -83,8 +81,6 @@ export default class EditUser2 extends React.Component {
     // may later remove the input of a fabtech ID on the editing page and only require password (Note from bennett: instead of removing it we should just autofill)
     handleFabTechCheck(ID) {
         const id = parseInt(ID,16);
-
-        console.log('isFabTechRunning: ' + id);
         console.log(ID);
         var users = [];
         if (id.toString(16) !== ID) { //if id is a tulane login instead:
@@ -217,7 +213,7 @@ export default class EditUser2 extends React.Component {
                             .then((response, error) => {
                                 if (error) {
                                     console.log('Error editing user !');
-                                    this.handleFindUser();
+                                    this.handleFindUser(this.state.id);
                                 } else {
                                     console.log('Edited successfully!');
                                     this.setState({
@@ -226,7 +222,7 @@ export default class EditUser2 extends React.Component {
                                 }
                             })
                             .catch((err) => {
-                                this.handleFindUser();
+                                this.handleFindUser(this.state.id);
                             })
                     }
                 })
@@ -236,7 +232,7 @@ export default class EditUser2 extends React.Component {
                 .then((response, error) => {
                     if (error) {
                         console.log('Error editing user !');
-                        this.handleFindUser();
+                        this.handleFindUser(this.state.id);
                     } else {
                         console.log('Edited successfully!');
                         this.setState({
@@ -246,7 +242,7 @@ export default class EditUser2 extends React.Component {
                 })
                 .catch((err) => {
                     console.log(err);
-                    this.handleFindUser();
+                    this.handleFindUser(this.state.id);
                 })
         }
     }
@@ -267,7 +263,7 @@ export default class EditUser2 extends React.Component {
                                     .then((response, error) => {
                                         if (error) {
                                             console.log('Error creating password');
-                                            this.handleFindUser();
+                                            this.handleFindUser(this.state.id);
                                         } else {
                                             console.log('Set password.');
                                             this.setState({
@@ -276,7 +272,7 @@ export default class EditUser2 extends React.Component {
                                         }
                                     })
                                     .catch((err) => {
-                                        this.handleFindUser();
+                                        this.handleFindUser(this.state.id);
                                     })
                             }
                         })
@@ -285,7 +281,7 @@ export default class EditUser2 extends React.Component {
                         .then((response, error) => {
                             if (error) {
                                 console.log('Error creating password');
-                                this.handleFindUser();
+                                this.handleFindUser(this.state.id);
                             } else {
                                 console.log('Set password.');
                                 this.setState({
@@ -294,7 +290,7 @@ export default class EditUser2 extends React.Component {
                             }
                         })
                         .catch((err) => {
-                            this.handleFindUser();
+                            this.handleFindUser(this.state.id);
                         })
                 }
             }

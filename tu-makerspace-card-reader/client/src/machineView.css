@@ -14,6 +14,7 @@
   --mv-input-true-background: rgb(255, 230, 230);
   --mv-input-true-border: rgb(255, 132, 132);
   --mv-machine-box-border: var(--mv-border-color);
+  --mv-input-background: var(--mv-input-false-background);
 }
 
 @media (prefers-color-scheme: dark) {
@@ -51,12 +52,41 @@
   color: #006747;
   opacity:0.75;
 }
+#input2false {
+  background-color: var(--mv-input-false-background); 
+  border: none;
+  /*border: 2px solid var(--mv-border-color);*/
+  color: var(--mv-border-color);
+    
+}
+#input2false:hover {
+  background-color: var(--mv-input-false-background-hover);
+  /*border: 2px solid var(--mv-border-color);*/
+}
+  /* this is just testing */
+  
+#input2false:focus {
+  background-color: var(--mv-input-false-background-hover);
+  /*border: 2px solid var(--mv-input-false-border-focus);*/
+  outline: none;
+}
+#input2true {
+  background-color: var(--mv-input-true-background);
+  /*border: 2px solid var(--mv-input-true-border);*/
+  color: var(--mv-border-color);
+  border: none; 
+  outline: none;
+}
+#input2true:hover {
+  /*border: 2px solid rgb(255, 132, 132);*/
+  background-color: rgb(255, 230, 230);
+} 
 .SmallerTextField {
   width: 120px;
   height: 30px;
   background-color: var(--mv-input-background);
   border-radius: 6px;
-  color: var(--mv-text-color);
+  color: #193D2F;
   font-family: var(--mv-default-font);
   font-size: 14px;
   font-style: bold;
@@ -75,7 +105,7 @@
   min-width: 80px;
   min-height: 40px;
   background-color: var(--mv-button-background);
-  border: 2px solid var(--mv-border-color);
+  border: 1px solid var(--mv-border-color);
   border-radius: 8px;
   color: var(--mv-text-color);
   font-family: var(--mv-default-font);
@@ -125,33 +155,7 @@
   margin-bottom: 0px;
   margin-top:5px;
 }
-#input2false {
-  background-color: var(--mv-input-false-background); 
-  border: 2px solid var(--mv-border-color);
-  color: var(--mv-border-color);
-    
-}
-#input2false:hover {
-  background-color: var(--mv-input-false-background-hover);
-  border: 2px solid var(--mv-border-color);
-}
-  /* this is just testing */
-  
-#input2false:focus {
-  background-color: var(--mv-input-false-background-hover);
-  border: 2px solid var(--mv-input-false-border-focus);
-  outline: none;
-}
-#input2true {
-  background-color: var(--mv-input-true-background);
-  border: 2px solid var(--mv-input-true-border);
-  color: var(--mv-border-color);
-  outline: none;
-}
-#input2true:hover {
-  border: 2px solid rgb(255, 132, 132);
-  background-color: rgb(255, 230, 230);
-} 
+
 .MachineBox { /* encases the machine image */
   position:relative;
   width: 100px;

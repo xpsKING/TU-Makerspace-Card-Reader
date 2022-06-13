@@ -2,18 +2,6 @@
     ::placeholder {
       color: rgb(222, 255, 238);
     }
-    .submitButton2 {
-      color: rgb(248, 255, 251);
-      border: 2px solid rgb(117, 117, 117);
-      border-radius: 8px;
-      background-color:rgb(14, 63, 25);
-    }
-    .submitButton2:hover {
-      background-color:rgb(17, 78, 30);
-    }
-    .submitButton2:active {
-      background-color:rgb(21, 98, 38);
-    }
     .BoxInput {
         color: #006747;
     }
@@ -22,9 +10,4 @@
         opacity: 0.75;
     }
 
-    .container-center {
-        background-color: blue;
-        border-radius: 10px;
-        border: 1.5px solid #288F65;
-      }
   }

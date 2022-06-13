@@ -99,6 +99,8 @@ export default class MachineView extends React.Component {
           "name": "Enter ID",
           "nullTraining": false,
         },
+        isFabTech: false,
+        fabTechView: false,
       })
     }
 
