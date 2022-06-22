@@ -146,7 +146,7 @@
 .submitButton2:active {
   background-color: var(--au-submit-background-hover);
   color: var(--au-submit-text-hover);
-  top: 1px;
+  transform: translateY(1px);
 }
 
 .submitButton2:focus {
@@ -169,7 +169,7 @@
 }
 
 .doneButton:active {
-  top: 301px;
+  transform: translateY(1px);
   background-color: var(--au-done-background-active);
 }
 

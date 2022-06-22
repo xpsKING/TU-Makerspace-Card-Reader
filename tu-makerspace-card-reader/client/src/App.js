@@ -1,10 +1,10 @@
 import './App.css';
-import MachineView from './MachineView.js';
-import AddUser from './AddUser.js';
+import { MachineView } from './MachineView';
+import { AddUser } from './AddUser';
 import { Routes, Route, Link } from 'react-router-dom';
-import EditUser from './EditUser.js';
+import { EditUser } from './EditUser';
 import { logo } from './images';
-import Hamburger from  './hamburger.js';
+import { Hamburger } from  './UsedComponents';
 
 function Home(){
   return(
@@ -15,7 +15,13 @@ function Home(){
       </main>
       <nav className="List">
         <form action="/metalShop1">
-        <button className = "Box">metalShop1</button>
+        <button className = "Box">Metal Shop 1</button>
+        </form>
+        <form action="/metalShop2">
+          <button className="Box">Metal Shop 2</button>
+        </form>
+        <form action="/woodShop">
+          <button className="Box">Wood Shop</button>
         </form>
         <form action="/addUser">
           <button className = "Box">Add a User</button>

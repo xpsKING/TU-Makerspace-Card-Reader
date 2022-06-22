@@ -1,8 +1,8 @@
 import './machineView.css';
-import { tempimage, mill, bandsaw, belt_sander } from './images';
+import { tempimage, mill, bandsaw, belt_sander } from '../images';
 import axios from 'axios';
 import React from 'react';
-import { getUser, disableMachine, toggleMachine, getAllMachines, editMachine } from './APIRoutes';
+import { getUser, disableMachine, toggleMachine, getAllMachines, editMachine } from '../APIRoutes';
 import { TagOutButton, TagOutInformation } from './TagOut.js';
 
 export default class MachineView extends React.Component {

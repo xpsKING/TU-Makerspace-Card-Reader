@@ -128,7 +128,7 @@
 }
 .BetterButton:active {
     background-color: #047652;
-    top: 1px;
+    transform: translateY(1px);
 }
 .BetterButton:focus {
     outline: none;

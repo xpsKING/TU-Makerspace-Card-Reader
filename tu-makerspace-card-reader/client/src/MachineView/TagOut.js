@@ -1,4 +1,4 @@
-import Inputs from './Inputs.js';
+import Inputs from '../UsedComponents/Inputs.js';
 import Root from './switchtheme.js';
 import SwitchUnstyled from '@mui/base/SwitchUnstyled';
 import React from 'react';

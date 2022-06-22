@@ -9,10 +9,11 @@
   --text-color: white;
   --header-shadow: rgb(25, 61, 29);
   --header-background: var(--background-color);
-  --list-background: rgb(225, 251, 235);
+  --list-background: rgb(177, 222, 194);
   --list-border-color: #288F65;
-  --list-opacity: 0.8;
+  --list-opacity: 1;
   --page-text: black;
+  --box-shadow-color: #01674f;
 }
 @media (prefers-color-scheme: dark) {
   :root {
@@ -30,6 +31,7 @@
     --list-border-color: rgb(9, 20, 11);
     --list-opacity: 1;
     --page-text: var(--text-color);
+    --box-shadow-color: #00110d;
   }
 }
 .App {
@@ -40,9 +42,10 @@
   width: 150px;
   height: 50px;
   background: var(--button-background);
-  border: 1.5px solid var(--border-color);
+  border: none;
+  /*border: 1.5px solid var(--border-color);*/
   border-radius: 8px;
-  box-shadow: 1px 2px 2px var(--border-color);
+  box-shadow: 0 0 5px 0 var(--border-color);
   opacity: 1;
   font-family: "sans-serif", consolas, monaco;
   font-size: 15px;
@@ -55,7 +58,7 @@
   color: var(--button-text-color-hover);
 }
 .Box:active {
-  top: 1px;
+  transform: translateY(2px);
   background: var(--button-background-active);
   outline: none;
 }
@@ -103,16 +106,21 @@
 }
 .List {
   position: relative;
-  width: 240px;
+  width: 540px;
   height: 270px;
   background-color: var(--list-background);
   opacity: var(--list-opacity);
-  border: 1.5px solid var(--list-border-color);
+  border: none;
+  box-shadow: 0 0 5px 0 var(--box-shadow-color);
+  /*border: 1.5px solid var(--list-border-color);*/
   border-radius: 7px;
   display: grid;
   align-items: center;
   justify-content: center;
   margin: auto;
+  grid-template-columns: 1fr 1fr 1fr;
+  align-items: center;
+  justify-items: center;
 }
 /* DARK MODE */
 

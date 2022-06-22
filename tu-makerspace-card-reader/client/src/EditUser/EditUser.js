@@ -1,8 +1,8 @@
 import axios from 'axios';
 import React from 'react';
 import './EditUser.css';
-import { getUser, editUser, hasPassword, getUserEmail } from './APIRoutes.js';
-import Inputs from './Inputs.js';
+import { getUser, editUser, hasPassword, getUserEmail } from '../APIRoutes.js';
+import Inputs from '../UsedComponents/Inputs.js';
 import DisplayChecks from './DisplayChecks.js';
 
 //import { CheckBox } from '@material-ui/icons';
@@ -130,7 +130,8 @@ export default class EditUser2 extends React.Component {
         if (ID) {
             const id = parseInt(ID,16);
             var trainings;
-            if (id.toString(16) == ID) { // if id is an id (opposed to an email)
+            if (id) {
+            //if (id.toString(16) === ID.toLowerCase()) { // if id is an id (opposed to an email)
                 axios(getUser(id)).then((response, error) => {
                     if (error) {
                         console.log('Error finding User');
