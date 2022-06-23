@@ -1,9 +1,10 @@
 import './machineView.css';
-import { tempimage, mill, bandsaw, belt_sander } from '../images';
 import axios from 'axios';
 import React from 'react';
 import { getUser, disableMachine, toggleMachine, getAllMachines, editMachine } from '../APIRoutes';
 import { TagOutButton, TagOutInformation } from './TagOut.js';
+import getImage from './GetImage.js';
+
 
 export default class MachineView extends React.Component {
   constructor(props) {
@@ -193,7 +194,7 @@ class Machine extends React.Component {
       machineName: props.machineName,
       activated: props.activated,
       currentUser: props.currentUser,
-      image: this.getImage(props.machineName, props.machineID),
+      image: getImage(props.machineName, props.machineID),
       trained: props.trained,
       fabTechView: props.fabTechView,
       taggedOut: props.taggedOut,
@@ -205,23 +206,6 @@ class Machine extends React.Component {
     this.handleCallBack = this.handleCallBack.bind(this);
     this.submitMessage = this.submitMessage.bind(this);
     this.onButtonChange = this.onButtonChange.bind(this);
-  }
-
-  // used to determine which image to grab for machine diplay. may move this to its own file later to clean up code.
-  getImage(machineName) {
-    // console.log(machineName + " " + machineID);
-    switch (machineName) {
-      case "CNC Mill":
-        return mill;
-      case "Bandsaw":
-        return bandsaw;
-      case "Belt Sander":
-        return belt_sander;
-      
-      default:
-        return tempimage;
-    }
-
   }
 
   // used to update buttons with perms on user change. does not change activated state on machine, so remote disable is not supported atm. to be supported if deemed needed.

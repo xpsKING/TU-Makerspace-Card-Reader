@@ -130,8 +130,8 @@ export default class EditUser2 extends React.Component {
         if (ID) {
             const id = parseInt(ID,16);
             var trainings;
-            if (id) {
-            //if (id.toString(16) === ID.toLowerCase()) { // if id is an id (opposed to an email)
+    
+            if (id.toString(16) === ID.toLowerCase()) { // if id is an id (opposed to an email)
                 axios(getUser(id)).then((response, error) => {
                     if (error) {
                         console.log('Error finding User');
