@@ -228,7 +228,7 @@
 }
 .MachineBoxContainer {
   position: relative;
-  width: 200px;
+  width: 220px;
   height: fit-content;
   min-height: 200px;
   margin: auto;
@@ -302,7 +302,7 @@
   .container2 {
     position: relative;
     width: fit-content;
-    grid-template-columns: 200px 200px 200px;
+    grid-template-columns: 220px 220px 220px;
     margin: auto;
   }
 }
@@ -311,7 +311,7 @@
     position: relative;
     width: 700px;
     margin-right: 50px;
-    grid-template-columns: 200px 200px 200px;
+    grid-template-columns: 220px 220px 220px;
     top: -120px;
   }
 }
@@ -320,7 +320,7 @@
     position: relative;
     width: 700px;
     margin-right: 120px;
-    grid-template-columns: 200px 200px 200px 200px;
+    grid-template-columns: 220px 220px 220px 220px;
     top: -120px;
   }
   #adminToggle {

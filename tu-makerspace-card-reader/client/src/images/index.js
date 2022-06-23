@@ -18,12 +18,15 @@ import cut_off_steel from './Cut_Off_Steel.jpg';
 import waterjet from './water_jet.jpeg';
 
 import bandsaw_small from './Bandsaw_4.JPG';
-import bandsaw_big from './Bandsaw_3.JPG';
+import bandsaw_big from './bandsaw_3.webp';
 import belt_sander from './Sander_1.JPG';
 import spindle_sander from './Spindle Sander.jpeg';
 import drill_press from './Drill_Press_wood.JPG';
-import table_saw from './Table_Saw_1.JPG';
+import table_saw from './table_saw.jpg';
 import blade_runner from './Rockwell-Blade-Runner.jpg';
+import router_table from './router_table.jpeg';
+import sliding_miter_saw from './sliding_miter_saw.jpeg';
+import compound_miter_saw from './compound_miter_saw.jpeg';
 
 
 
@@ -61,5 +64,8 @@ export {
     drill_press,
     table_saw,
     blade_runner,
+    router_table,
+    sliding_miter_saw,
+    compound_miter_saw,
 
 }
