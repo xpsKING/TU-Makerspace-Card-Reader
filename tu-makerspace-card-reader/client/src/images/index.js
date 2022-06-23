@@ -3,8 +3,8 @@ import logo from './makerspacelogo.png';
 
 import mill from './mill.jpg';
 import lathe from './Lathe.JPG';
-import bandsaw_soft from './Bandsaw_1.JPG';
-import bandsaw_steel from './Bandsaw_2.JPG';
+import bandsaw_soft from './Bandsaw_soft.JPG';
+import bandsaw_steel from './Bandsaw_steel.JPG';
 import drill_press_soft from './Drill_Press_1.JPG';
 import drill_press_steel from './Drill_Press_2.JPG';
 import grinder1 from './Grinder_1.JPG';
@@ -17,9 +17,9 @@ import cut_off_soft from './Cut_Off_Soft.JPG';
 import cut_off_steel from './Cut_Off_Steel.jpg';
 import waterjet from './water_jet.jpeg';
 
-import bandsaw_small from './Bandsaw_4.JPG';
-import bandsaw_big from './bandsaw_3.webp';
-import belt_sander from './Sander_1.JPG';
+import bandsaw_small from './bandsaw_small.jpeg';
+import bandsaw_big from './bandsaw_big.webp';
+import belt_sander from './belt_sander.jpg';
 import spindle_sander from './Spindle Sander.jpeg';
 import drill_press from './Drill_Press_wood.JPG';
 import table_saw from './table_saw.jpg';
