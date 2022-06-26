@@ -57,7 +57,7 @@ export default class MachineView extends React.Component {
       value: value,
     })
     if (value !== '') { // added this to unset error
-      axios(getUser(event.target.value)).then((response, err) => {
+      axios(getUser(parseInt(event.target.value,16))).then((response, err) => {
         // console.log(response.data);
         if (response.data.name) {
           console.log("name set: " + response.data.name);

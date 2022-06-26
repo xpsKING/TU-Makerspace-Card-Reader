@@ -9,12 +9,12 @@ const machine_images = {
     "Drill Press M1":drill_press_soft,
     "Drill Press M2":drill_press_steel,
     "Drill Press":drill_press,
-    "Lathe":lathe,
-    "Grinder 1":grinder1,
+    "CNC Lathe":lathe,
+    "Bench Grinders":grinder1,
     "Grinder 2":grinder2,
     "Grinder 3":grinder3,
     "Belt Sander":belt_sander,
-    "Vertical Mill":vertical_mill,
+    "Precision Drill Press":vertical_mill,
     "Horizontal Bandsaw":horizontal_bandsaw,
     "Cut Off M1":cut_off_soft,
     "Cut Off M2":cut_off_steel,
@@ -27,9 +27,8 @@ const machine_images = {
     "Sliding Saw":sliding_miter_saw,
     }
 export default function getImage(machineName) {
-    console.log("NAME: " + machineName);
-    console.log("IMAGE:" + machine_images[machineName]);
-    if (machine_images[machineName])
-        return machine_images[machineName];
+    const image = machine_images[machineName];
+    if (image)
+        return image;
     return tempimage;
 }

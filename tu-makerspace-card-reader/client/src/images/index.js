@@ -10,7 +10,7 @@ import drill_press_steel from './Drill_Press_2.JPG';
 import grinder1 from './Grinder_1.JPG';
 import grinder2 from './Grinder_2.JPG';
 import grinder3 from './Grinder_3.JPG';
-import vertical_mill from './Vertical_Mill_1.JPG';
+import vertical_mill from './vertical_mill.jpeg';
 
 import horizontal_bandsaw from './horizontal_bandsaw.JPG';
 import cut_off_soft from './Cut_Off_Soft.JPG';
@@ -27,9 +27,6 @@ import blade_runner from './Rockwell-Blade-Runner.jpg';
 import router_table from './router_table.jpeg';
 import sliding_miter_saw from './sliding_miter_saw.jpeg';
 import compound_miter_saw from './compound_miter_saw.jpeg';
-
-
-
 
 export {
 
