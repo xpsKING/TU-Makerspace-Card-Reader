@@ -37,14 +37,13 @@ export function TagOutInformation(props) {
     } else if (props.taggedOut) {
         return (
             <span>
-                <div className="tagOutText" id="tagOutHeader">{props.machineName}: </div>
                 <div className="tagOutText">{props.tagOutMessage || 'Unlisted reason'}</div>
             </span>
         )
     } else {
         return (
             <span>
-                <span id="otherh3-2">{props.machineName}
+                <span>
 
                     <SwitchUnstyled
                         component={Root}

@@ -26,12 +26,11 @@
     --mv-button-background-active: var(--mv-button-background-hover);
     --mv-button-border-color-active: rgb(30, 77, 56);
     --mv-fab-tech-view-on: #cf3e56;
-    --mv-input-false-backgorund: rgb(198, 240, 215);
+    --mv-input-false-background: rgb(198, 240, 215);
     --mv-input-false-background-hover: rgb(169, 223, 191);
     --mv-machine-box-border: rgb(22, 45, 36);
   }
 }
-
 .BetterTextField {
   width: 200px;
   height: 50px;
@@ -214,7 +213,8 @@
   font-weight: bold;
   text-align: center;
   overflow: visible;
-  top: 10px;
+  top: 0px;
+
 }       
 .container2 { /* container for the machines to be in a grid layout */
   position:relative;
@@ -235,7 +235,7 @@
   display:block;
   align-items: center;
   justify-content: center;
-  margin-top: 0px;
+  margin-top: 40px;
 }
 .login-container {
   position: relative;
