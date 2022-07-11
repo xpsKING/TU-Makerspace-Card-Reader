@@ -26,7 +26,7 @@ export default class MachineView extends React.Component {
         "requiredTraining": "nullTraining",
       }], //temporary "loading" machine that gets overirdden in componentdidmount()
     };
-    
+
     this.toggleFabTechView = this.toggleFabTechView.bind(this);
   }
   componentDidMount() { //gets called when component starts, gets machines for specific machinegroup from api
@@ -46,143 +46,158 @@ export default class MachineView extends React.Component {
             "nullTraining": false
           },
         });
+        this.disableMachines();
       }
     });
 
   }
-  handlenewSearch = (event) => { //called when search box is changed. updates user which is referenced by Machine component for perms
-
-    const value = event.target.value;
-    this.setState({
-      value: value,
-    })
-    if (value !== '') { // added this to unset error
-      axios(getUser(parseInt(event.target.value,16))).then((response, err) => {
-        // console.log(response.data);
-        if (response.data.name) {
-          console.log("name set: " + response.data.name);
-          this.setState({
-            currentUser: response.data,
-            error: false,
-            isFabTech: response.data.fabTech,
-            fabTechView: false,
+  disableMachines() {
+    this.state.machines.forEach((machine) => {
+      if (!machine.activated) {
+        axios(disableMachine(machine.id))
+          .then((response, error) => {
+            if (error) {
+              console.log("ERROR");
+            } else {
+              console.log('Machine Disabled');
+            }
+          }).catch((err) => {
+            console.log(err);
           });
-          //currentUser is set in state of search, need to build function to check user perms and apply to machines as they are mapped
-        }
-        else {
-          console.log("error fetching name: " + err);
-          this.setState({
-            error: true,
-            currentUser: { 
-              "name": "Enter ID", 
-            "nullTraining": false, 
-          },
-          });
+        }})
+}
+handlenewSearch = (event) => { //called when search box is changed. updates user which is referenced by Machine component for perms
 
-        }
-      }).catch((err) => {
+  const value = event.target.value;
+  this.setState({
+    value: value,
+  })
+  if (value !== '') { // added this to unset error
+    axios(getUser(parseInt(event.target.value, 16))).then((response, err) => {
+      // console.log(response.data);
+      if (response.data.name) {
+        console.log("name set: " + response.data.name);
+        this.setState({
+          currentUser: response.data,
+          error: false,
+          isFabTech: response.data.fabTech,
+          fabTechView: false,
+        });
+        //currentUser is set in state of search, need to build function to check user perms and apply to machines as they are mapped
+      }
+      else {
         console.log("error fetching name: " + err);
         this.setState({
           error: true,
           currentUser: {
-            "name": "Enter ID", 
-            "nullTraining": false 
+            "name": "Enter ID",
+            "nullTraining": false,
           },
         });
-      });
-    } else { // unsets error when empty
+
+      }
+    }).catch((err) => {
+      console.log("error fetching name: " + err);
       this.setState({
-        error: false,
+        error: true,
         currentUser: {
           "name": "Enter ID",
-          "nullTraining": false,
+          "nullTraining": false
         },
-        isFabTech: false,
-        fabTechView: false,
-      })
-    }
-
-  }
-
-  handleLogOut() {
+      });
+    });
+  } else { // unsets error when empty
     this.setState({
-      isFabTech: false,
-      fabTechView: false,
-      value: '',
       error: false,
       currentUser: {
         "name": "Enter ID",
         "nullTraining": false,
       },
+      isFabTech: false,
+      fabTechView: false,
     })
   }
-  toggleFabTechView() {
-    this.setState((currentState) => {
-      return {
-        fabTechView: !currentState.fabTechView,
-      }
-    })
-    
-  }
+
+}
+
+handleLogOut() {
+  this.setState({
+    isFabTech: false,
+    fabTechView: false,
+    value: '',
+    error: false,
+    currentUser: {
+      "name": "Enter ID",
+      "nullTraining": false,
+    },
+  })
+}
+toggleFabTechView() {
+  this.setState((currentState) => {
+    return {
+      fabTechView: !currentState.fabTechView,
+    }
+  })
+
+}
 
 
-  render() {
-    let err = this.state.error;
-    return (
+render() {
+  let err = this.state.error;
+  return (
 
-      <div>
-        <div id="adminToggle">
-          <TagOutButton 
+    <div>
+      <div id="adminToggle">
+        <TagOutButton
+          isFabTech={this.state.isFabTech}
+          fabTechView={this.state.fabTechView}
+          toggleFabTechView={this.toggleFabTechView}
+        />
+      </div>
+      <div className='login-container' align="left">
+        {/* Create textfield for user input, highlights red if error! Blue if valid name! */}
+        <h3 id="otherh3">Name: {this.state.currentUser.name !== "Enter ID" ? this.state.currentUser.name : ' '}</h3>
+
+        <input
+          id={err === true ? "input2true" : "input2false"}
+          className='BetterTextField'
+          placeholder={this.state.currentUser.name}
+          error={this.state.error.toString()}
+          value={this.state.value}
+          onChange={this.handlenewSearch}
+          autoComplete="off"
+        />
+        <button
+          className="BetterBox"
+          onClick={() => this.handleLogOut()}
+        > Log Out </button>
+      </div>
+
+      {/* Creates multiple machines from the machine[] state! Machine state is filled on component load and is called via api GET machines/group/groupname */}
+      {/* Change the machinegroup prop when you render the search component to set which tablet this is run on  */}
+      <div className='container2'>
+        {this.state.machines.map((machine) => (
+          <Machine
+
+            machineID={machine.id}
+            machineName={machine.name}
+            currentUser={this.state.currentUser}
+            trained={this.state.currentUser[machine.requiredTraining]}
+            taggedOut={machine.taggedOut}
             isFabTech={this.state.isFabTech}
-            fabTechView = {this.state.fabTechView}
-            toggleFabTechView={this.toggleFabTechView}
-            />
-        </div>
-        <div className='login-container' align="left">
-          {/* Create textfield for user input, highlights red if error! Blue if valid name! */}
-          <h3 id="otherh3">Name: {this.state.currentUser.name !== "Enter ID" ? this.state.currentUser.name : ' '}</h3>
-
-          <input
-            id={err === true ? "input2true" : "input2false"}
-            className='BetterTextField'
-            placeholder={this.state.currentUser.name}
-            error={this.state.error.toString()}
-            value={this.state.value}
-            onChange={this.handlenewSearch}
-            autoComplete="off"
+            fabTechView={this.state.fabTechView}
+            userID={this.state.currentUser.id}
+            description={machine.description}
           />
-          <button
-            className="BetterBox"
-            onClick={() => this.handleLogOut()}
-          > Log Out </button>
-        </div>
-
-        {/* Creates multiple machines from the machine[] state! Machine state is filled on component load and is called via api GET machines/group/groupname */}
-        {/* Change the machinegroup prop when you render the search component to set which tablet this is run on  */}
-        <div className='container2'>
-          {this.state.machines.map((machine) => (
-            <Machine
-
-              machineID={machine.id}
-              machineName={machine.name}
-              currentUser={this.state.currentUser}
-              activated={machine.status}
-              trained={this.state.currentUser[machine.requiredTraining]}
-              taggedOut={machine.taggedOut}
-              isFabTech={this.state.isFabTech}
-              fabTechView={this.state.fabTechView}
-              userID={this.state.currentUser.id}
-              description={machine.description}
-            />
-          ))}
-        
-        </div>
-
+        ))}
 
       </div>
 
-    )
-  }
+
+    </div>
+
+  )
+}
 
 }
 
@@ -193,7 +208,7 @@ class Machine extends React.Component {
     this.state = {
       machineID: props.machineID,
       machineName: props.machineName,
-      activated: props.activated,
+      activated: false,
       currentUser: props.currentUser,
       image: getImage(props.machineName, props.machineID),
       trained: props.trained,
@@ -248,37 +263,37 @@ class Machine extends React.Component {
   }
   handleToggleTagOut() {
     if (this.state.fabTechView) {
-    axios(editMachine(this.state.machineID, {"taggedOut":!this.state.taggedOut, "description":''}, this.state.userID))
-      .then((response, error) => {
-        if (error) {
-          console.log('Error tagging in/out');
-        } else {
-          console.log('Success tagging in/out');
-          this.setState((currentState) => {
-            return {
-              taggedOut: !currentState.taggedOut,
-              activated: false,
-              tagOutMessage: '',
-            }
-          })
+      axios(editMachine(this.state.machineID, { "taggedOut": !this.state.taggedOut, "description": '' }, this.state.userID))
+        .then((response, error) => {
+          if (error) {
+            console.log('Error tagging in/out');
+          } else {
+            console.log('Success tagging in/out');
+            this.setState((currentState) => {
+              return {
+                taggedOut: !currentState.taggedOut,
+                activated: false,
+                tagOutMessage: '',
+              }
+            })
 
-        }
-      }).catch((err) => {
-        console.log(err);
-      })
+          }
+        }).catch((err) => {
+          console.log(err);
+        })
     }
   }
 
   // Receives input from the <Inputs />
   handleCallBack(variable, value) {
     this.setState({
-        [variable]: value,
+      [variable]: value,
     })
   }
 
   submitMessage() {
     if (this.state.tagOutMessageValue) {
-      axios(editMachine(this.state.machineID, {"description":this.state.tagOutMessageValue}, this.state.userID))
+      axios(editMachine(this.state.machineID, { "description": this.state.tagOutMessageValue }, this.state.userID))
         .then((response, error) => {
           if (error) {
             console.log('Error editing machine description');
@@ -292,8 +307,8 @@ class Machine extends React.Component {
             })
             console.log(this.state.tagOutMessageValue);
           }
-          })
-      }
+        })
+    }
   }
 
   render() {
@@ -301,8 +316,8 @@ class Machine extends React.Component {
       <div className="MachineBoxContainer" align="center">
         <span id="otherh3-2">{this.state.machineName}</span>
         <div className={this.state.activated ? "MachineBoxBorder" : 'MachineBoxBorder-false'}>
-            <img src={this.state.image} className={this.state.activated ? "MachineBoxTrue" : "MachineBox"} />
-            <button className={this.state.fabTechView ? "AdminToggle": "AdminToggleFalse"} id={this.state.taggedOut ? "tagged-out-true" : "tagged-out-false"} onClick={() => this.handleToggleTagOut()} ></button>
+          <img src={this.state.image} className={this.state.activated ? "MachineBoxTrue" : "MachineBox"} />
+          <button className={this.state.fabTechView ? "AdminToggle" : "AdminToggleFalse"} id={this.state.taggedOut ? "tagged-out-true" : "tagged-out-false"} onClick={() => this.handleToggleTagOut()} ></button>
         </div>
         <TagOutInformation
           fabTechView={this.state.fabTechView}
@@ -315,7 +330,7 @@ class Machine extends React.Component {
           submitMessage={this.submitMessage}
           handleCallBack={this.handleCallBack}
           onButtonChange={this.onButtonChange}
-          />
+        />
 
       </div>
 
